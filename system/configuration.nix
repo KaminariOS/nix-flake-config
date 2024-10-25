@@ -316,7 +316,7 @@ in {
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.kosumi = {
       isNormalUser = true;
-      extraGroups = ["docker" "networkmanager" "wheel" "scanner" "lp" "video"]; # wheel for ‘sudo’.
+      extraGroups = ["docker" "networkmanager" "wheel" "scanner" "lp" "video" "input"]; # wheel for ‘sudo’.
       shell = pkgs.fish;
       openssh.authorizedKeys = {
         keys = [
