@@ -21,7 +21,6 @@
     # Your One-Stop Publication Workbench
     zettlr
 
-    obs-studio
     #blender
     steam
     # heroic
