@@ -6,7 +6,7 @@
   services = {
     #cross platform text expander in Rust.
     espanso = {
-      enable = true;
+      # enable = true;
       package = pkgs.espanso-wayland;
       matches = {
         base = {
