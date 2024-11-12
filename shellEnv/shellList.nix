@@ -93,7 +93,7 @@ pkgs: let
     rm-improved
 
     viu # A command-line application to view images from the terminal written in Rust
-    tenere
+    # tenere
     heygpt
 
     # Analyzer of executables using a terminal user interface
