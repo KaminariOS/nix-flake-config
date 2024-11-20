@@ -21,10 +21,10 @@
     # Your One-Stop Publication Workbench
     zettlr
 
-    #blender
+    blender
     steam
     # heroic
-    lutris
+    # lutris
     mpv
     # mdcat
     xdotool

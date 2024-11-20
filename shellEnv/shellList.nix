@@ -206,7 +206,7 @@ pkgs: let
 
     rr
 
-    python3
+    # python3
     python3.pkgs.dbus-python
     # iftop
 
