@@ -1,6 +1,9 @@
 pkgs: let
   rustcli = with pkgs; [
     aichat
+    argc
+    jq
+
     # xsv
     # A fast duplicate file finder
     # ddh
@@ -183,6 +186,7 @@ pkgs: let
   ];
 
   defaultShell = with pkgs; [
+    ddgr
     xclip
     killall # kill processes by name
     # ranger # terminal file explorer

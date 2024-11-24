@@ -135,6 +135,11 @@
             regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
             format = 'https://www.github.com/$1/$3',
           })
+          table.insert(config.hyperlink_rules, {
+            regex = [[([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(\/[^\s]*)?]],
+            format = 'https://$0',
+          })
+
           config.front_end = "WebGpu"
 
            -- and finally, return the configuration to wezterm
