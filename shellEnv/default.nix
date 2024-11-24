@@ -92,6 +92,14 @@ let
           };
         };
       };
+      yazi = {
+        enable = true;
+        enableFishIntegration = true;
+      };
+      eza = {
+        enable = true;
+        enableFishIntegration = true;
+      };
     };
   };
 in [

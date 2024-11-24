@@ -33,7 +33,7 @@ pkgs: let
 
     bottom # alternative to htop & ytop
     du-dust # disk usage/free utility
-    eza # a better `ls`
+    # eza # a better `ls`
     fd # "find" for files
     hyperfine # command-line benchmarking tool
     # File manager
@@ -91,7 +91,7 @@ pkgs: let
     evcxr
 
     # File manager
-    yazi
+    # yazi
 
     # Replacement for rm with focus on safety, ergonomics and performance
     rm-improved
