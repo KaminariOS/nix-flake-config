@@ -107,7 +107,7 @@ pkgs: let
     bacon
 
     # Executes commands in response to file modifications
-    watchexec 
+    watchexec
   ];
 
   security = with pkgs; [

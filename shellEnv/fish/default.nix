@@ -221,7 +221,7 @@ in {
       glg = "git log";
       grs = "git restore";
       dg = "ddgr --unsafe -n 6";
-      bang="ddgr --gb --np --unsafe";
+      bang = "ddgr --gb --np --unsafe";
     };
     shellAbbrs = {
       drr = "direnv reload";

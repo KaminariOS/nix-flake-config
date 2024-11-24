@@ -82,11 +82,11 @@ in {
       };
     };
     services = {
-      imec = {
-        Unit.Description = "...";
-        Service.ExecStart = "${config.home.homeDirectory}/.nix-profile/bin/fcitx5";
-        Install.WantedBy = ["default.target"]; # starts after login
-      };
+      # imec = {
+      #   Unit.Description = "...";
+      #   Service.ExecStart = "${config.home.homeDirectory}/.nix-profile/bin/fcitx5";
+      #   Install.WantedBy = ["default.target"]; # starts after login
+      # };
       rclone = {
         Service = {
           Type = "simple";

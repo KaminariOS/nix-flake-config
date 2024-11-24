@@ -44,10 +44,11 @@ in {
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # i18n.inputMethod = {
-  #   enabled = "fcitx5";
-  #   fcitx5.addons = with pkgs; [ fcitx5-rime fcitx5-chinese-addons fcitx5-mozc ];
-  # };
+  i18n.inputMethod = {
+    fcitx5.waylandFrontend = true;
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [fcitx5-rime fcitx5-chinese-addons fcitx5-mozc];
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -158,8 +159,29 @@ in {
       enable = true;
     };
     auto-cpufreq.enable = true;
+    xserver = {
+      videoDrivers = ["displaylink" "modesetting"];
+      desktopManager.runXdgAutostartIfNone = true;
 
-    xserver.videoDrivers = ["displaylink" "modesetting"];
+      displayManager = {
+        session = [
+          {
+            manage = "desktop";
+            name = "none+sway";
+            start = "sway";
+          }
+        ];
+      };
+      #   # Enable the X11 windowing system.
+      #   enable = true;
+      #
+      #   windowManager.i3.enable = true;
+      #
+      #   # Configure keymap in X11
+      #   xkb.layout = "us";
+      #   xkb.variant = "";
+    };
+
     greetd = {
       enable = true;
       settings = {
@@ -195,26 +217,6 @@ in {
       #   };
       # };
       # defaultSession = "none+sway";
-    };
-
-    xserver = {
-      displayManager = {
-        session = [
-          {
-            manage = "desktop";
-            name = "none+sway";
-            start = "sway";
-          }
-        ];
-      };
-      #   # Enable the X11 windowing system.
-      #   enable = true;
-      #
-      #   windowManager.i3.enable = true;
-      #
-      #   # Configure keymap in X11
-      #   xkb.layout = "us";
-      #   xkb.variant = "";
     };
 
     # Enable the OpenSSH daemon.
