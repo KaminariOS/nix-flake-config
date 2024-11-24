@@ -53,6 +53,7 @@ with inputs; let
     hidpi ? false,
     username,
     shell ? false,
+    temp ? false,
     homed,
   }: (
     home-manager.lib.homeManagerConfiguration {
@@ -60,6 +61,7 @@ with inputs; let
 
       extraSpecialArgs = {
         inherit hidpi;
+        inherit temp;
         addons = nur.repos.rycee.firefox-addons;
       };
 

@@ -1,4 +1,8 @@
-pkgs: let
+{
+  pkgs,
+  specialArgs,
+  ...
+}: let
   rustcli = with pkgs; [
     aichat
     argc

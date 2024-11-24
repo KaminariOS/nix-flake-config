@@ -3,9 +3,10 @@
   pkgs,
   lib,
   stdenv,
+  specialArgs,
   ...
 }: let
-  shellPkgs = import ../shellEnv/shellList.nix pkgs;
+  shellPkgs = pkgs.callPackage ../shellEnv/shellList.nix {inherit specialArgs;};
 in {
   imports = builtins.concatMap import [
     #      ./age

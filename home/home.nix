@@ -2,9 +2,10 @@
   config,
   pkgs,
   lib,
+  specialArgs,
   ...
 }: let
-  shellPkgs = import ../shellEnv/shellList.nix pkgs;
+  shellPkgs = pkgs.callPackage ../shellEnv/shellList.nix {inherit specialArgs;};
   mimeTypes = import ./mimeTypes.nix;
   defaultPkgs = with pkgs; [
     arandr # simple GUI for xrandr
@@ -20,7 +21,7 @@
     # simplescreenrecorder # screen recorder gui
   ];
 
-  gui_apps = (import ./gui.nix pkgs).gui_packages;
+  gui_apps = (pkgs.callPackage ./gui.nix {}).gui_packages;
   nixos_app = with pkgs; [
     jetbrains.clion
     jetbrains.idea-ultimate
