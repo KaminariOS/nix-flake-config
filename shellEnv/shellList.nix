@@ -229,7 +229,8 @@ pkgs: let
     xpra
 
     pandoc
-    texlive.combined.scheme-small
+    # texlive.combined.scheme-small
+    tectonic
 
     screen
     dmidecode
