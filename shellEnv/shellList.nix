@@ -101,6 +101,9 @@ pkgs: let
 
     # Background rust code checker
     bacon
+
+    # Executes commands in response to file modifications
+    watchexec 
   ];
 
   security = with pkgs; [
