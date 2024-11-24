@@ -1,5 +1,6 @@
 pkgs: let
   rustcli = with pkgs; [
+    aichat
     # xsv
     # A fast duplicate file finder
     # ddh
@@ -94,7 +95,7 @@ pkgs: let
 
     viu # A command-line application to view images from the terminal written in Rust
     # tenere
-    heygpt
+    # heygpt
 
     # Analyzer of executables using a terminal user interface
     binsider
