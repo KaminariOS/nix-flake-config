@@ -108,6 +108,7 @@ in {
       hidpi = false;
       inherit username;
       shell = true;
+      temp = true;
       homed = "/users/${username}";
     };
   shellhomeForWork = let
