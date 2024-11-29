@@ -16,4 +16,5 @@
   ./swaylock.nix
   ./wlogout.nix
   ./swaywsr
+  ./obs.nix
 ]

@@ -2,10 +2,10 @@
   config,
   pkgs,
   lib,
-  specialArgs,
+  gui,
   ...
 }: let
-  shellPkgs = pkgs.callPackage ../shellEnv/shellList.nix {inherit specialArgs;};
+  inherit (lib) mkIf optionals;
   mimeTypes = import ./mimeTypes.nix;
   defaultPkgs = with pkgs; [
     arandr # simple GUI for xrandr
@@ -36,22 +36,25 @@
   inherit (config.home) homeDirectory;
 in {
   imports =
-    builtins.concatMap import [
+    builtins.concatMap import
+    (optionals gui [
       #      ./age
       ./programs
       ./scripts
-      ../shellEnv
       ./services
       #      ./themes
-    ]
-    ++ [
+    ])
+    ++ (optionals gui [
       ./options.nix
       ./stylix.nix
+    ])
+    ++ [
+      ../shellEnv
     ];
   home = {
     stateVersion = "22.05";
     #    packages = defaultPkgs ++ gnomePkgs;
-    packages = defaultPkgs ++ shellPkgs ++ gui_apps ++ nixos_app;
+    packages = optionals gui (defaultPkgs ++ gui_apps ++ nixos_app);
     sessionVariables = {
       DISPLAY = ":0";
       EDITOR = "nvim";
@@ -67,7 +70,7 @@ in {
   #   fcitx5.addons = with pkgs; [fcitx5-rime fcitx5-chinese-addons fcitx5-mozc];
   # };
   # restart services on change
-  systemd.user = {
+  systemd.user = mkIf gui {
     targets.tray = {
       Unit = {
         Description = "Home Manager System Tray";
@@ -120,7 +123,7 @@ in {
     };
   };
 
-  xdg.mimeApps = {
+  xdg.mimeApps = mkIf gui {
     enable = true;
     defaultApplications = let
       mkDefaults = files: desktopFile: lib.genAttrs files (_: [desktopFile]);
@@ -191,30 +194,26 @@ in {
 
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
-    obs-studio = {
-      enable = true;
-      plugins = [pkgs.obs-studio-plugins.wlrobs];
-    };
   };
 
-  home.pointerCursor = {
+  home.pointerCursor = mkIf gui {
     # x11.enable = true;
     # name = "Adwaita";
     # package = pkgs.gnome.adwaita-icon-theme;
-    # name = "WhiteSur-cursors";
+    # name = "WhiteSure-cursors";
     # package = pkgs.whitesur-cursors;
     # name = "Bibata-Modern-Ice";
     # package = pkgs.bibata-cursors;
     # size = 60;
   };
-  gtk = {
+  gtk = mkIf gui {
     enable = true;
     iconTheme = {
-      name = "WhiteSur";
+      name = "WhiteSure";
       package = pkgs.whitesur-icon-theme;
     };
     # theme = {
-    #   name = "WhiteSur-Dark-hdpi";
+    #   name = "WhiteSure-Dark-hdpi";
     #   package = pkgs.whitesur-gtk-theme;
     # };
     # font = {

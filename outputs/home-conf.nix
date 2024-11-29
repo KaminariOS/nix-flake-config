@@ -7,7 +7,6 @@ with inputs; let
   fishOverlay = f: p: {
     inherit fish-bobthefish-theme fish-keytool-completions;
   };
-
   pkgs = import nixpkgs {
     inherit system;
 
@@ -41,19 +40,11 @@ with inputs; let
     neovim-flake.homeManagerModules.default
   ];
 
-  #imports = [
-  #../home/home.nix
-  #] ++ commonImports;
-
-  #shellImports = [
-  #../shellEnv/home.nix
-  #] ++ commonImports;
-
   mkHome = {
     hidpi ? false,
     username,
-    shell ? false,
-    temp ? false,
+    gui ? false,
+    full ? true,
     homed,
   }: (
     home-manager.lib.homeManagerConfiguration {
@@ -61,7 +52,8 @@ with inputs; let
 
       extraSpecialArgs = {
         inherit hidpi;
-        inherit temp;
+        inherit full;
+        inherit gui;
         addons = nur.repos.rycee.firefox-addons;
       };
 
@@ -71,18 +63,15 @@ with inputs; let
         {
           imports =
             commonImports
-            ++ (
-              if shell
-              then [../shellEnv/home.nix]
-              else [../home/home.nix inputs.stylix.homeManagerModules.stylix]
-            );
+            ++ [../home/home.nix]
+            ++ pkgs.lib.optional gui inputs.stylix.homeManagerModules.stylix;
         }
         {
           home = {
             inherit username;
             inherit homeDirectory;
           };
-          programs.git.signing.signByDefault = !shell;
+          programs.git.signing.signByDefault = gui;
           xdg = {
             configHome = "${homeDirectory}/.config";
             enable = true;
@@ -97,6 +86,8 @@ in {
   in
     mkHome {
       hidpi = false;
+      gui = true;
+      full = true;
       inherit username;
       homed = "/home/${username}";
     };
@@ -107,8 +98,8 @@ in {
     mkHome {
       hidpi = false;
       inherit username;
-      shell = true;
-      temp = true;
+      gui = false;
+      full = false;
       homed = "/users/${username}";
     };
   shellhomeForWork = let
@@ -117,10 +108,11 @@ in {
     mkHome {
       hidpi = false;
       inherit username;
-      shell = true;
+      gui = false;
+      full = false;
       homed = "/home/${username}";
     };
-  # Continuos Integration automation
+  # Continuous Integration automation
   #  ci = {
   #    metals = pkgs.callPackage ../home/programs/neovim-ide/metals.nix { };
   #    metals-updater = pkgs.callPackage ../home/programs/neovim-ide/update-metals.nix { };

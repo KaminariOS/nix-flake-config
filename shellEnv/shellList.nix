@@ -1,118 +1,127 @@
 {
   pkgs,
-  specialArgs,
+  full,
+  lib,
   ...
 }: let
-  rustcli = with pkgs; [
-    aichat
-    argc
-    jq
+  inherit (lib) optionals;
+  rustcli = with pkgs; (optionals full [
+      # Put a rainbow in everything you `cat` to the console. Like lolcat
+      dotacat
 
-    # xsv
-    # A fast duplicate file finder
-    # ddh
-    tealdeer
-    # Better cd
-    zoxide
-    tokei # Count your code, quickly.
-    # ps
-    procs
+      aichat
+      argc
+      jq
+      # xsv
+      # A fast duplicate file finder
+      # ddh
 
-    gitui
-    sd # is an intuitive find & replace CLI.
-    bandwhich
-    hexyl
-    # Shell history
-    atuin
-    # A new way to see and navigate directory trees (get an overview of a directory, even a big one; find a directory then cd to it; never lose track of file hierarchy while you search; manipulate your files, ...)
-    broot
+      tealdeer
+      grex # A command-line tool for generating regular expressions from user-provided test cases
 
-    delta # Better diff
+      # pastel is a command-line tool to generate, analyze, convert and manipulate colors. It supports many different color formats and color spaces like RGB (sRGB), HSL, CIELAB, CIELCh as well as ANSI 8-bit and 24-bit representations.
+      pastel
 
-    ripgrep # fast grep
-    ripgrep-all
+      # Rust REPL
+      evcxr
 
-    navi # cheatsheet
-    skim # Half of our life is spent on navigation: files, lines, commands… You need skim! It is a general fuzzy finder that saves you time.
+      wthrr # Weather companion for the terminal
 
-    bottom # alternative to htop & ytop
-    du-dust # disk usage/free utility
-    # eza # a better `ls`
-    fd # "find" for files
-    hyperfine # command-line benchmarking tool
-    # File manager
-    # xplr
+      hyperfine # command-line benchmarking tool
 
-    grex # A command-line tool for generating regular expressions from user-provided test cases
+      htmlq
+      jless
+      jql
+      # file server
+      miniserve
 
-    # This is choose, a human-friendly and fast alternative to cut and (sometimes) awk
-    choose
-    # dog is a command-line DNS client.
-    dog
+      # CLI tool for saving web pages as a single HTML file
+      monolith
 
-    # dua (-> Disk Usage Analyzer) is a tool to conveniently learn about the usage of disk space of a given directory. It's parallel by default and will max out your SSD, providing relevant information as fast as possible. Optionally delete superfluous data, and do so more quickly than rm.
-    dua
+      xcp # xcp is a (partial) clone of the Unix cp command. It is not intended as a full replacement, but as a companion utility with some more user-friendly feedback and some optimisations that make sense under certain tasks (see below).
 
-    # Efficient duplicate file finder and remover
-    fclones
-    htmlq
-    jless
-    jql
-    # file server
-    miniserve
+      kalker # https://github.com/PaddiM8/kalker
 
-    # CLI tool for saving web pages as a single HTML file
-    monolith
-    # ouch stands for Obvious Unified Compression Helper.
-    ouch
-    # pastel is a command-line tool to generate, analyze, convert and manipulate colors. It supports many different color formats and color spaces like RGB (sRGB), HSL, CIELAB, CIELCh as well as ANSI 8-bit and 24-bit representations.
-    pastel
-    # Pipr is a commandline pipe-building tool, written in Rust!
-    pipr
+      # fend is an arbitrary-precision unit-aware calculator.
+      # > 5'10" to cm
+      # 177.8 cm
+      fend
+    ]
+    ++ [
+      # Better cd
+      zoxide
+      tokei # Count your code, quickly.
+      # ps
+      procs
 
-    rargs # Rargs is kind of xargs + awk with pattern-matching support. https://github.com/lotabout/rargs
-    xcp # xcp is a (partial) clone of the Unix cp command. It is not intended as a full replacement, but as a companion utility with some more user-friendly feedback and some optimisations that make sense under certain tasks (see below).
+      gitui
+      sd # is an intuitive find & replace CLI.
+      bandwhich
+      hexyl
+      # Shell history
+      atuin
+      # A new way to see and navigate directory trees (get an overview of a directory, even a big one; find a directory then cd to it; never lose track of file hierarchy while you search; manipulate your files, ...)
+      broot
 
-    kalker # https://github.com/PaddiM8/kalker
+      delta # Better diff
 
-    # fend is an arbitrary-precision unit-aware calculator.
-    # > 5'10" to cm
-    # 177.8 cm
-    fend
-    # systeroid — A more powerful alternative to sysctl(8).
-    systeroid
-    # Like df
-    duf
-    # lfs
+      ripgrep # fast grep
+      ripgrep-all
 
-    # Put a rainbow in everything you `cat` to the console. Like lolcat
-    dotacat
-    # Command-line Git information tool
-    onefetch
-    # Fast, minimal and customizable system information frontend.
-    macchina
-    # Rust REPL
-    evcxr
+      navi # cheatsheet
+      skim # Half of our life is spent on navigation: files, lines, commands… You need skim! It is a general fuzzy finder that saves you time.
 
-    # File manager
-    # yazi
+      bottom # alternative to htop & ytop
+      du-dust # disk usage/free utility
+      # eza # a better `ls`
+      fd # "find" for files
 
-    # Replacement for rm with focus on safety, ergonomics and performance
-    rm-improved
+      # This is choose, a human-friendly and fast alternative to cut and (sometimes) awk
+      choose
+      # dog is a command-line DNS client.
+      dog
 
-    viu # A command-line application to view images from the terminal written in Rust
-    # tenere
-    # heygpt
+      # dua (-> Disk Usage Analyzer) is a tool to conveniently learn about the usage of disk space of a given directory. It's parallel by default and will max out your SSD, providing relevant information as fast as possible. Optionally delete superfluous data, and do so more quickly than rm.
+      dua
 
-    # Analyzer of executables using a terminal user interface
-    binsider
+      # Efficient duplicate file finder and remover
+      fclones
+      # ouch stands for Obvious Unified Compression Helper.
+      ouch
+      # Pipr is a commandline pipe-building tool, written in Rust!
+      pipr
 
-    # Background rust code checker
-    bacon
+      rargs # Rargs is kind of xargs + awk with pattern-matching support. https://github.com/lotabout/rargs
+      # systeroid — A more powerful alternative to sysctl(8).
+      systeroid
+      # Like df
+      duf
+      # lfs
 
-    # Executes commands in response to file modifications
-    watchexec
-  ];
+      # Command-line Git information tool
+      onefetch
+      # Fast, minimal and customizable system information frontend.
+      macchina
+
+      # File manager
+      # yazi
+
+      # Replacement for rm with focus on safety, ergonomics and performance
+      rm-improved
+
+      viu # A command-line application to view images from the terminal written in Rust
+      # tenere
+      # heygpt
+
+      # Analyzer of executables using a terminal user interface
+      binsider
+
+      # Background rust code checker
+      bacon
+
+      # Executes commands in response to file modifications
+      watchexec
+    ]);
 
   security = with pkgs; [
     rustcat # Port listener and reverse shell
@@ -168,7 +177,7 @@
     # rnix-lsp # nix lsp server
     # rust-analyzer
     # gopls
-    haskell-language-server
+    # haskell-language-server
     # java-language-server
     # texlab
     # taplo-lsp # A TOML toolkit written in Rust
@@ -189,79 +198,76 @@
     code-minimap
   ];
 
-  defaultShell = with pkgs; [
-    ddgr
-    xclip
-    killall # kill processes by name
-    # ranger # terminal file explorer
-    direnv
+  defaultShell = with pkgs; (optionals full [
+      ddgr
+      xclip
+      clang-tools
+      rr
+      taskwarrior3
+      taskwarrior-tui
+      dmidecode
+      gptfdisk
 
-    clang-tools
-    fortune
+      iw # iw is a new nl80211 based CLI configuration utility for wireless devices. The old tool iwconfig, which uses Wireless Extensions interface, is deprecated and it's strongly recommended to switch to iw and nl80211.
 
-    # gnumake
-    # cmake
-    # gcc
-    gdb
+      pandoc
+      # texlive.combined.scheme-small
+      tectonic
 
-    #An implementation of the Debug Adapter Protocol for Python
-    # python310Packages.debugpy
+      sysvtools
 
-    prettyping # a nicer ping
-    # xsel # clipboard support (also for neovim)
+      gcalcli
+      # gtasks
+      # gkeep
+      nyancat # the famous rainbow cat!
 
-    zip
-    unzip
+      picocom
 
-    #rust-gdb
-    lldb
+      usbutils
+      pciutils
+    ]
+    ++ [
+      killall # kill processes by name
+      # ranger # terminal file explorer
+      direnv
 
-    rr
+      fortune
 
-    # python3
-    python3.pkgs.dbus-python
-    # iftop
+      # gnumake
+      # cmake
+      # gcc
+      gdb
 
-    taskwarrior3
-    taskwarrior-tui
+      #An implementation of the Debug Adapter Protocol for Python
+      # python310Packages.debugpy
 
-    file
+      prettyping # a nicer ping
+      # xsel # clipboard support (also for neovim)
 
-    gh
-    sshfs
+      zip
+      unzip
 
-    nyancat # the famous rainbow cat!
+      #rust-gdb
+      lldb
 
-    # Postgres cli
-    # pgcli
+      # python3
+      python3.pkgs.dbus-python
+      # iftop
 
-    xpra
+      file
 
-    pandoc
-    # texlive.combined.scheme-small
-    tectonic
+      gh
+      sshfs
 
-    screen
-    dmidecode
-    gptfdisk
+      # Postgres cli
+      # pgcli
 
-    glow
+      xpra
 
-    picocom
+      screen
 
-    usbutils
-    pciutils
-
-    iw # iw is a new nl80211 based CLI configuration utility for wireless devices. The old tool iwconfig, which uses Wireless Extensions interface, is deprecated and it's strongly recommended to switch to iw and nl80211.
-
-    wthrr # Weather companion for the terminal
-
-    sysvtools
-
-    gcalcli
-    # gtasks
-    # gkeep
-  ];
+      glow
+    ]);
 in
   defaultShell
   ++ rustcli

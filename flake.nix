@@ -182,7 +182,7 @@
             # spell checker
             typos
             # code formatter
-            nodePackages.prettier
+            # nodePackages.prettier
           ];
           name = "dots";
           shellHook = ''
