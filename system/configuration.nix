@@ -224,6 +224,11 @@ in {
     openssh = {
       enable = true;
       allowSFTP = true;
+      settings = {
+        X11Forwarding = true;
+        PermitRootLogin = "no"; # disable root login
+        PasswordAuthentication = false; # disable password login
+      };
     };
 
     blueman.enable = true;
@@ -321,10 +326,7 @@ in {
       isNormalUser = true;
       extraGroups = ["docker" "networkmanager" "wheel" "scanner" "lp" "video" "input"]; # wheel for ‘sudo’.
       shell = pkgs.fish;
-      openssh.authorizedKeys = {
-        keys = [
-        ];
-      };
+      openssh.authorizedKeys.keyFiles = [];
     };
 
     users.root = {

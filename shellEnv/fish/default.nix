@@ -222,6 +222,7 @@ in {
       grs = "git restore";
       dg = "ddgr --unsafe -n 6";
       bang = "ddgr --gb --np --unsafe";
+      dj = "ddgr -j --unsafe";
       ai = "aichat";
     };
     shellAbbrs = {
