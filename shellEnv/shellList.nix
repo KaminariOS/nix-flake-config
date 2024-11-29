@@ -157,19 +157,21 @@
     cargo-udeps
   ];
 
-  nixAddons = with pkgs; [
-    any-nix-shell
-    nix-diff
-    nix-tree
-    nix-du
-    nix-prefetch-git
-    # Run unpatched binaries on Nix/NixOS easily.
-    manix
-    statix
-    # Comma runs software without installing it.
-    comma
-    cachix # nix caching
-  ];
+  nixAddons = with pkgs; (optionals full [
+      cachix # nix caching
+      nix-du
+    ]
+    ++ [
+      any-nix-shell
+      nix-diff
+      nix-tree
+      nix-prefetch-git
+      # Run unpatched binaries on Nix/NixOS easily.
+      manix
+      statix
+      # Comma runs software without installing it.
+      comma
+    ]);
 
   lsps = with pkgs; [
     # rnix-lsp # nix lsp server
@@ -223,6 +225,8 @@
 
       usbutils
       pciutils
+
+      prettyping # a nicer ping
     ]
     ++ [
       killall # kill processes by name
@@ -239,7 +243,6 @@
       #An implementation of the Debug Adapter Protocol for Python
       # python310Packages.debugpy
 
-      prettyping # a nicer ping
       # xsel # clipboard support (also for neovim)
 
       zip

@@ -13,7 +13,6 @@ in {
     ]
     ++ [
       ./nvim
-      #./neovim
       ./starship
       ./zellij
       ./git
