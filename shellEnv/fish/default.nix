@@ -228,6 +228,8 @@ in {
       drr = "direnv reload";
       dra = "direnv allow";
       drb = "direnv block";
+      dfl = "echo 'use flake' >> .envrc; direnv allow";
+
       #v = "nvim";
       tt = "taskwarrior-tui";
       # nuco = "nvim ~/.config/nushell/config.nu";
