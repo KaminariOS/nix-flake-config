@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  full,
+  lib,
+  ...
+}: let
   # preferPath = command: default:
   #   pkgs.writeShellScript "${command}-wrapper" ''
   #     if command -v ${command}; then
@@ -8,11 +13,12 @@
   #     fi
   #   '';
   entryBetween = before: after: data: {inherit data before after;};
+  inherit (lib) optionals;
 in {
   programs.neovim-flake = {
     enable = true;
     settings = let
-      isMaximal = true;
+      isMaximal = full;
     in {
       vim = {
         viAlias = false;
@@ -22,40 +28,41 @@ in {
         useSystemClipboard = true;
         searchCase = "smart";
         configRC.custom = let vimrc = builtins.readFile ./init.vim; in entryBetween ["basic"] [] vimrc;
-        startPlugins = with pkgs.vimPlugins; [
-          multiple-cursors
-          # cs"'
-          lsp-colors-nvim
-          lsp_extensions-nvim
+        startPlugins = with pkgs.vimPlugins; (optionals isMaximal [
+            vim-nix
+            # a universal set of defaults that (hopefully) everyone can agree on.
+            vim-sensible
+            # Automate infrastructure on any cloud
+            # vim-tmux-navigator
+            vim-twig
+            vim-vue
+            vimtex
+          ]
+          ++ [
+            multiple-cursors
+            # cs"'
+            lsp-colors-nvim
+            lsp_extensions-nvim
 
-          # vim-airline
-          vim-cpp-enhanced-highlight
-          vim-fish
-          # :G git command
-          vim-fugitive
-          #vim-hcl
-          vim-localvimrc
+            # vim-airline
+            vim-cpp-enhanced-highlight
+            vim-fish
+            # :G git command
+            vim-fugitive
+            #vim-hcl
+            vim-localvimrc
 
-          vim-nix
-          # a universal set of defaults that (hopefully) everyone can agree on.
-          vim-sensible
-          # Automate infrastructure on any cloud
-          # vim-tmux-navigator
-          vim-twig
-          vim-vue
-          vimtex
+            # https://github.com/nanotee/zoxide.vim
+            zoxide-vim
 
-          # https://github.com/nanotee/zoxide.vim
-          zoxide-vim
+            #Debugging
 
-          #Debugging
+            promise-async
 
-          promise-async
-
-          # https://github.com/kevinhwang91/nvim-ufo
-          nvim-ufo
-          # fold-preview-nvim
-        ];
+            # https://github.com/kevinhwang91/nvim-ufo
+            nvim-ufo
+            # fold-preview-nvim
+          ]);
         debugMode = {
           enable = false;
           level = 20;
@@ -75,8 +82,8 @@ in {
 
       vim.debugger = {
         nvim-dap = {
-          enable = true;
-          ui.enable = true;
+          enable = isMaximal;
+          ui.enable = isMaximal;
         };
       };
 
@@ -85,7 +92,7 @@ in {
         enableFormat = true;
         enableTreesitter = true;
         enableExtraDiagnostics = true;
-        enableDAP = true;
+        enableDAP = isMaximal;
 
         nix.enable = true;
         html.enable = isMaximal;
@@ -96,11 +103,11 @@ in {
         };
         sql.enable = false;
         rust = {
-          enable = isMaximal;
+          enable = true;
           crates.enable = true;
         };
-        tex.enable = true;
-        ts.enable = true;
+        tex.enable = isMaximal;
+        ts.enable = isMaximal;
         go.enable = isMaximal;
         zig.enable = false;
         python.enable = isMaximal;
@@ -110,15 +117,15 @@ in {
           enable = true;
           glow.enable = true;
         };
-        yaml.enable = true;
+        yaml.enable = isMaximal;
         cmake.enable = true;
         json.enable = true;
-        vim.enable = true;
+        vim.enable = isMaximal;
         toml.enable = true;
-        java.enable = true;
+        java.enable = isMaximal;
         bash.enable = true;
         terraform.enable = isMaximal;
-        vue.enable = true;
+        vue.enable = isMaximal;
         # svelte.enable = true;
       };
 
@@ -164,7 +171,7 @@ in {
         spellChecking = {
           enable = true;
           # Ensure that the :DirtytalkUpdate command is executed after install and update
-          enableProgrammingWordList = true;
+          enableProgrammingWordList = isMaximal;
         };
       };
       vim.autocomplete = {

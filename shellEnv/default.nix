@@ -48,7 +48,7 @@ in {
       nix-direnv.enable = true;
     };
     broot = {
-      enable = true;
+      enable = full;
       enableFishIntegration = true;
     };
 
@@ -72,21 +72,17 @@ in {
     starship = {
       enable = true;
       enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
-    nix-index = {
-      enable = true;
-      enableFishIntegration = true;
+      # enableZshIntegration = true;
     };
     navi = {
-      enable = true;
-      enableZshIntegration = true;
+      enable = full;
+      # enableZshIntegration = true;
       enableFishIntegration = true;
     };
     skim = {
-      enable = true;
+      enable = full;
       enableFishIntegration = true;
-      enableZshIntegration = true;
+      # enableZshIntegration = true;
       changeDirWidgetCommand = "fd --type d";
       fileWidgetOptions = [
         "--preview 'head {}'"
@@ -95,7 +91,7 @@ in {
     atuin = {
       enable = true;
       enableFishIntegration = true;
-      enableZshIntegration = true;
+      # enableZshIntegration = true;
     };
     tealdeer = {
       enable = true;

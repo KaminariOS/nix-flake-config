@@ -46,6 +46,9 @@
       # > 5'10" to cm
       # 177.8 cm
       fend
+
+      # Pipr is a commandline pipe-building tool, written in Rust!
+      pipr
     ]
     ++ [
       # Better cd
@@ -60,16 +63,17 @@
       hexyl
       # Shell history
       atuin
+
       # A new way to see and navigate directory trees (get an overview of a directory, even a big one; find a directory then cd to it; never lose track of file hierarchy while you search; manipulate your files, ...)
-      broot
+      # broot
 
       delta # Better diff
 
       ripgrep # fast grep
       ripgrep-all
 
-      navi # cheatsheet
-      skim # Half of our life is spent on navigation: files, lines, commands… You need skim! It is a general fuzzy finder that saves you time.
+      # navi # cheatsheet
+      # skim # Half of our life is spent on navigation: files, lines, commands… You need skim! It is a general fuzzy finder that saves you time.
 
       bottom # alternative to htop & ytop
       du-dust # disk usage/free utility
@@ -88,8 +92,6 @@
       fclones
       # ouch stands for Obvious Unified Compression Helper.
       ouch
-      # Pipr is a commandline pipe-building tool, written in Rust!
-      pipr
 
       rargs # Rargs is kind of xargs + awk with pattern-matching support. https://github.com/lotabout/rargs
       # systeroid — A more powerful alternative to sysctl(8).

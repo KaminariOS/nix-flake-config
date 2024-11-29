@@ -2,6 +2,7 @@
 {
   pkgs,
   lib,
+  full,
   ...
 }: let
   # https://github.com/Mic92/nix-index-database
@@ -35,5 +36,8 @@
 in {
   home.packages = [updateScript];
 
-  programs.nix-index.enable = true;
+  programs.nix-index = {
+    enable = full;
+    enableFishIntegration = true;
+  };
 }
