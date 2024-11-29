@@ -45,7 +45,7 @@
 
     # wayland stuff
     mako
-    wl-clipboard
+    wl-clipboard-rs
     shotman
 
     swayidle #idle locker
@@ -59,5 +59,9 @@
     # pulseaudioFull
     brightnessctl
     wlprop
+
+    # screenshot
+    wayshot
+    slurp
   ];
 }

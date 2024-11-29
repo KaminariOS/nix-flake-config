@@ -15,7 +15,6 @@ in {
   enable = true;
   checkConfig = false;
   wrapperFeatures.gtk = true;
-
   systemd = {
     enable = true;
 
@@ -112,7 +111,8 @@ in {
         "${modifier}+Ctrl+less" = "move workspace to output left";
         "${modifier}+Shift+Ctrl+greater" = "move window to output right";
         "${modifier}+Shift+Ctrl+less" = "move window to output left";
-        "${modifier}+P" = "exec flameshot gui";
+        # "${modifier}+P" = "exec flameshot gui";
+        "${modifier}+P" = "exec ${lib.getExe scripts.screenshotScript}";
         "${modifier}+Tab" = "fullscreen toggle , focus right, fullscreen toggle";
         "${modifier}+Shift+Tab" = "fullscreen toggle , focus left, fullscreen toggle";
         "${modifier}+Shift+d" = "exec 'rofi -show window";
@@ -179,16 +179,20 @@ in {
         command = "swaymsg 'workspace 2; exec firefox'";
         always = false;
       }
-      {
-        command = "swaymsg 'output * scale 1.5'";
-        always = true;
-      }
+      # {
+      #   command = "swaymsg 'output * scale 1.5'";
+      #   always = true;
+      # }
       {
         command = "swaymsg 'exec ${lib.getExe pkgs.swaywsr}'";
         always = true;
       }
       {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
       {command = lib.getExe pkgs.autotiling;}
+      {
+        command = "fcitx5 -d";
+        always = false;
+      }
     ];
 
     window = {

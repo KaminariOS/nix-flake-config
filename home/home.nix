@@ -23,8 +23,8 @@
 
   gui_apps = (pkgs.callPackage ./gui.nix {}).gui_packages;
   nixos_app = with pkgs; [
-    jetbrains.clion
-    jetbrains.idea-ultimate
+    # jetbrains.clion
+    # jetbrains.idea-ultimate
     jetbrains.rider
     google-chrome
     rclone
@@ -83,11 +83,11 @@ in {
       };
     };
     services = {
-      imec = {
-        Unit.Description = "...";
-        Service.ExecStart = "/run/current-system/sw/bin/fcitx5";
-        Install.WantedBy = ["default.target"]; # starts after login
-      };
+      # imec = {
+      #   Unit.Description = "...";
+      #   Service.ExecStart = "/run/current-system/sw/bin/fcitx5";
+      #   Install.WantedBy = ["default.target"]; # starts after login
+      # };
       rclone = {
         Service = {
           Type = "simple";
