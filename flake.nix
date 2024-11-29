@@ -14,7 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
-
     # NixOS profiles to optimize settings for different hardware.
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
@@ -99,7 +98,12 @@
     };
   };
 
-  outputs = inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    pre-commit-hooks,
+    ...
+  } @ inputs: let
     forDefaultSystems = inputs.nixpkgs.lib.genAttrs [
       "aarch64-linux"
       "x86_64-linux"
@@ -119,14 +123,73 @@
     ];
   in {
     formatter = forDefaultSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
+
     packages = forDefaultSystems (system: {
       homeConfigurations = import ./outputs/home-conf.nix {
         inherit inputs system;
       };
-
       nixosConfigurations = import ./outputs/nixos-conf.nix {
         inherit inputs system;
       };
     });
+
+    checks = forDefaultSystems (
+      system: {
+        # eval-tests per system
+        # eval-tests = allSystems.${system}.evalTests == {};
+
+        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = ".";
+          hooks = {
+            alejandra.enable = true; # formatter
+            # Source code spell checker
+            typos = {
+              enable = true;
+              settings = {
+                write = true; # Automatically fix typos
+                configPath = "./.typos.toml"; # relative to the flake root
+              };
+            };
+            prettier = {
+              enable = false;
+              settings = {
+                write = true; # Automatically format files
+                configPath = "./.prettierrc.yaml"; # relative to the flake root
+              };
+            };
+            # deadnix.enable = true; # detect unused variable bindings in `*.nix`
+            # statix.enable = true; # lints and suggestions for Nix code(auto suggestions)
+          };
+        };
+      }
+    );
+
+    # Development Shells
+    devShells = forDefaultSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            # fix https://discourse.nixos.org/t/non-interactive-bash-errors-from-flake-nix-mkshell/33310
+            bashInteractive
+            # fix `cc` replaced by clang, which causes nvim-treesitter compilation error
+            gcc
+            # Nix-related
+            alejandra
+            deadnix
+            statix
+            # spell checker
+            typos
+            # code formatter
+            nodePackages.prettier
+          ];
+          name = "dots";
+          shellHook = ''
+            ${self.checks.${system}.pre-commit-check.shellHook}
+          '';
+        };
+      }
+    );
   };
 }
