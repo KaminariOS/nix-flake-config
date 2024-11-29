@@ -45,7 +45,7 @@
 
     # wayland stuff
     mako
-    # wl-clipboard-rs
+    wl-clipboard
     shotman
 
     swayidle #idle locker
