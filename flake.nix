@@ -13,6 +13,10 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+
+
+    # NixOS profiles to optimize settings for different hardware.
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,14 +29,25 @@
 
     agenix = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:ryantm/agenix";
+      url = "github:yaxitech/ragenix";
     };
 
+    #Declarative disk partitioning and formatting using nix
     disko = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/disko";
     };
 
+    # add git hooks to format nix code before commit
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nixpkgs-nautilus-gtk3.url = "github:NixOS/nixpkgs?ref=37bd398";
 
     # plasma-manager.url = "github:pjones/plasma-manager";
