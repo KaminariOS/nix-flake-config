@@ -1,4 +1,0 @@
-[chatgpt]
-openai_api_key = "Your API key here"
-model = "gpt-3.5-turbo"
-url = "https://api.openai.com/v1/chat/completions"
