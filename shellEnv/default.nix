@@ -23,6 +23,7 @@ in {
       ./bat
       # ./xplr
       ./gitui
+      ./tickrs
     ];
   home.file = {
     ".ssh/config".text = ''

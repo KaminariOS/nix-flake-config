@@ -49,6 +49,9 @@
 
       # Pipr is a commandline pipe-building tool, written in Rust!
       pipr
+
+      # stock price
+      tickrs
     ]
     ++ [
       # Better cd
