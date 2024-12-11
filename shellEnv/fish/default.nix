@@ -224,6 +224,7 @@ in {
       bang = "ddgr --gb --np --unsafe";
       dj = "ddgr -j --unsafe";
       ai = "aichat";
+      ts = "tickrs";
     };
     shellAbbrs = {
       drr = "direnv reload";

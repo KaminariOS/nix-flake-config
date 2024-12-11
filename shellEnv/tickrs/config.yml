@@ -33,13 +33,13 @@ symbols:
 #hide_toggle: true
 
 # Show volumes graph
-#show_volumes: true
+show_volumes: true
 
 # Show x-axis labels
 #show_x_labels: true
 
 # Start in summary mode
-#summary: true
+summary: true
 
 # Truncate pre market graphing to only 30 minutes prior to markets opening
 #trunc_pre: true
