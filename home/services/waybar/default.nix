@@ -41,9 +41,9 @@ in {
             format = "{icon} {name}";
 
             format-icons = {
-              active = "󰪥";
-              default = "󰝥";
-              urgent = "";
+              active = "󰪥 ";
+              default = "󰝥 ";
+              urgent = " ";
             };
 
             sort-by = "id";
@@ -59,9 +59,9 @@ in {
             format = "{icon} {name}";
 
             format-icons = {
-              default = "󰝥";
-              focused = "󰪥";
-              urgent = "";
+              default = "󰝥 ";
+              focused = "󰪥 ";
+              urgent = " ";
             };
 
             sort-by = "id";
@@ -73,7 +73,7 @@ in {
 
           "sway/scratchpad" = {
             format = "{icon}　{count}";
-            format-icons = ["" ""];
+            format-icons = ["" " "];
             on-click = "${lib.getExe' config.wayland.windowManager.sway.package "swaymsg"} scratchpad show";
             show-empty = false;
             tooltip = true;
@@ -83,7 +83,7 @@ in {
           "custom/app-close" = {
             on-click = ''${lib.getExe'
                 config.wayland.windowManager.hyprland.package "hyprctl"} dispatch killactive || ${lib.getExe' config.wayland.windowManager.sway.package "swaymsg"} kill'';
-            format = "󰅗";
+            format = "󰅗 ";
             tooltip-format = "Close the focused window.";
           };
 
@@ -115,7 +115,7 @@ in {
             '';
           in {
             format = "{icon}";
-            format-icons = ["🪫" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "🔋"];
+            format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
 
             on-update = "${checkBattery}";
             tooltip-format = ''
@@ -129,8 +129,8 @@ in {
             format = "{icon}";
 
             format-icons = {
-              activated = "󰅶";
-              deactivated = "󰾪";
+              activated = "󰅶 ";
+              deactivated = "󰾪 ";
             };
 
             timeout = 45;
@@ -145,7 +145,7 @@ in {
           };
 
           bluetooth = {
-            format = "";
+            format = "`";
             format-connected = "　{num_connections}";
             format-disabled = ""; # an empty format will hide the module
             on-clic = lib.getExe' pkgs.blueberry "blueberry";
@@ -237,13 +237,13 @@ in {
           };
 
           "custom/logout" = {
-            format = "󰤆";
+            format = "󰤆 ";
             on-click = ''${lib.getExe config.programs.rofi.package} -i -show power-menu -modi "power-menu:${lib.getExe pkgs.rofi-power-menu} --choices=logout/lockscreen/suspend/shutdown/reboot"'';
             tooltip-format = "Manage your session.";
           };
 
           "custom/menu" = {
-            format = "󰀻";
+            format = "󰀻 ";
             on-click = "${lib.getExe pkgs.nwg-drawer}";
             tooltip-format = "Touch-friendly application menu.";
           };
@@ -295,7 +295,7 @@ in {
 
       style = lib.mkAfter ''
         * {
-            font-family: "Iosevka Nerd Font Mono", "Font Awesome 6 Free";
+            font-family: "Jetbrains Mono Light", "Font Awesome 6 Free";
             font-size: 33px;
           }
         ${
