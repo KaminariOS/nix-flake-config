@@ -115,7 +115,7 @@ in {
             '';
           in {
             format = "{icon}";
-            format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+            format-icons = ["🪫" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "🔋"];
 
             on-update = "${checkBattery}";
             tooltip-format = ''
@@ -162,13 +162,13 @@ in {
           pulseaudio = {
             format = "{icon}";
             format-bluetooth = "{volume}% {icon}󰂯";
-            format-muted = "";
+            format-muted = "🔇";
 
             format-icons = {
-              headphones = "󰋋";
+              headphones = "🎧";
               handsfree = "󰋎";
               headset = "󰋎";
-              default = ["" "" ""];
+              default = ["🔈" "🔉" "🔊"];
             };
 
             ignored-sinks = ["Easy Effects Sink"];
@@ -190,11 +190,11 @@ in {
           };
 
           cpu = {
-            format = " {usage}%";
+            format = "🧠{usage}%";
           };
 
           memory = {
-            format = "{used}G";
+            format = "💾{used}G";
           };
 
           tray = {
@@ -203,11 +203,11 @@ in {
           };
 
           temperature = {
-            format = "{temperatureC}°";
+            format = "🌡️{temperatureC}°";
           };
           systemd-failed-units = {
             hide-on-ok = true;
-            format = " {nr_failed}";
+            format = "⚠️{nr_failed}";
           };
 
           "custom/dnd" = let
@@ -295,6 +295,7 @@ in {
 
       style = lib.mkAfter ''
         * {
+            font-family: "Iosevka Nerd Font Mono", "Font Awesome 6 Free";
             font-size: 33px;
           }
         ${

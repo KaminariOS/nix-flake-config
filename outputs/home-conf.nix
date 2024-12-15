@@ -23,7 +23,7 @@ with inputs; let
     overlays = [
       fishOverlay
       (import ../overlay.nix)
-      nurpkgs.overlay
+      nurpkgs.overlays.default
       #neovim-flake.overlays.${system}.default
       (f: p: {tex2nix = tex2nix.defaultPackage.${system};})
       ((import ../home/overlays/md-toc) {inherit (inputs) gh-md-toc;})

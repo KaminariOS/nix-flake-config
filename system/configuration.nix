@@ -8,13 +8,6 @@
   inputs,
   ...
 }: let
-  customFonts = pkgs.nerdfonts.override {
-    fonts = [
-      "JetBrainsMono"
-      "Iosevka"
-    ];
-  };
-
   myfonts = pkgs.callPackage fonts/default.nix {inherit pkgs;};
 in {
   imports = [
@@ -278,17 +271,19 @@ in {
       noto-fonts-emoji
       ubuntu_font_family
       jetbrains-mono
-      customFonts
       font-awesome
       myfonts.flags-world-color
       myfonts.icomoon-feather
 
+      noto-fonts-color-emoji
+      nerd-fonts.iosevka
+      sarasa-gothic
       fira-code
       fira-code-symbols
       unifont
       ipafont
 
-      noto-fonts
+      # noto-fonts
       # noto-fonts-cjk-serif
       # noto-fonts-cjk-sans
       arphic-ukai
@@ -297,10 +292,10 @@ in {
 
     fontconfig = {
       defaultFonts = {
-        serif = ["Noto fonts" "AR PL UKai HK" "Ubuntu"];
-        sansSerif = ["Noto fonts" "AR PL UKai HK" "IPAPGothic" "Ubuntu"];
-        monospace = ["AR PL UKai HK" "fira-code" "font-awesome"];
-        emoji = ["Noto Emoji"];
+        serif = ["Noto fonts" "AR PL UKai HK" "Sarasa Gothic" "Ubuntu"];
+        sansSerif = ["Noto Serif" "AR PL UKai HK" "Sarasa Gothic" "IPAPGothic" "Ubuntu"];
+        monospace = ["AR PL UKai HK" "fira-code" "Sarasa Gothic" "font-awesome"];
+        emoji = ["Noto Emoji Color"];
       };
     };
   };

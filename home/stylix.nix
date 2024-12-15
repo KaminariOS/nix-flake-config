@@ -22,18 +22,23 @@
 
     fonts = {
       monospace = {
-        name = "UbuntuSansMono Nerd Font";
-        package = pkgs.nerdfonts.override {fonts = ["UbuntuSans"];};
+        name = "Iosevka Nerd Font Mono";
+        package = pkgs.nerd-fonts.iosevka;
       };
 
       sansSerif = {
-        name = "UbuntuSans Nerd Font";
-        package = pkgs.nerdfonts.override {fonts = ["UbuntuSans"];};
+        name = "Ubuntu Sans";
+        package = pkgs.nerd-fonts.ubuntu-sans;
       };
 
       serif = {
         name = "Vegur";
         package = pkgs.vegur;
+      };
+
+      emoji = {
+        name = "Noto Color Emoji";
+        package = pkgs.noto-fonts-emoji;
       };
 
       sizes = {
