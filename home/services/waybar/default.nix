@@ -194,7 +194,7 @@ in {
           };
 
           memory = {
-            format = "💾{used}G";
+            format = "💾{used:.0f}G";
           };
 
           tray = {

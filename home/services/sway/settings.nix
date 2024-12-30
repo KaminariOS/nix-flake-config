@@ -300,6 +300,8 @@ in {
 
       default_border pixel 4
       default_floating_border pixel 4
+
+      output * scale 1.5
     ''
     + lib.strings.optionalString (config.wayland.windowManager.sway.package
       == pkgs.swayfx) ''
