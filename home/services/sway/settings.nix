@@ -179,12 +179,12 @@ in {
         command = "swaymsg 'workspace 2; exec firefox'";
         always = false;
       }
+      # {
+      # command = "swaymsg 'output * scale 1.5'";
+      # always = true;
+      # }
       {
-        command = "swaymsg 'output * scale 1.5'";
-        # always = true;
-      }
-      {
-        command = "swaymsg 'exec ${lib.getExe pkgs.swaywsr}'";
+        command = "swaymsg 'exec ${lib.getExe pkgs.swaywsr} -r'";
         always = true;
       }
       {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}

@@ -11,12 +11,13 @@ MyNiceProgram = "😛"
 TelegramDesktop = "Telegram"
 "Org.gnome.Nautilus" = "Nautilus"
 "org.wezfurlong.wezterm" = "Wezterm"
-"org.kde.okular" = "Okular"
+"org.kde.okular" = "📖"
 "org.telegram.desktop" = "Telegram"
 "org.jetbrains.rider" = "Rider"
+"firefox" = "🦊" 
 
 [general]
-seperator = ""
+separator = ""
 
 [options]
 no-names = true
