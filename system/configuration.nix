@@ -139,6 +139,7 @@ in {
   boot.kernelParams = [
     ''GRUB_CMDLINE_LINUX_DEFAULT="quiet udev.log_priority=3 acpi_backlight=native"''
   ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux" "riscv64-linux"];
   services = {
     acpid.enable = true;
     upower.enable = true;
