@@ -86,7 +86,7 @@
       # This is choose, a human-friendly and fast alternative to cut and (sometimes) awk
       choose
       # dog is a command-line DNS client.
-      dog
+      # dog
 
       # dua (-> Disk Usage Analyzer) is a tool to conveniently learn about the usage of disk space of a given directory. It's parallel by default and will max out your SSD, providing relevant information as fast as possible. Optionally delete superfluous data, and do so more quickly than rm.
       dua
@@ -204,6 +204,7 @@
   ];
 
   defaultShell = with pkgs; (optionals full [
+      distrobox
       ddgr
       xclip
       clang-tools
