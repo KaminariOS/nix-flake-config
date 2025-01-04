@@ -4,7 +4,7 @@ symbols:
   - TSLR
   - NVDL
   - SOFI
-  - PLTR
+  - AMD
 
 # Chart type to start app with
 # Default is line
