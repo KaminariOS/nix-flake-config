@@ -136,7 +136,7 @@
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ".";
           hooks = {
-            alejandra.enable = true; # formatter
+            alejandra.enable = !true; # formatter
             # Source code spell checker
             typos = {
               enable = true;

@@ -121,7 +121,6 @@
     #set -gx LESS_TERMCAP_me \e'[0m'           # end mode
     #set -gx LESS_TERMCAP_se \e'[0m'           # end standout-mode
     #set -gx LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
-    #set -gx LESS_TERMCAP_ue \e'[0m'           # end underline
     #set -gx LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
     "
     + "
@@ -203,7 +202,7 @@ in {
       };
     };
     shellAliases = {
-      v = "nvim";
+      v = "${config.home.homeDirectory}/nix/neovim-flake/result/bin/nvim";
       vc = "nvim --clean";
       c = "bat";
       e = "eza --icons -l --no-user --no-permissions --git";

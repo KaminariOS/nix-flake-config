@@ -226,19 +226,19 @@ in {
     };
 
     blueman.enable = true;
-    # Yubikey smart card mode (CCID) and OTP mode (udev)
+    Yubikey smart card mode (CCID) and OTP mode (udev)
     pcscd.enable = true;
-    udev.packages = with pkgs; [yubikey-personalization via];
-    udev.extraRules = ''
-      # https://github.com/stlink-org/stlink/blob/32e8dcc8b5dbed7b6412e7838ea1b2c41f0247fd/config/udev/rules.d/49-stlinkv1.rules
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3744", TAG+="uaccess"
-
-      # STM32F3DISCOVERY rev A/B - ST-LINK/V2
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
-
-      # STM32F3DISCOVERY rev C+ - ST-LINK/V2-1
-      ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", TAG+="uaccess"
-    '';
+    # udev.packages = with pkgs; [yubikey-personalization via];
+    # udev.extraRules = ''
+    #   # https://github.com/stlink-org/stlink/blob/32e8dcc8b5dbed7b6412e7838ea1b2c41f0247fd/config/udev/rules.d/49-stlinkv1.rules
+    #   ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3744", TAG+="uaccess"
+    #
+    #   # STM32F3DISCOVERY rev A/B - ST-LINK/V2
+    #   ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
+    #
+    #   # STM32F3DISCOVERY rev C+ - ST-LINK/V2-1
+    #   ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", TAG+="uaccess"
+    # '';
 
     # SSH daemon.
     sshd.enable = true;

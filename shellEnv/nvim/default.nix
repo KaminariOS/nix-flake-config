@@ -12,11 +12,10 @@
   #         exec ${default} "$@"
   #     fi
   #   '';
-  entryBetween = before: after: data: {inherit data before after;};
   inherit (lib) optionals;
 in {
   programs.neovim-flake = {
-    enable = true;
+    enable = !true;
     settings = let
       isMaximal = full;
     in {
@@ -27,7 +26,7 @@ in {
         lineNumberMode = "number";
         useSystemClipboard = true;
         searchCase = "smart";
-        configRC.custom = let vimrc = builtins.readFile ./init.vim; in entryBetween ["basic"] [] vimrc;
+        # configRC.custom = let vimrc = builtins.readFile ./init.vim; in entryBetween ["basic"] [] vimrc;
         startPlugins = with pkgs.vimPlugins; (optionals isMaximal [
             vim-nix
             # a universal set of defaults that (hopefully) everyone can agree on.
@@ -72,10 +71,10 @@ in {
 
       vim.lsp = {
         formatOnSave = !true;
-        lspkind.enable = true;
+        # lspkind.enable = true;
         lightbulb.enable = true;
         lspsaga.enable = false;
-        nvimCodeActionMenu.enable = true;
+        # nvimCodeActionMenu.enable = true;
         trouble.enable = true;
         lspSignature.enable = true;
       };
@@ -125,27 +124,27 @@ in {
         java.enable = isMaximal;
         bash.enable = true;
         terraform.enable = isMaximal;
-        vue.enable = isMaximal;
+        # vue.enable = isMaximal;
         # svelte.enable = true;
       };
 
       vim.visuals = {
-        enable = true;
+        # enable = true;
         nvimWebDevicons.enable = true;
         scrollBar.enable = true;
-        smoothScroll.enable = true;
-        cellularAutomaton.enable = true;
+        # smoothScroll.enable = true;
+        cellular-automaton.enable = true;
         fidget-nvim.enable = !true;
         highlight-undo = {
           enable = true;
         };
-        indentBlankline = {
+        indent-blankline = {
           enable = true;
-          fillChar = null;
-          eolChar = null;
-          scope.enabled = true;
+          # fillChar = null;
+          # eolChar = null;
+          # scope.enabled = true;
         };
-        cursorline = {
+        nvim-cursorline = {
           enable = true;
           lineTimeout = 0;
         };
@@ -161,65 +160,64 @@ in {
       vim.theme = {
         enable = true;
         name = "nightfox";
-        style = "auto";
+        style = "mocha";
         transparent = true;
       };
       vim = {
-        autopairs.enable = true;
-        autosaving.enable = true;
+        # autopairs.enable = true;
+        # autosaving.enable = true;
         telescope.enable = true;
-        spellChecking = {
+        spellcheck = {
           enable = true;
+          programmingWordlist.enable = true;
           # Ensure that the :DirtytalkUpdate command is executed after install and update
-          enableProgrammingWordList = isMaximal;
+          # enableProgrammingWordList = isMaximal;
         };
       };
       vim.autocomplete = {
-        enable = true;
-        type = "nvim-cmp";
+        # enable = true;
       };
 
       vim.filetree = {
         nvimTree = {
           enable = true;
-          renderer = {
-            rootFolderLabel = true;
-          };
-          view = {
-            width = 25;
-          };
-          actions = {
-            openFile = {
-              quitOnOpen = true;
+          setupOpts = {
+            renderer = {
+              rootFolderLabel = true;
             };
-          };
-          # openTreeOnNewTab = false;
-          openOnSetup = false;
-          diagnostics = {
-            enable = true;
-            showOnDirs = true;
-          };
-          git = {
-            enable = true;
-          };
-          updateFocusedFile = {
-            enable = true;
-            updateRoot = false;
-            ignoreList = [];
-          };
-          modified = {
-            enable = true;
-          };
-          renderer = {
-            highlightGit = true;
-            highlightModified = "all";
-            highlightOpenedFiles = "all";
-            icons = {
-              gitPlacement = "after";
-              modifiedPlacement = "before";
-              show = {
-                git = true;
-                modified = true;
+            view = {
+              width = 25;
+            };
+            actions = {
+            };
+            # openTreeOnNewTab = false;
+            openOnSetup = false;
+            diagnostics = {
+              enable = true;
+              # showOnDirs = true;
+            };
+            git = {
+              enable = true;
+            };
+            updateFocusedFile = {
+              enable = true;
+              # updateRoot = false;
+              # ignoreList = [];
+            };
+            modified = {
+              enable = true;
+            };
+            renderer = {
+              highlightGit = true;
+              highlightModified = "all";
+              highlightOpenedFiles = "all";
+              icons = {
+                # gitPlacement = "after";
+                # modifiedPlacement = "before";
+                show = {
+                  git = true;
+                  modified = true;
+                };
               };
             };
           };
@@ -246,7 +244,7 @@ in {
       vim.git = {
         enable = true;
         gitsigns.enable = true;
-        gitsigns.codeActions = false; # throws an annoying debug message
+        # gitsigns.codeActions = false; # throws an annoying debug message
       };
 
       vim.minimap = {
@@ -327,24 +325,24 @@ in {
       };
 
       vim.presence = {
-        presence-nvim = {
-          enable = true;
-          auto_update = true;
-          image_text = "The Superior Text Editor";
-          client_id = "793271441293967371";
-          main_image = "neovim";
-          rich_presence = {
-            editing_text = "Editing %s";
-          };
-        };
+        # presence-nvim = {
+        #   enable = true;
+        #   auto_update = true;
+        #   image_text = "The Superior Text Editor";
+        #   client_id = "793271441293967371";
+        #   main_image = "neovim";
+        #   rich_presence = {
+        #     editing_text = "Editing %s";
+        #   };
+        # };
       };
     };
   };
 
-  xdg.configFile."nvim/config.lua".source = pkgs.substituteAll {
-    src = ./init.lua;
-    #   pyrightLangserver = preferPath "pyright-langserver" "${pkgs.pyright}/bin/pyright-langserver";
-    #   rustAnalyzer = preferPath "rust-analyzer" "${pkgs.rust-analyzer}/bin/rust-analyzer";
-  };
-  xdg.configFile."nvim/init.vim".source = ./init.vim;
+  # xdg.configFile."nvim/config.lua".source = pkgs.substituteAll {
+  #   src = ./init.lua;
+  #   #   pyrightLangserver = preferPath "pyright-langserver" "${pkgs.pyright}/bin/pyright-langserver";
+  #   #   rustAnalyzer = preferPath "rust-analyzer" "${pkgs.rust-analyzer}/bin/rust-analyzer";
+  # };
+  # xdg.configFile."nvim/init.vim".source = ./init.vim;
 }
