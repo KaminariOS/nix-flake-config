@@ -233,13 +233,15 @@
       pciutils
 
       prettyping # a nicer ping
+
+      fortune
+      poppler_utils # pdftotext
+      lldb
     ]
     ++ [
       killall # kill processes by name
       # ranger # terminal file explorer
       direnv
-
-      fortune
 
       # gnumake
       # cmake
@@ -255,7 +257,6 @@
       unzip
 
       #rust-gdb
-      lldb
 
       # python3
       python3.pkgs.dbus-python
@@ -278,7 +279,6 @@
 in
   defaultShell
   ++ rustcli
-  ++
-  # cargoAddons ++
-  nixAddons
+  # ++ cargoAddons
+  ++ nixAddons
   ++ lsps

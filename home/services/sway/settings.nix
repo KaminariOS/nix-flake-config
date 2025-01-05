@@ -275,6 +275,7 @@ in {
       assign [class="clion"] workspace number 3
       assign [class="idea"] workspace number 3
       assign [app_id="org.kde.okular"] workspace number 4
+      assign [class="okular"] workspace number 4
       assign [class="Slack"] workspace number 5
       assign [class="discord"] workspace number 5
       assign [app_id="org.telegram.desktop"] workspace number 5
