@@ -37,7 +37,7 @@ with inputs; let
   };
   commonImports = [
     homeage.homeManagerModules.homeage
-    neovim-flake.homeManagerModules.default
+    # neovim-flake.homeManagerModules.default
   ];
 
   mkHome = {

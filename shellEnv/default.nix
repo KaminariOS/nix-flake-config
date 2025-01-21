@@ -12,7 +12,7 @@ in {
       ./nushell
     ]
     ++ [
-      ./nvim
+      # ./nvim
       ./starship
       ./zellij
       ./git
