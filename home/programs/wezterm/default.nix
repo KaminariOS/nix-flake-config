@@ -28,6 +28,7 @@
 
                config.window_background_opacity = 0.7
 
+               config.enable_wayland = false
                -- config.font = wezterm.font('Fira Code', { })
                config.font_size = 32
                config.font = wezterm.font_with_fallback {

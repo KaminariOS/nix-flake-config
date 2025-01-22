@@ -18,7 +18,14 @@
       efi.efiSysMountPoint = "/boot";
     };
     blacklistedKernelModules = ["ideapad_laptop"];
+    initrd.kernelModules = ["amdgpu"];
+    kernelModules = ["amdgpu"];
   };
+
+  # hardware.graphics = {
+  #   enable = true;
+  #   extraPackages = with pkgs; [mesa mesa.drivers];
+  # };
 
   networking.hostName = "thinker"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -64,6 +71,8 @@
   };
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+
+  # services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kosumi = {
