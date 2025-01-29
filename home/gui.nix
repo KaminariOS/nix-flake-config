@@ -40,7 +40,8 @@
 
     steam-run
 
-    okular
+    (pkgs.extend (import ../overlay.nix)).okular
+
     oculante
 
     # wayland stuff
