@@ -202,7 +202,8 @@ in {
       };
     };
     shellAliases = {
-      v = "${config.home.homeDirectory}/nix/neovim-flake/result/bin/nvim";
+      # v = "${config.home.homeDirectory}/nix/neovim-flake/result/bin/nvim";
+      v = "nvim";
       vc = "nvim --clean";
       c = "bat";
       e = "eza --icons -l --no-user --no-permissions --git";
