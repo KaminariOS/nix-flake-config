@@ -1,8 +1,8 @@
 ---
 # List of ticker symbols to start app with
 symbols:
-  - TSLR
-  - NVDL
+  - TSLA
+  - NVDA
   - SOFI
   - AMD
 
