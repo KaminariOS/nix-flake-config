@@ -8,7 +8,7 @@ self: super: {
   #     '';
   # });
 
-  okular = super.okular.overrideAttrs (oldAttrs: {
+  okular = super.kdePackages.okular.overrideAttrs (oldAttrs: {
     # extend old postInstall (if exists) with wrapProgram
     postInstall =
       (oldAttrs.postInstall or "")

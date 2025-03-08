@@ -96,7 +96,7 @@
       # ouch stands for Obvious Unified Compression Helper.
       ouch
 
-      rargs # Rargs is kind of xargs + awk with pattern-matching support. https://github.com/lotabout/rargs
+      # rargs # Rargs is kind of xargs + awk with pattern-matching support. https://github.com/lotabout/rargs
       # systeroid — A more powerful alternative to sysctl(8).
       systeroid
       # Like df

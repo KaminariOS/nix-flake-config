@@ -182,7 +182,7 @@ in {
     # defaultEditor = mkDefaultEntry "Editor" cfg.editor;
     # defaultFileManager = mkDefaultEntry "File Manager" cfg.fileManager;
     # defaultImageViewer = mkDefaultEntry "Image Viewer" cfg.imageViewer;
-    defaultPdfViewer = mkDefaultEntry "PDF Viewer" pkgs.okular;
+    defaultPdfViewer = mkDefaultEntry "PDF Viewer" pkgs.kdePackages.okular;
     # defaultVideoPlayer = mkDefaultEntry "Video Player" cfg.videoPlayer;
     # defaultWebBrowser = mkDefaultEntry "Web Browser" cfg.webBrowser;
   };
