@@ -141,7 +141,7 @@
             format = 'https://$0',
           })
 
-          config.front_end = "WebGpu"
+          config.front_end = "OpenGL"
 
            -- and finally, return the configuration to wezterm
            return config
