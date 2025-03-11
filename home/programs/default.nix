@@ -17,4 +17,5 @@
   ./wlogout.nix
   ./swaywsr
   ./obs.nix
+  ./vscode.nix
 ]
