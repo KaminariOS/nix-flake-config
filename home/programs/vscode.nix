@@ -32,6 +32,7 @@
         userSettings = {
           "files.autoSave" = "onFocusChange";
           "workbench.colorTheme" = "Night Owl";
+          "vim.useSystemClipboard" = true;
         };
       };
     };
