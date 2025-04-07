@@ -60,14 +60,14 @@
       #media-session.enable = true;
     };
 
-    fprintd = {
-      enable = true;
-      package = pkgs.fprintd-tod;
-      tod = {
-        enable = true;
-        driver = pkgs.libfprint-2-tod1-vfs0090;
-      };
-    };
+    # fprintd = {
+    #   enable = true;
+    #   package = pkgs.fprintd-tod;
+    #   tod = {
+    #     enable = true;
+    #     driver = pkgs.libfprint-2-tod1-vfs0090;
+    #   };
+    # };
   };
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

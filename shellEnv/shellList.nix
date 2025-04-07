@@ -98,7 +98,7 @@
 
       # rargs # Rargs is kind of xargs + awk with pattern-matching support. https://github.com/lotabout/rargs
       # systeroid — A more powerful alternative to sysctl(8).
-      systeroid
+      # systeroid
       # Like df
       duf
       # lfs

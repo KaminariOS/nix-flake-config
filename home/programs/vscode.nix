@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.vscode = {
     enable = true;
     profiles = {
@@ -31,7 +35,7 @@
         ];
         userSettings = {
           "files.autoSave" = "onFocusChange";
-          "workbench.colorTheme" = "Night Owl";
+          "workbench.colorTheme" = lib.mkForce "Night Owl";
           "vim.useSystemClipboard" = true;
         };
       };
