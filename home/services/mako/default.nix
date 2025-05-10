@@ -8,29 +8,29 @@
 in {
   config = lib.mkIf cfg.services.mako.enable {
     services.mako = {
-      actions = true;
-      anchor = "bottom-right";
-      borderRadius = cfg.theme.borders.radius;
-      borderSize = 4;
-      defaultTimeout = 10000;
       enable = true;
-      groupBy = "app-name";
-      height = 300;
-      iconPath = "${pkgs.papirus-icon-theme}/share/icons/Papirus/";
-      icons = true;
-      layer = "top";
-      margin = "20,0";
-      padding = "15";
-      sort = "+time";
-      width = 400;
 
-      extraConfig = ''
-        on-notify=exec ${lib.getExe pkgs.mpv} ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga
-        outer-margin=20
+      settings = {
+        group-by = "app-name";
+        default-timeout = 10000;
+        actions = true;
+        icon-path = "${pkgs.papirus-icon-theme}/share/icons/Papirus/";
+        icons = true;
+        border-radius = cfg.theme.borders.radius;
+        border-size = 4;
+        padding = "15";
+        margin = "20,0";
+        sort = "+time";
+        width = 400;
+        height = 300;
+        layer = "top";
+        anchor = "bottom-right";
+        on-notify = "exec ${lib.getExe pkgs.mpv} ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga";
+        outer-margin = 20;
 
-        [mode=do-not-disturb]
-        invisible=1
-      '';
+        # mode="do-not-disturb";
+        invisible = 1;
+      };
     };
 
     systemd.user.services.mako = {

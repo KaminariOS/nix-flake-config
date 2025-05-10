@@ -113,6 +113,16 @@ in {
       full = false;
       homed = "/home/${username}";
     };
+  cloud = let
+    username = "kosumi";
+  in
+    mkHome {
+      hidpi = false;
+      inherit username;
+      gui = false;
+      full = false;
+      homed = "/home/${username}";
+    };
   # Continuous Integration automation
   #  ci = {
   #    metals = pkgs.callPackage ../home/programs/neovim-ide/metals.nix { };

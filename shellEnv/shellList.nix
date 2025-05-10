@@ -52,6 +52,21 @@
 
       # stock price
       tickrs
+
+      # This is choose, a human-friendly and fast alternative to cut and (sometimes) awk
+      choose
+
+      # Analyzer of executables using a terminal user interface
+      binsider
+
+      # Background rust code checker
+      bacon
+
+      # Executes commands in response to file modifications
+      watchexec
+
+      # ouch stands for Obvious Unified Compression Helper.
+      ouch
     ]
     ++ [
       # Better cd
@@ -83,8 +98,6 @@
       # eza # a better `ls`
       fd # "find" for files
 
-      # This is choose, a human-friendly and fast alternative to cut and (sometimes) awk
-      choose
       # dog is a command-line DNS client.
       # dog
 
@@ -93,8 +106,6 @@
 
       # Efficient duplicate file finder and remover
       fclones
-      # ouch stands for Obvious Unified Compression Helper.
-      ouch
 
       # rargs # Rargs is kind of xargs + awk with pattern-matching support. https://github.com/lotabout/rargs
       # systeroid — A more powerful alternative to sysctl(8).
@@ -115,15 +126,6 @@
       rm-improved
 
       viu # A command-line application to view images from the terminal written in Rust
-
-      # Analyzer of executables using a terminal user interface
-      binsider
-
-      # Background rust code checker
-      bacon
-
-      # Executes commands in response to file modifications
-      watchexec
     ]);
 
   security = with pkgs; [
@@ -165,9 +167,7 @@
   nixAddons = with pkgs; (optionals full [
       cachix # nix caching
       nix-du
-    ]
-    ++ [
-      any-nix-shell
+
       nix-diff
       nix-tree
       nix-prefetch-git
@@ -176,9 +176,12 @@
       statix
       # Comma runs software without installing it.
       comma
+    ]
+    ++ [
+      any-nix-shell
     ]);
 
-  lsps = with pkgs; [
+  lsps = with pkgs; (optionals full [
     # rnix-lsp # nix lsp server
     # rust-analyzer
     # gopls
@@ -201,7 +204,7 @@
 
     # ruff # An extremely fast Python linter and code formatter, written in Rust.
     code-minimap
-  ];
+  ]);
 
   defaultShell = with pkgs; (optionals full [
       distrobox
@@ -238,16 +241,22 @@
       poppler_utils # pdftotext
       lldb
       google-cloud-sdk
+
+      xpra
+
+      screen
+
+      glow
     ]
     ++ [
-      killall # kill processes by name
+      # killall # kill processes by name
       # ranger # terminal file explorer
       direnv
 
       # gnumake
       # cmake
       # gcc
-      gdb
+      # gdb
 
       #An implementation of the Debug Adapter Protocol for Python
       # python310Packages.debugpy
@@ -270,12 +279,6 @@
 
       # Postgres cli
       # pgcli
-
-      xpra
-
-      screen
-
-      glow
     ]);
 in
   defaultShell
