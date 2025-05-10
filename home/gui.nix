@@ -64,5 +64,6 @@
     # screenshot
     wayshot
     slurp
+    # nur.repos.k3a.ib-tws
   ];
 }

@@ -237,6 +237,7 @@
       fortune
       poppler_utils # pdftotext
       lldb
+      google-cloud-sdk
     ]
     ++ [
       killall # kill processes by name

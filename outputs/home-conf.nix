@@ -22,6 +22,7 @@ with inputs; let
 
     overlays = [
       fishOverlay
+      nurpkgs.overlays.default
       # (import ../overlay.nix)
       nurpkgs.overlays.default
       #neovim-flake.overlays.${system}.default

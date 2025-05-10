@@ -96,6 +96,7 @@
   outputs = {
     self,
     nixpkgs,
+    nurpkgs,
     pre-commit-hooks,
     ...
   } @ inputs: let
