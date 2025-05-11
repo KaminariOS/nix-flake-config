@@ -35,6 +35,7 @@
     name = "done";
     inherit (pkgs.fishPlugins.done) src;
   };
+  loadenv = builtins.readFile ./loadenv.fish;
   #aliases = ''
   #alias z  "zoxide"
   #alias nuco  "nvim ~/.config/nushell/config.nu"
@@ -267,7 +268,7 @@ in {
       eval (direnv hook fish)
       any-nix-shell fish --info-right | source
     '';
-    shellInit = fishConfig;
+    shellInit = fishConfig + loadenv;
   };
 
   xdg.configFile."fish/completions/keytool.fish".text = custom.completions.keytool;
