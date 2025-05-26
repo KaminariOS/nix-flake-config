@@ -69,9 +69,10 @@
       ouch
     ]
     ++ [
-      # Better cd
-      zoxide
-      tokei # Count your code, quickly.
+      # atac
+      # # Better cd
+      # zoxide
+      # tokei # Count your code, quickly.
       # ps
       procs
 

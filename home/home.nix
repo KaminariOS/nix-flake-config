@@ -25,7 +25,7 @@
   nixos_app = with pkgs; [
     # jetbrains.clion
     # jetbrains.idea-ultimate
-    jetbrains.rider
+    # jetbrains.rider
     google-chrome
     rclone
     # seahorse
