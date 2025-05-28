@@ -17,7 +17,10 @@
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot/efi";
     };
-    kernelModules = ["nouveau"];
+    # kernelModules = ["nouveau"];
+    # kernelParams = [
+    #   "nvidia-drm.fbdev=1"
+    # ];
   };
 
   networking.hostName = "savior"; # Define your hostname.
@@ -36,19 +39,24 @@
     #   enableExtensionPack = true;
     # };
   };
-
-  # Optionally, you may need to select the appropriate driver version for your specific GPU.
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-  hardware.nvidia.open = true;
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [mesa mesa.drivers];
+  hardware = {
+    nvidia = {
+      # Optionally, you may need to select the appropriate driver version for your specific GPU.
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      open = true;
+    };
+    graphics = {
+      enable = true;
+      # extraPackages = with pkgs; [mesa mesa.drivers];
+    };
   };
   services = {
     # Select internationalisation properties.
     # i18n.defaultLocale = "en_US.utf8";
 
-    xserver.videoDrivers = ["nouveau"];
+    xserver.videoDrivers = ["nvidia"];
 
     # Enable CUPS to print documents.
     printing.enable = true;
