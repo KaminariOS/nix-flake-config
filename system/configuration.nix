@@ -333,6 +333,7 @@ in {
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    lsm = lib.mkForce [];
     # Yubikey login & sudo
     pam.yubico = {
       enable = true;

@@ -20,6 +20,8 @@
       size = 34;
     };
 
+    targets.mako.enable = false;
+
     fonts = {
       monospace = {
         name = "Iosevka Nerd Font Mono";
