@@ -278,6 +278,7 @@
       gh
       sshfs
 
+      gemini-cli
       # Postgres cli
       # pgcli
     ]);
