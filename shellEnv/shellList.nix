@@ -248,6 +248,13 @@
       screen
 
       glow
+
+      awscli2
+      gemini-cli
+
+      minikube
+      kubernetes
+      terraform
     ]
     ++ [
       # killall # kill processes by name

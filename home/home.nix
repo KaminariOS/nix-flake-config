@@ -34,6 +34,7 @@
     android-studio
     code-cursor
     windsurf
+    warp-terminal
     # unityhub
   ];
   inherit (config.home) homeDirectory;
