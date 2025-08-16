@@ -72,7 +72,7 @@
       # atac
       # # Better cd
       # zoxide
-      # tokei # Count your code, quickly.
+      tokei # Count your code, quickly.
       # ps
       procs
 
