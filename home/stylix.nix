@@ -21,6 +21,7 @@
     };
 
     targets.mako.enable = false;
+    targets.firefox.profileNames = ["firefox"];
 
     fonts = {
       monospace = {
