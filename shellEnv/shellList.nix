@@ -255,6 +255,8 @@
       minikube
       kubernetes
       terraform
+
+      csvlens
     ]
     ++ [
       # killall # kill processes by name

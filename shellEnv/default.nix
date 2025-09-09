@@ -64,6 +64,7 @@ in {
     gpg.enable = true;
     ssh = {
       enable = true;
+      enableDefaultConfig = true;
     };
     zoxide = {
       enable = true;
