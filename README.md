@@ -11,7 +11,8 @@ Based on [nix-config](https://github.com/gvolpe/nix-config).
 ```console
 nix build github:KaminariOS/nix-flake-config/dev#homeConfigurations.shellhome.activationPackage --extra-experimental-features nix-command --extra-experimental-features flakes
 result/activate
-
+# Optional Nvim profile 
+nix profile install github:KaminariOS/neovim-flake/dev --extra-experimental-features nix-command --extra-experimental-features flakes
 ```
 
 #### With home manager installed
