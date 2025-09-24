@@ -255,6 +255,7 @@
       minikube
       kubernetes
       terraform
+      kubernetes-helm
 
       csvlens
     ]
