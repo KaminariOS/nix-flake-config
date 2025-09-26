@@ -97,9 +97,9 @@
          -- Scroll down one line
          {key="DownArrow", mods="SHIFT", action=wezterm.action{ScrollByLine=1}},
          -- Scroll up a full page
-         {key="k", mods="SHIFT", action=wezterm.action{ScrollByPage=-1}},
+         {key="k", mods="CTRL", action=wezterm.action{ScrollByPage=-1}},
          -- Scroll down a full page
-         {key="j", mods="SHIFT", action=wezterm.action{ScrollByPage=1}},
+         {key="j", mods="CTRL", action=wezterm.action{ScrollByPage=1}},
              {
                key='t', mods='CTRL', action = wezterm.action_callback(function(window, pane)
                  local mux_window = window:mux_window()
