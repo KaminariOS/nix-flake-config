@@ -8,13 +8,14 @@ Thunderbird = ""
 MyNiceProgram = "😛"
 
 [aliases]
-TelegramDesktop = "Telegram"
+TelegramDesktop = "✈️"
 "Org.gnome.Nautilus" = "Nautilus"
 "org.wezfurlong.wezterm" = "🎮"
 "org.kde.okular" = "📖"
-"org.telegram.desktop" = "Telegram"
+"org.telegram.desktop" = "✈️"
 "org.jetbrains.rider" = "Rider"
 "firefox" = "🦊" 
+"brave" = "🦁"
 
 [general]
 separator = ""
