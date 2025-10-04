@@ -127,6 +127,8 @@
       rm-improved
 
       viu # A command-line application to view images from the terminal written in Rust
+
+      uv
     ]);
 
   security = with pkgs; [
