@@ -24,6 +24,7 @@ in {
       # ./xplr
       ./gitui
       ./tickrs
+      ./gemini
     ];
   home.file = {
     ".ssh/config".text = ''
@@ -110,6 +111,12 @@ in {
     eza = {
       enable = true;
       enableFishIntegration = true;
+    };
+    gemini-cli = {
+      settings.general = {
+        "vimMode" = true;
+        "preferredEditor" = "nvim";
+      };
     };
   };
 }
