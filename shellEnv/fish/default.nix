@@ -262,6 +262,11 @@ in {
       gdb = "gdb";
       zel = "zellij -l compact";
       logout = "pkill -u $USER";
+      uvr = "uv run";
+      ge = "gemini";
+      dk = "docker";
+      pm = "podman";
+      kb = "kubectl";
     };
     plugins = [custom.theme fenv bass puffer done];
     interactiveShellInit = ''
