@@ -74,7 +74,13 @@
           random_background = Dir.glob(File.join(directory, '*')).sample
           pid = spawn("${lib.getExe pkgs.swaybg}", '-o', monitor, '-i', random_background, '-m', 'fill')
           sleep 1
-          Process.kill('TERM', current_pids[monitor]) if current_pids[monitor]
+          if current_pids[monitor]
+                  Process.kill('TERM', current_pids[monitor])
+                  begin
+                    Process.wait(current_pids[monitor])
+                  rescue Errno::ECHILD, Errno::ESRCH
+                  end
+          end
           current_pids[monitor] = pid
           last_update_time[monitor] = Time.now
           known_monitors[monitor] = random_background
