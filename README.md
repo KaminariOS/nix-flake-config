@@ -19,3 +19,6 @@ nix profile install github:KaminariOS/neovim-flake/dev --extra-experimental-feat
 ```console
 home-manager switch --flake github:KaminariOS/nix-flake-config/dev#shellhome --extra-experimental-features nix-command --extra-experimental-features flakes
 ```
+
+## Preview
+![Desktop](./assets/desktop.png)
