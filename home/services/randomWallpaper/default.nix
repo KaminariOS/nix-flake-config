@@ -72,8 +72,6 @@
       active_monitors.each do |monitor|
         if Time.now - last_update_time[monitor] >= update_interval
           random_background = Dir.glob(File.join(directory, '*')).sample
-          pid = spawn("${lib.getExe pkgs.swaybg}", '-o', monitor, '-i', random_background, '-m', 'fill')
-          sleep 1
           if current_pids[monitor]
                   Process.kill('TERM', current_pids[monitor])
                   begin
@@ -81,13 +79,15 @@
                   rescue Errno::ECHILD, Errno::ESRCH
                   end
           end
+          sleep 1
+          pid = spawn("${lib.getExe pkgs.swaybg}", '-o', monitor, '-i', random_background, '-m', 'fill')
           current_pids[monitor] = pid
           last_update_time[monitor] = Time.now
           known_monitors[monitor] = random_background
         end
       end
 
-      sleep 3
+      sleep 10
     end
   '';
 in {
