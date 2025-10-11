@@ -144,7 +144,7 @@ in {
   services = {
     acpid.enable = true;
     upower.enable = true;
-    logind.lidSwitch = "ignore";
+    logind.settings.Login.HandleLidSwitch = "ignore";
     # Mount MTP devices
 
     gvfs.enable = true;

@@ -66,8 +66,6 @@
     # Enable CUPS to print documents.
     printing.enable = true;
 
-    logind.lidSwitch = "ignore";
-
     pipewire = {
       enable = true;
       audio.enable = true;
