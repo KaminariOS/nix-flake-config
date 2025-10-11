@@ -56,6 +56,11 @@
     # Select internationalisation properties.
     # i18n.defaultLocale = "en_US.utf8";
 
+    k3s.extraFlags = toString [
+      "--tls-san"
+      "100.124.90.107"
+      # "--debug" # Optionally add additional args to k3s
+    ];
     xserver.videoDrivers = ["nvidia"];
 
     # Enable CUPS to print documents.
