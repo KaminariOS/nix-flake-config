@@ -69,6 +69,14 @@
       ouch
     ]
     ++ [
+      # A simple and fast dashboard for Kubernetes.
+      kdash
+      # A simple tui to view & control docker containers
+      oxker
+      # Linux Kernel Manager and Activity Monitor.
+      kmon
+      # A fast, simple TUI for interacting with systemd services and their logs.
+      systemctl-tui
       # atac
       # # Better cd
       # zoxide
