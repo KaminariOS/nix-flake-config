@@ -8,6 +8,8 @@
   rustcli = with pkgs; (optionals full [
       # Put a rainbow in everything you `cat` to the console. Like lolcat
       dotacat
+      # email client
+      himalaya
 
       aichat
       argc
