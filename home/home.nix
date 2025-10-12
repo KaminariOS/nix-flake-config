@@ -35,6 +35,7 @@
     code-cursor
     windsurf
     warp-terminal
+    protonvpn-gui
     # unityhub
   ];
   inherit (config.home) homeDirectory;
