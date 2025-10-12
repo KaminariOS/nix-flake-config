@@ -259,8 +259,9 @@
 
       glow
 
-      awscli2
+      awscli
       gemini-cli
+      codex
 
       minikube
       kubernetes
