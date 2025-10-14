@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -45,7 +46,7 @@
       package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
       powerManagement.enable = false;
-      open = true;
+      open = !true;
     };
     graphics = {
       enable = true;
@@ -93,7 +94,11 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["cuda_cccl" "cuda_cudart" "cuda_nvcc" "libcublas" "nvidia-settings" "nvidia-x11"];
+    nvidia.acceptLicense = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
