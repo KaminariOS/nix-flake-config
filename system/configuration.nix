@@ -86,16 +86,31 @@ in {
       hitori # sudoku game
       atomix # puzzle game
     ]);
+  programs = {
+    virt-manager.enable = true;
+    # Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    # programs.mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+    nix-ld.enable = true;
+
+    fish.enable = true;
+    fuse.userAllowOther = true;
+    partition-manager.enable = true;
+    sway.enable = true;
+    sway.xwayland.enable = true;
+    xwayland.enable = true;
+    dconf.enable = true;
+    nm-applet.enable = true;
+    ssh.extraConfig = ''
+      Host *.cloudlab.us
+        ForwardAgent yes
+    '';
   };
-
-  programs.nix-ld.enable = true;
   # List services that you want to enable:
 
   # Open ports in the firewall.
@@ -103,9 +118,12 @@ in {
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
-
+  virtualisation.libvirtd.qemu.ovmf.enable = true;
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
   # Enable Docker & VirtualBox support.
   virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
     oci-containers = {backend = "podman";};
     podman = {
       # Required for containers under podman-compose to be able to talk to each other.
@@ -139,6 +157,7 @@ in {
   };
   boot.kernelParams = [
     ''GRUB_CMDLINE_LINUX_DEFAULT="quiet udev.log_priority=3 acpi_backlight=native"''
+    "amd_iommu"
   ];
   boot.binfmt.emulatedSystems = ["aarch64-linux" "riscv64-linux"];
   services = {
@@ -311,31 +330,16 @@ in {
       };
     };
   };
-
-  programs = {
-    fish.enable = true;
-    fuse.userAllowOther = true;
-    partition-manager.enable = true;
-    sway.enable = true;
-    sway.xwayland.enable = true;
-    xwayland.enable = true;
-    dconf.enable = true;
-    nm-applet.enable = true;
-    ssh.extraConfig = ''
-      Host *.cloudlab.us
-        ForwardAgent yes
-    '';
-  };
   users = {
     extraGroups.vboxusers.members = ["kosumi"];
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.kosumi = {
       isNormalUser = true;
-      extraGroups = ["docker" "networkmanager" "wheel" "scanner" "lp" "video" "input"]; # wheel for ‘sudo’.
+      extraGroups = ["docker" "networkmanager" "wheel" "scanner" "lp" "video" "input" "qemu-libvirtd" "kvm"]; # wheel for ‘sudo’.
       shell = pkgs.fish;
       openssh.authorizedKeys.keyFiles = [];
     };
-
+    groups.libvirtd.members = ["kosumi"];
     users.root = {
     };
   };
