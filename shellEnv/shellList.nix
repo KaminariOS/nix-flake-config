@@ -265,11 +265,13 @@
       gemini-cli
       codex
 
-      minikube
+      # minikube
       kubernetes
       terraform
       kubernetes-helm
 
+      # Run your GitHub Actions locally
+      act
       csvlens
     ]
     ++ [
