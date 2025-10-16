@@ -103,6 +103,16 @@ in {
       full = false;
       homed = "/users/${username}";
     };
+  droid = let
+    username = "droid";
+  in
+    mkHome {
+      hidpi = false;
+      inherit username;
+      gui = false;
+      full = false;
+      homed = "/home/${username}";
+    };
   shellhomeForWork = let
     username = "kchen";
   in
