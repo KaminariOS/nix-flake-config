@@ -97,30 +97,27 @@ in {
         OnUnitActiveSec = "1d";
       };
     };
-    services = {
+    services = let
+      mkRcloneService = node: {
+        Service = {
+          Type = "simple";
+          ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/${node}";
+          ExecStart = "${pkgs.rclone}/bin/rclone mount --umask 022 --allow-other ${node}: %h/${node} --vfs-cache-mode full --vfs-fast-fingerprint --vfs-cache-max-size 10G";
+          ExecStop = "${pkgs.util-linux}/bin/umount %h/${node}";
+          Environment = ["PATH=/run/wrappers/bin/:$PATH"];
+        };
+        Install.WantedBy = ["default.target"];
+      };
+    in {
       # imec = {
       #   Unit.Description = "...";
       #   Service.ExecStart = "/run/current-system/sw/bin/fcitx5";
       #   Install.WantedBy = ["default.target"]; # starts after login
       # };
-      rclone = {
-        Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.rclone}/bin/rclone mount --umask 022  --allow-other remote: %h/rclone --vfs-cache-mode full --vfs-fast-fingerprint --vfs-cache-max-size 10G";
-          ExecStop = "umount ${homeDirectory}/rclone";
-          Environment = ["PATH=/run/wrappers/bin/:$PATH"];
-        };
-        Install.WantedBy = ["default.target"];
-      };
-      edu = {
-        Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.rclone}/bin/rclone mount --umask 022  --allow-other unc: %h/unc --vfs-cache-mode full --vfs-fast-fingerprint --vfs-cache-max-size 10G";
-          ExecStop = "umount ${homeDirectory}/unc";
-          Environment = ["PATH=/run/wrappers/bin/:$PATH"];
-        };
-        Install.WantedBy = ["default.target"];
-      };
+      gdrive_main = mkRcloneService "gdrive_main";
+      edu = mkRcloneService "unc";
+      savior = mkRcloneService "savior";
+
       wallpaper = {
         Service = {
           Type = "oneshot";
