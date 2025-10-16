@@ -111,13 +111,6 @@ in {
         ForwardAgent yes
     '';
   };
-  # List services that you want to enable:
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
   virtualisation.libvirtd.qemu.ovmf.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
   # Enable Docker & VirtualBox support.
@@ -284,16 +277,34 @@ in {
       '';
     };
   };
+  networking.firewall = {
+    # List services that you want to enable:
 
-  networking.firewall.allowedTCPPorts = [
-    6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
-    # 2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
-    # 2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
-  ];
-  networking.firewall.allowedUDPPorts = [
-    # 8472 # k3s, flannel: required if using multi-node for inter-node networking
-  ];
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    enable = true;
+    allowPing = false;
+
+    allowedTCPPorts = [
+      6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
+      2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
+      2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
+      22 # ssh
+    ];
+    allowedUDPPorts = [
+      8472 # k3s, flannel: required if using multi-node for inter-node networking
+    ];
+  };
   services.k3s.enable = true;
+  services.k3s.extraFlags = [
+    "--disable=traefik"
+    "--disable=servicelb"
+    "--write-kubeconfig-mode=600"
+    "--secrets-encryption"
+    "--etcd-expose-metrics=false"
+  ];
   # Making fonts accessible to applications.
   fonts = {
     enableDefaultPackages = true;
