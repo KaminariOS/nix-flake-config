@@ -4,38 +4,21 @@
   ...
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
-in {
-  savior = nixosSystem {
-    inherit system;
-    specialArgs = {inherit inputs;};
-    modules = [
-      ../system/machine/savior
-      ../system/configuration.nix
-    ];
-  };
 
-  portable = nixosSystem {
-    inherit system;
-    specialArgs = {inherit inputs;};
-    modules = [
-      ../system/machine/portable
-      ../system/configuration.nix
-    ];
-  };
-  redmoon = nixosSystem {
-    inherit system;
-    specialArgs = {inherit inputs;};
-    modules = [
-      ../system/machine/redmoon
-      ../system/configuration.nix
-    ];
-  };
-  thinker = nixosSystem {
-    inherit system;
-    specialArgs = {inherit inputs;};
-    modules = [
-      ../system/machine/thinker
-      ../system/configuration.nix
-    ];
-  };
+  # Helper function to define a NixOS host
+  mkHost = name:
+    nixosSystem {
+      inherit system;
+      specialArgs = {inherit inputs;};
+      modules = [
+        ../system/machine/${name}
+        ../system/configuration.nix
+        inputs.sops-nix.nixosModules.sops
+      ];
+    };
+in {
+  savior = mkHost "savior";
+  portable = mkHost "portable";
+  redmoon = mkHost "redmoon";
+  thinker = mkHost "thinker";
 }

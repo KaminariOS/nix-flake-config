@@ -5,7 +5,10 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     nurpkgs.url = "github:nix-community/NUR";
-
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # for macos
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -97,6 +100,7 @@
     self,
     nixpkgs,
     pre-commit-hooks,
+    sops-nix,
     ...
   } @ inputs: let
     forDefaultSystems = inputs.nixpkgs.lib.genAttrs [
