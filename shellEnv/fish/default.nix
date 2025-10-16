@@ -137,9 +137,9 @@
     # visual mode, but due to fish_cursor_default, is redundant here
     set fish_cursor_visual block blink
 
-    function fish_greeting
-      fortune -a
-    end
+    # function fish_greeting
+    #   fortune -a
+    # end
 
     function oku 
       okular $argv &>/dev/null &; disown

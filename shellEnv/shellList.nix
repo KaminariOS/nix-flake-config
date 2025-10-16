@@ -250,7 +250,7 @@
 
       prettyping # a nicer ping
 
-      fortune
+      # fortune
       poppler_utils # pdftotext
       lldb
       google-cloud-sdk
