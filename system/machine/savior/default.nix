@@ -54,14 +54,20 @@
     };
   };
   services = {
-    # Select internationalisation properties.
-    # i18n.defaultLocale = "en_US.utf8";
+    k3s = {
+      # Select internationalisation properties.
+      # i18n.defaultLocale = "en_US.utf8";
 
-    k3s.extraFlags = toString [
-      "--tls-san"
-      "100.124.90.107"
-      # "--debug" # Optionally add additional args to k3s
-    ];
+      extraFlags = toString [
+        # "--tls-san"
+        # "100.124.90.107"
+        # "--debug" # Optionally add additional args to k3s
+      ];
+
+      role = "agent";
+      serverAddr = "https://100.89.217.50:6443";
+      tokenFile = "/etc/k3s.token";
+    };
     xserver.videoDrivers = ["nvidia"];
 
     # Enable CUPS to print documents.

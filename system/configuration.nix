@@ -294,7 +294,6 @@ in {
     # 8472 # k3s, flannel: required if using multi-node for inter-node networking
   ];
   services.k3s.enable = true;
-  services.k3s.role = "server";
   # Making fonts accessible to applications.
   fonts = {
     enableDefaultPackages = true;

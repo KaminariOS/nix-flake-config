@@ -37,6 +37,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
   services = {
+    k3s.role = "server";
     # Set your time zone.
     # time.timeZone = "America/Denver";
 
