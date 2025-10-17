@@ -1,0 +1,6 @@
+- sops-nix
+- yubikey
+- kubenix
+- cntr
+- colmena
+- deploy-rs
