@@ -273,6 +273,11 @@
       # Run your GitHub Actions locally
       act
       csvlens
+
+      # Simple and flexible tool for managing secrets
+      sops
+      # Simple, secure and modern encryption tool with small explicit keys, no config options, and UNIX-style composability
+      rage
     ]
     ++ [
       # killall # kill processes by name

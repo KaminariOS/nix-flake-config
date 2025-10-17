@@ -10,6 +10,7 @@ in {
     optionals full [
       ./helix
       ./nushell
+      ./sops
     ]
     ++ [
       # ./nvim
