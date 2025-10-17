@@ -24,11 +24,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    homeage = {
-      url = "github:jordanisaacs/homeage";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # agenix = {
     #   inputs.nixpkgs.follows = "nixpkgs";
     #   url = "github:yaxitech/ragenix";
