@@ -111,7 +111,6 @@ in {
         ForwardAgent yes
     '';
   };
-  virtualisation.libvirtd.qemu.ovmf.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
   # Enable Docker & VirtualBox support.
   virtualisation = {
