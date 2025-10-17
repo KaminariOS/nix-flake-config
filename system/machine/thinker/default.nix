@@ -37,7 +37,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
   services = {
-    k3s.role = "server";
+    k3s = {
+      role = "agent";
+      serverAddr = "https://100.124.90.107:6443";
+      tokenFile = "/etc/k3s.token";
+    };
     # Set your time zone.
     # time.timeZone = "America/Denver";
 

@@ -58,15 +58,14 @@
       # Select internationalisation properties.
       # i18n.defaultLocale = "en_US.utf8";
 
-      extraFlags = toString [
-        # "--tls-san"
-        # "100.124.90.107"
-        # "--debug" # Optionally add additional args to k3s
+      extraFlags = [
+        "--disable=traefik"
+        "--disable=servicelb"
+        "--write-kubeconfig-mode=600"
+        "--secrets-encryption"
+        "--etcd-expose-metrics=false"
       ];
-
-      role = "agent";
-      serverAddr = "https://100.89.217.50:6443";
-      tokenFile = "/etc/k3s.token";
+      role = "server";
     };
     xserver.videoDrivers = ["nvidia"];
 

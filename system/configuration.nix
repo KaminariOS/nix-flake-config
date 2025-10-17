@@ -299,11 +299,6 @@ in {
   };
   services.k3s.enable = true;
   services.k3s.extraFlags = [
-    "--disable=traefik"
-    "--disable=servicelb"
-    "--write-kubeconfig-mode=600"
-    "--secrets-encryption"
-    "--etcd-expose-metrics=false"
   ];
   # Making fonts accessible to applications.
   fonts = {
