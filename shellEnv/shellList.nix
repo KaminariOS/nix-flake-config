@@ -278,6 +278,10 @@
       sops
       # Simple, secure and modern encryption tool with small explicit keys, no config options, and UNIX-style composability
       rage
+
+      cloudflared
+
+      nodejs
     ]
     ++ [
       # killall # kill processes by name
