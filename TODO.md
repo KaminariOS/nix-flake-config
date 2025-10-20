@@ -4,3 +4,4 @@
 - cntr
 - colmena
 - deploy-rs
+- Fix randomWallpaper fork bug
