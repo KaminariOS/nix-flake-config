@@ -41,6 +41,9 @@
       role = "agent";
       serverAddr = "https://100.124.90.107:6443";
       tokenFile = "/etc/k3s.token";
+      extraFlags = [
+        "--node-ip=100.89.217.50"
+      ];
     };
     # Set your time zone.
     # time.timeZone = "America/Denver";

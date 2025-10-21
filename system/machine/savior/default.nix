@@ -64,6 +64,9 @@
         "--write-kubeconfig-mode=600"
         "--secrets-encryption"
         "--etcd-expose-metrics=false"
+        "--node-ip=100.124.90.107"
+        "--advertise-address=100.124.90.107"
+        "--tls-san=100.124.90.107"
       ];
       role = "server";
     };
