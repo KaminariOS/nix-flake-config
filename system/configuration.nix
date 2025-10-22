@@ -18,6 +18,10 @@ in {
   ];
 
   networking = {
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
     # Enables wireless support and openvpn via network manager.
     networkmanager = {
       enable = true;
