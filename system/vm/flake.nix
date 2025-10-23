@@ -8,6 +8,7 @@
     nixpkgs,
     disko,
     nixos-facter-modules,
+    inputs,
     ...
   }: {
     nixosConfigurations.hetzner-cloud = nixpkgs.lib.nixosSystem {
@@ -29,6 +30,9 @@
     };
     nixosConfigurations.oracle-cloud-aarch64 = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
+      specialArgs = {
+        inherit inputs;
+      };
       modules = [
         disko.nixosModules.disko
         ./configuration.nix
