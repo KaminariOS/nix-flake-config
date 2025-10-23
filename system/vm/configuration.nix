@@ -45,7 +45,7 @@
   services = {
     tailscale.enable = true;
 
-    services.k3s.enable = true;
+    k3s.enable = true;
   };
 
   security = {
