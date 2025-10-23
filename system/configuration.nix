@@ -306,6 +306,7 @@ in {
     ];
     allowedUDPPorts = [
       8472 # k3s, flannel: required if using multi-node for inter-node networking
+      53 # k3s DNS
     ];
   };
   services.k3s.enable = true;
