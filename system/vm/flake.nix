@@ -5,12 +5,12 @@
   inputs.nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
   outputs = {
+    self,
     nixpkgs,
     disko,
     nixos-facter-modules,
-    inputs,
     ...
-  }: {
+  }@inputs: {
     nixosConfigurations.hetzner-cloud = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

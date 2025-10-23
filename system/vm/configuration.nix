@@ -21,10 +21,9 @@
   environment.systemPackages = map lib.lowPrio (with pkgs; [
     curl
     gitMinimal
-    neofetch
     neovim
   ]);
-
+programs.fish.enable = true;
   virtualisation = {
     oci-containers = {backend = "podman";};
     podman = {
@@ -53,7 +52,8 @@
     sudo.wheelNeedsPassword = false;
   };
   users.users.kosumi = {
-    isNormalUser = true;
+    isNormalUser = true; 
+    shell = pkgs.fish;
     extraGroups = ["docker" "networkmanager" "wheel" "scanner" "lp" "video" "input" "qemu-libvirtd" "kvm"]; # wheel for ‘sudo’.
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJrWwGk9L6aGeJUflLOY25e7Aaa/AfDU51irnmchw1Zw thinker@example.com"
