@@ -6,7 +6,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  name = "savior";
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -24,7 +26,7 @@
     # ];
   };
 
-  networking.hostName = "savior"; # Define your hostname.
+  networking.hostName = name; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -57,7 +59,7 @@
     k3s = {
       # Select internationalisation properties.
       # i18n.defaultLocale = "en_US.utf8";
-
+      clusterInit = true;
       extraFlags = [
         "--disable=traefik"
         "--disable=servicelb"
@@ -69,6 +71,7 @@
         "--tls-san=100.124.90.107"
       ];
       role = "server";
+      tokenFile = "/etc/k3s.token";
     };
     xserver.videoDrivers = ["nvidia"];
 
