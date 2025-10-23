@@ -18,12 +18,35 @@
   };
   services.openssh.enable = true;
 
+  networking.firewall = {
+    # List services that you want to enable:
+
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    enable = true;
+    allowPing = false;
+    trustedInterfaces = ["cni+" "flannel.1" "calico+" "cilium+" "lxc+"];
+    allowedTCPPorts = [
+      6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
+      2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
+      10250 # Kubelet
+      2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
+      22 # ssh
+    ];
+    allowedUDPPorts = [
+      8472 # k3s, flannel: required if using multi-node for inter-node networking
+      53 # k3s DNS
+    ];
+  };
+  networking.hostName = "oracle"; # Define your hostname.
   environment.systemPackages = map lib.lowPrio (with pkgs; [
     curl
     gitMinimal
     neovim
   ]);
-programs.fish.enable = true;
+  programs.fish.enable = true;
   virtualisation = {
     oci-containers = {backend = "podman";};
     podman = {
@@ -43,8 +66,23 @@ programs.fish.enable = true;
 
   services = {
     tailscale.enable = true;
+    k3s = {
+      role = "server";
+      serverAddr = "https://100.124.90.107:6443";
+      tokenFile = "/etc/k3s.token";
+      extraFlags = [
+        "--disable=traefik"
+        "--disable=servicelb"
+        "--write-kubeconfig-mode=600"
+        "--secrets-encryption"
+        "--etcd-expose-metrics=false"
+        "--node-ip=100.82.130.68"
+        "--advertise-address=100.82.130.68"
+        "--tls-san=100.82.130.68"
+      ];
 
-    k3s.enable = true;
+      enable = true;
+    };
   };
 
   security = {
@@ -52,7 +90,7 @@ programs.fish.enable = true;
     sudo.wheelNeedsPassword = false;
   };
   users.users.kosumi = {
-    isNormalUser = true; 
+    isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = ["docker" "networkmanager" "wheel" "scanner" "lp" "video" "input" "qemu-libvirtd" "kvm"]; # wheel for ‘sudo’.
     openssh.authorizedKeys.keys = [

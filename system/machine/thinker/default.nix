@@ -38,11 +38,18 @@
   networking.networkmanager.enable = true;
   services = {
     k3s = {
-      role = "agent";
+      role = "server";
       serverAddr = "https://100.124.90.107:6443";
       tokenFile = "/etc/k3s.token";
       extraFlags = [
+        "--disable=traefik"
+        "--disable=servicelb"
+        "--write-kubeconfig-mode=600"
+        "--secrets-encryption"
+        "--etcd-expose-metrics=false"
         "--node-ip=100.89.217.50"
+        "--advertise-address=100.89.217.50"
+        "--tls-san=100.89.217.50"
       ];
     };
     # Set your time zone.
