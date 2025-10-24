@@ -17,7 +17,11 @@
     efiInstallAsRemovable = true;
   };
   services.openssh.enable = true;
-
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.all.forwarding" = true;
+    # Optionally, enable for IPv4 as well
+    "net.ipv4.conf.all.forwarding" = true;
+  };
   networking.firewall = {
     # List services that you want to enable:
 
@@ -57,7 +61,7 @@
       autoPrune.enable = true;
     };
     docker = {
-      enable = true;
+      # enable = true;
       autoPrune = {
         enable = true;
         dates = "weekly";
@@ -81,12 +85,13 @@
       extraFlags = [
         "--disable=traefik"
         "--disable=servicelb"
-        "--write-kubeconfig-mode=600"
+        "--write-kubeconfig-mode=644"
         "--secrets-encryption"
         "--etcd-expose-metrics=false"
         "--node-ip=100.82.130.68"
         "--advertise-address=100.82.130.68"
         "--tls-san=100.82.130.68"
+        "--flannel-backend=wireguard-native"
       ];
 
       enable = true;
