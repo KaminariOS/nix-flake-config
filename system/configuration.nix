@@ -155,6 +155,12 @@ in {
     ''GRUB_CMDLINE_LINUX_DEFAULT="quiet udev.log_priority=3 acpi_backlight=native"''
     "amd_iommu"
   ];
+
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.all.forwarding" = true;
+    # Optionally, enable for IPv4 as well
+    "net.ipv4.conf.all.forwarding" = true;
+  };
   boot.binfmt.emulatedSystems = ["aarch64-linux" "riscv64-linux"];
   services = {
     acpid.enable = true;
