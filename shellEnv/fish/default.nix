@@ -266,7 +266,23 @@ in {
       ge = "gemini";
       dk = "docker";
       pm = "podman";
+      pr = "podman -r";
+
       kb = "kubectl";
+      kba = "kubectl apply -f";
+      kbg = "kubectl get --all-namespaces";
+      kbgs = "kubectl get svc --all-namespaces";
+      kbgp = "kubectl get pods --all-namespaces";
+      kbd = "kubectl describe --all-namespaces";
+      kbds = "kubectl describe svc --all-namespaces";
+      kbdp = "kubectl describe pods --all-namespaces";
+      kbr = "kubectl rollout --all-namespaces";
+      kbl = "kubectl logs --all-namespaces";
+      kbdb = "kubectl debug -it -n --image=busybox --all-namespaces";
+      kbe = "kubectl edit --all-namespaces";
+
+      helmi = "helm upgrade --install";
+      helmu = "helm uninstall";
     };
     plugins = [custom.theme fenv bass puffer done];
     interactiveShellInit = ''
