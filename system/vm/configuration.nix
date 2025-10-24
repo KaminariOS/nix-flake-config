@@ -22,30 +22,40 @@
     # Optionally, enable for IPv4 as well
     "net.ipv4.conf.all.forwarding" = true;
   };
-  networking.firewall = {
-    # List services that you want to enable:
+  networking = {
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
+    firewall = {
+      # List services that you want to enable:
 
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    enable = true;
-    allowPing = false;
-    trustedInterfaces = ["cni+" "flannel.1" "calico+" "cilium+" "lxc+"];
-    allowedTCPPorts = [
-      6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
-      2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
-      10250 # Kubelet
-      2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
-      22 # ssh
-      8080
-    ];
-    allowedUDPPorts = [
-      8472 # k3s, flannel: required if using multi-node for inter-node networking
-      53 # k3s DNS
-    ];
-  };
-  networking.hostName = "oracle"; # Define your hostname.
+      # Open ports in the firewall.
+      # networking.firewall.allowedTCPPorts = [ ... ];
+      # networking.firewall.allowedUDPPorts = [ ... ];
+      # Or disable the firewall altogether.
+      enable = true;
+      allowPing = false;
+      trustedInterfaces = ["cni+" "flannel.1" "calico+" "cilium+" "lxc+"];
+      allowedTCPPorts = [
+        6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
+        2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
+        10250 # Kubelet
+        2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
+        22 # ssh
+        80 # http
+        443 # https
+        8080
+        8443 # nginx
+      ];
+      allowedUDPPorts = [
+        8443 # nginx
+        8472 # k3s, flannel: required if using multi-node for inter-node networking
+        53 # k3s DNS
+      ];
+    };
+    hostName = "oracle";
+  }; # Define your hostname.
   environment.systemPackages = map lib.lowPrio (with pkgs; [
     curl
     gitMinimal
