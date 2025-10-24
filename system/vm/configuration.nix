@@ -93,8 +93,8 @@
       # serverAddr = "https://100.124.90.107:6443";
       tokenFile = "/etc/k3s.token";
       extraFlags = [
-        "--disable=traefik"
-        "--disable=servicelb"
+        # "--disable=traefik"
+        # "--disable=servicelb"
         "--write-kubeconfig-mode=644"
         "--secrets-encryption"
         "--etcd-expose-metrics=false"
