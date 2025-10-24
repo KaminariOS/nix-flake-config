@@ -34,6 +34,7 @@
       10250 # Kubelet
       2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
       22 # ssh
+      8080
     ];
     allowedUDPPorts = [
       8472 # k3s, flannel: required if using multi-node for inter-node networking
@@ -66,9 +67,16 @@
 
   services = {
     tailscale.enable = true;
+    resolved = {
+      enable = true;
+      dnssec = "true";
+      domains = ["~."];
+      fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+      dnsovertls = "true";
+    };
     k3s = {
       role = "server";
-      serverAddr = "https://100.124.90.107:6443";
+      # serverAddr = "https://100.124.90.107:6443";
       tokenFile = "/etc/k3s.token";
       extraFlags = [
         "--disable=traefik"
