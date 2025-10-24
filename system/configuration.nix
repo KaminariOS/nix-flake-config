@@ -128,7 +128,7 @@ in {
       autoPrune.enable = true;
     };
     docker = {
-      enable = true;
+      # enable = true;
       autoPrune = {
         enable = true;
         dates = "weekly";
