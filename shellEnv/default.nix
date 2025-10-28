@@ -2,6 +2,7 @@
   pkgs,
   full,
   lib,
+  config,
   ...
 }: let
   inherit (lib) optionals;
@@ -40,6 +41,16 @@ in {
   };
   home.packages = pkgs.callPackage ../shellEnv/shellList.nix {inherit full;};
   programs = {
+    taskwarrior = {
+      package = pkgs.taskwarrior3;
+      enable = true;
+      dataLocation = "${config.home.homeDirectory}/.task";
+      config = {
+        confirmation = false;
+        report.minimal.filter = "status:pending";
+        report.next.filter = "(status:pending or status:waiting)";
+      };
+    };
     readline = {
       enable = true;
       extraConfig = "set editing-mode vi

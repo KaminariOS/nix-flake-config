@@ -225,7 +225,6 @@
       xclip
       clang-tools
       rr
-      taskwarrior3
       taskwarrior-tui
       dmidecode
       gptfdisk
