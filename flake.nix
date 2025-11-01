@@ -1,7 +1,14 @@
 {
   description = "Home Manager configuration of Kosumi";
-
   inputs = {
+    # colmena.url = "github:zhaofengli/colmena";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     nurpkgs.url = "github:nix-community/NUR";
