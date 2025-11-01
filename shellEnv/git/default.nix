@@ -35,37 +35,33 @@ in {
     enable = true;
     lfs.enable = true;
     package = pkgs.gitFull;
-    delta = {
-      options = {
-        decorations = {
-          commit-decoration-style = "bold yellow box ul";
-          file-decoration-style = "none";
-          file-style = "bold yellow ul";
+    settings =
+      gitConfig
+      // {
+        alias = {
+          amend = "commit --amend -m";
+          fixup = "!f(){ git reset --soft HEAD~\${1} && git commit --amend -C HEAD; };f";
+          loc = "!f(){ git ls-files | ${rg} \"\\.\${1}\" | xargs wc -l; };f"; # lines of code
+          br = "branch";
+          co = "checkout";
+          st = "status";
+          ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
+          ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
+          cm = "commit -m";
+          ca = "commit -am";
+          dc = "diff --cached";
+          pso = "push origin";
+          plo = "pull origin";
+          pop = "reset --soft HEAD^1";
+          url = "remote set-url origin";
+          rs = "restore";
+          ch = "checkout";
         };
-        features = "decorations";
-        whitespace-error-style = "22 reverse";
+        user = {
+          email = "chankocyo@gmail.com";
+          name = config.home.username;
+        };
       };
-    };
-    aliases = {
-      amend = "commit --amend -m";
-      fixup = "!f(){ git reset --soft HEAD~\${1} && git commit --amend -C HEAD; };f";
-      loc = "!f(){ git ls-files | ${rg} \"\\.\${1}\" | xargs wc -l; };f"; # lines of code
-      br = "branch";
-      co = "checkout";
-      st = "status";
-      ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
-      ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
-      cm = "commit -m";
-      ca = "commit -am";
-      dc = "diff --cached";
-      pso = "push origin";
-      plo = "pull origin";
-      pop = "reset --soft HEAD^1";
-      url = "remote set-url origin";
-      rs = "restore";
-      ch = "checkout";
-    };
-    extraConfig = gitConfig;
     ignores = [
       "*.bloop"
       "*.bsp"
@@ -82,8 +78,19 @@ in {
     signing = {
       key = "0x5710C5966568BAC5";
     };
-    userEmail = "chankocyo@gmail.com";
-    userName = config.home.username;
+  };
+
+  programs.delta = {
+    enable = true;
+    options = {
+      decorations = {
+        commit-decoration-style = "bold yellow box ul";
+        file-decoration-style = "none";
+        file-style = "bold yellow ul";
+      };
+      features = "decorations";
+      whitespace-error-style = "22 reverse";
+    };
   };
 
   home.packages = with pkgs; [git-crypt git-annex];

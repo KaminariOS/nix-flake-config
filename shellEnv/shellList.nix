@@ -96,7 +96,7 @@
       # A new way to see and navigate directory trees (get an overview of a directory, even a big one; find a directory then cd to it; never lose track of file hierarchy while you search; manipulate your files, ...)
       # broot
 
-      delta # Better diff
+      # delta # Better diff
 
       ripgrep # fast grep
       ripgrep-all
@@ -105,7 +105,7 @@
       # skim # Half of our life is spent on navigation: files, lines, commands… You need skim! It is a general fuzzy finder that saves you time.
 
       bottom # alternative to htop & ytop
-      du-dust # disk usage/free utility
+      dust # disk usage/free utility
       # eza # a better `ls`
       fd # "find" for files
 
@@ -250,7 +250,7 @@
       prettyping # a nicer ping
 
       # fortune
-      poppler_utils # pdftotext
+      poppler-utils # pdftotext
       lldb
       google-cloud-sdk
 
