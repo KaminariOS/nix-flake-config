@@ -268,6 +268,8 @@
       kubernetes
       terraform
       kubernetes-helm
+      fluxcd
+      telepresence
 
       # Run your GitHub Actions locally
       act
