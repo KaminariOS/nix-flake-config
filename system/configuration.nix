@@ -45,7 +45,7 @@ in {
     type = "fcitx5";
     enable = true;
     fcitx5.waylandFrontend = true;
-    fcitx5.addons = with pkgs; [fcitx5-rime fcitx5-chinese-addons fcitx5-mozc];
+    fcitx5.addons = with pkgs; [fcitx5-rime qt6Packages.fcitx5-chinese-addons fcitx5-mozc];
   };
 
   # Set your time zone.
@@ -322,8 +322,8 @@ in {
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      noto-fonts-emoji
-      ubuntu_font_family
+      noto-fonts-color-emoji
+      ubuntu-classic
       jetbrains-mono
       font-awesome
       myfonts.flags-world-color
