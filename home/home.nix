@@ -24,18 +24,19 @@
   gui_apps = (pkgs.callPackage ./gui.nix {}).gui_packages;
   nixos_app = with pkgs; [
     # jetbrains.clion
-    jetbrains.idea-ultimate
+    # jetbrains.idea-ultimate
     # jetbrains.rider
     google-chrome
     brave
     rclone
     # seahorse
     pulseaudio
-    android-studio
+    # android-studio
     code-cursor
     windsurf
     warp-terminal
     protonvpn-gui
+    feishu
     # unityhub
   ];
   inherit (config.home) homeDirectory;
