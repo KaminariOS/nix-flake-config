@@ -262,14 +262,14 @@
 
       awscli
       gemini-cli
-      codex
+      code-rs
 
       # minikube
-      kubernetes
       terraform
+      kubernetes
       kubernetes-helm
       fluxcd
-      telepresence
+      telepresence2
 
       # Run your GitHub Actions locally
       act
@@ -317,9 +317,16 @@
       # Postgres cli
       # pgcli
     ]);
+  cloud = with pkgs; [
+    kubernetes
+    kubernetes-helm
+    fluxcd
+    telepresence2
+  ];
 in
   defaultShell
   ++ rustcli
   # ++ cargoAddons
   ++ nixAddons
   ++ lsps
+  ++ cloud
