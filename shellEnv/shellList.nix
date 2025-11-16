@@ -279,10 +279,10 @@
       rage
 
       cloudflared
-
-      nodejs
     ]
     ++ [
+      nodejs
+
       # killall # kill processes by name
       # ranger # terminal file explorer
       direnv
