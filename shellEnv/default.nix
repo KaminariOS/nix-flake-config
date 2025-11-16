@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (lib) optionals;
+  homeDirectory = config.home.homeDirectory;
 in {
   imports =
     optionals full [
@@ -40,7 +41,17 @@ in {
     '';
   };
   home.packages = pkgs.callPackage ../shellEnv/shellList.nix {inherit full;};
+  home.sessionVariables = {
+    KUBECONFIG = "${homeDirectory}/.kube/config";
+  };
+  home.sessionPath = [
+    "${homeDirectory}/.cargo/bin"
+  ];
   programs = {
+    kubecolor = {
+      enable = true;
+      enableAlias = true;
+    };
     taskwarrior = {
       package = pkgs.taskwarrior3;
       enable = true;

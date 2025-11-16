@@ -139,6 +139,7 @@
       viu # A command-line application to view images from the terminal written in Rust
 
       uv
+      codex
     ]);
 
   security = with pkgs; [
@@ -261,15 +262,12 @@
       glow
 
       awscli
+
       gemini-cli
-      code-rs
+      # code-rs
 
       # minikube
       terraform
-      kubernetes
-      kubernetes-helm
-      fluxcd
-      telepresence2
 
       # Run your GitHub Actions locally
       act
@@ -318,7 +316,7 @@
       # pgcli
     ]);
   cloud = with pkgs; [
-    kubernetes
+    # kubernetes
     kubernetes-helm
     fluxcd
     telepresence2

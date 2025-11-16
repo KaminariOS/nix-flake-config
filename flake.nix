@@ -10,7 +10,9 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "nixpkgs/nixos-unstable";
-
+    code.url = "github:KaminariOS/codex/patch-2";
+    # optional, but helps keep nixpkgs versions aligned
+    code.inputs.nixpkgs.follows = "nixpkgs";
     nurpkgs.url = "github:nix-community/NUR";
     sops-nix = {
       url = "github:Mic92/sops-nix";
