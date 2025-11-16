@@ -315,7 +315,7 @@ in {
       53 # k3s DNS
     ];
   };
-  services.k3s.enable = true;
+  # services.k3s.enable = true;
   services.k3s.extraFlags = [
   ];
   # Making fonts accessible to applications.
@@ -361,6 +361,8 @@ in {
       extraGroups = ["docker" "networkmanager" "wheel" "scanner" "lp" "video" "input" "qemu-libvirtd" "kvm"]; # wheel for ‘sudo’.
       shell = pkgs.fish;
       openssh.authorizedKeys.keyFiles = [];
+      openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJrWwGk9L6aGeJUflLOY25e7Aaa/AfDU51irnmchw1Zw thinker@example.com
+"];
     };
     groups.libvirtd.members = ["kosumi"];
     users.root = {
