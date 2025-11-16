@@ -16,9 +16,19 @@
         inputs.sops-nix.nixosModules.sops
       ];
     };
+  mkHostDroid = name:
+    nixosSystem {
+      inherit system;
+      specialArgs = {inherit inputs;};
+      modules = [
+        ../system/machine/${name}
+        inputs.sops-nix.nixosModules.sops
+      ];
+    };
 in {
   savior = mkHost "savior";
   portable = mkHost "portable";
   redmoon = mkHost "redmoon";
   thinker = mkHost "thinker";
+  droid = mkHostDroid "droid";
 }
