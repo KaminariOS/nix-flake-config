@@ -35,7 +35,7 @@
     code-cursor
     windsurf
     warp-terminal
-    protonvpn-gui
+    # protonvpn-gui
     feishu
     # unityhub
   ];
@@ -91,13 +91,13 @@ in {
       };
     };
     startServices = "sd-switch";
-    timers.wallpaper = {
-      Install.WantedBy = ["timers.target"];
-      Timer = {
-        OnBootSec = "40m";
-        OnUnitActiveSec = "1d";
-      };
-    };
+    # timers.wallpaper = {
+    #   Install.WantedBy = ["timers.target"];
+    #   Timer = {
+    #     OnBootSec = "40m";
+    #     OnUnitActiveSec = "1d";
+    #   };
+    # };
     services = let
       mkRcloneService = node: {
         Service = {
@@ -110,26 +110,21 @@ in {
         Install.WantedBy = ["default.target"];
       };
     in {
-      # imec = {
-      #   Unit.Description = "...";
-      #   Service.ExecStart = "/run/current-system/sw/bin/fcitx5";
-      #   Install.WantedBy = ["default.target"]; # starts after login
-      # };
       gdrive_main = mkRcloneService "gdrive_main";
       edu = mkRcloneService "unc";
       savior = mkRcloneService "savior";
 
-      wallpaper = {
-        Service = {
-          Type = "oneshot";
-          ExecStart = "${homeDirectory}/nixpkgs/wallpaper/wallpaper.sh";
-          #''${pkgs.wget}/bin/wget -O wallpaper.jpg "http://www.bing.com/$(wget -q -O- https://binged.it/2ZButYc | sed -e 's/<[^>]*>//g' | cut -d / -f2 | cut -d \& -f1)" -O ${homeDirectory}/Pictures/wallpaper.jpg &&
-          #${pkgs.feh}/bin/feh --bg-scale /Pictures/wallpaper.jpg'';
-          Environment = ["PATH=/run/current-system/sw/bin:${homeDirectory}/.nix-profile/bin:$PATH"];
-        };
-        #Install.WantedBy = ["default.target"];
-        Install.WantedBy = ["default.target"];
-      };
+      #   wallpaper = {
+      #     Service = {
+      #       Type = "oneshot";
+      #       ExecStart = "${homeDirectory}/nixpkgs/wallpaper/wallpaper.sh";
+      #       #''${pkgs.wget}/bin/wget -O wallpaper.jpg "http://www.bing.com/$(wget -q -O- https://binged.it/2ZButYc | sed -e 's/<[^>]*>//g' | cut -d / -f2 | cut -d \& -f1)" -O ${homeDirectory}/Pictures/wallpaper.jpg &&
+      #       #${pkgs.feh}/bin/feh --bg-scale /Pictures/wallpaper.jpg'';
+      #       Environment = ["PATH=/run/current-system/sw/bin:${homeDirectory}/.nix-profile/bin:$PATH"];
+      #     };
+      #     #Install.WantedBy = ["default.target"];
+      #     Install.WantedBy = ["default.target"];
+      #   };
     };
   };
 
