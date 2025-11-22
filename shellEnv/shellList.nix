@@ -140,6 +140,7 @@
 
       uv
       codex
+      # code-rs
     ]);
 
   security = with pkgs; [
@@ -261,7 +262,7 @@
 
       glow
 
-      awscli
+      awscli2
 
       gemini-cli
       # code-rs
@@ -319,7 +320,8 @@
     # kubernetes
     kubernetes-helm
     fluxcd
-    telepresence2
+    # telepresence2
+    mirrord
   ];
 in
   defaultShell
