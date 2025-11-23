@@ -35,6 +35,7 @@
     format = lib.concatStrings [
       # "$sudo"
       "$username"
+      "$hostname"
       "$directory"
       # "[](bg:#DA627D fg:#9A348E)"
       "[](#FCA17D)"
