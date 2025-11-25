@@ -90,7 +90,7 @@ nix run \
   github:KaminariOS/nix-flake-config/dev#homeConfigurations.cloud.activationPackage
 
 # Optional: Install Neovim profile
-nix profile install github:KaminariOS/neovim-flake/dev --extra-experimental-features nix-command --extra-experimental-features flakes
+nix profile add github:KaminariOS/neovim-flake/dev --extra-experimental-features nix-command --extra-experimental-features flakes
 ```
 
 ### Switching Home Manager Configurations
