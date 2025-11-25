@@ -84,10 +84,10 @@ For a minimal CLI environment that works on non-NixOS systems:
 
 ```bash
 # Build the shellhome profile
-nix profile add \
+nix run \
   --extra-experimental-features nix-command \
   --extra-experimental-features flakes \
-  github:KaminariOS/nix-flake-config/dev#homeConfigurations.shellhome.activationPackage
+  github:KaminariOS/nix-flake-config/dev#homeConfigurations.cloud.activationPackage
 
 # Optional: Install Neovim profile
 nix profile install github:KaminariOS/neovim-flake/dev --extra-experimental-features nix-command --extra-experimental-features flakes
