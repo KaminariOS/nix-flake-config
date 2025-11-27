@@ -281,6 +281,11 @@ in {
       kbdb = "kubectl debug -it -n --image=busybox --all-namespaces";
       kbe = "kubectl edit --all-namespaces";
 
+      fr = "flux reconcile";
+      frk = "flux reconcile ks flux-system --with-source";
+      fga = "flux get -A";
+      fls = "flux logs --since=1h -f";
+
       helmi = "helm upgrade --install";
       helmu = "helm uninstall";
     };
