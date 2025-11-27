@@ -372,6 +372,10 @@ in {
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    sudo-rs = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
     lsm = lib.mkForce [];
     # Yubikey login & sudo
     pam.yubico = {
