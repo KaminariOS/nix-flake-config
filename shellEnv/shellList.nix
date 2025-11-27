@@ -317,7 +317,7 @@
       # pgcli
     ]);
   cloud = with pkgs; [
-    # kubernetes
+    kubectl
     kubernetes-helm
     fluxcd
     # telepresence2
