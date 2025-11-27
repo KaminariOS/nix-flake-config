@@ -286,6 +286,9 @@ in {
       fga = "flux get -A";
       fls = "flux logs --since=1h -f";
 
+      kt = "kubetui";
+      kta = "kubetui -A";
+
       helmi = "helm upgrade --install";
       helmu = "helm uninstall";
     };
