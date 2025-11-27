@@ -372,6 +372,10 @@ in {
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    doas = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
     sudo-rs = {
       enable = true;
       wheelNeedsPassword = false;
