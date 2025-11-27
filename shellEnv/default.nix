@@ -12,9 +12,11 @@ in {
     optionals full [
       ./helix
       ./nushell
-      ./sops
+      ./gemini
+      ./tickrs
     ]
     ++ [
+      ./sops
       # ./nvim
       ./starship
       ./zellij
@@ -26,8 +28,7 @@ in {
       ./bat
       # ./xplr
       ./gitui
-      ./tickrs
-      ./gemini
+      # ./k9s
     ];
   home.file = {
     ".ssh/config".text = ''

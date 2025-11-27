@@ -71,6 +71,7 @@
       ouch
     ]
     ++ [
+      kubetui
       # A simple and fast dashboard for Kubernetes.
       kdash
       # A simple tui to view & control docker containers
