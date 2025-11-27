@@ -289,6 +289,8 @@ in {
       kt = "kubetui";
       kta = "kubetui -A";
 
+      uvn = "uvx napy";
+
       helmi = "helm upgrade --install";
       helmu = "helm uninstall";
     };
