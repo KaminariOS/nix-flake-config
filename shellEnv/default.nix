@@ -24,7 +24,7 @@ in {
       ./fish
       ./neofetch
       ./terminfo.nix
-      ./nix-index.nix
+      # ./nix-index.nix
       ./bat
       # ./xplr
       ./gitui

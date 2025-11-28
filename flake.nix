@@ -7,12 +7,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
-
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    code.url = "github:just-every/code";
-    # optional, but helps keep nixpkgs versions aligned
-    code.inputs.nixpkgs.follows = "nixpkgs";
+    code = {
+      url = "github:just-every/code";
+      # optional, but helps keep nixpkgs versions aligned
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nurpkgs.url = "github:nix-community/NUR";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -105,6 +110,7 @@
     nixpkgs,
     pre-commit-hooks,
     sops-nix,
+    nix-index-database,
     ...
   } @ inputs: let
     forDefaultSystems = inputs.nixpkgs.lib.genAttrs [

@@ -37,7 +37,7 @@ in {
   home.packages = [updateScript];
 
   programs.nix-index = {
-    enable = full;
-    enableFishIntegration = true;
+    # enable = full;
+    # enableFishIntegration = true;
   };
 }

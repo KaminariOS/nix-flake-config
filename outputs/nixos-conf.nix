@@ -14,6 +14,8 @@
         ../system/machine/${name}
         ../system/configuration.nix
         inputs.sops-nix.nixosModules.sops
+        inputs.nix-index-database.nixosModules.nix-index
+        {programs.nix-index-database.comma.enable = true;}
       ];
     };
   mkHostDroid = name:
