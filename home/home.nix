@@ -35,7 +35,7 @@
     code-cursor
     windsurf
     warp-terminal
-    # protonvpn-gui
+    protonvpn-gui
     feishu
     # unityhub
   ];

@@ -142,22 +142,6 @@
         "type": "github"
       }
     },
-    "fish-keytool-completions": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1638013450,
-        "narHash": "sha256-eX9Pg9VcCnx8ofjJcItyf2AFBU90MUgqdpKb+Kv5ARU=",
-        "owner": "ckipp01",
-        "repo": "keytool-fish-completions",
-        "rev": "dcb24bae7b8437e1e1210b00b7172841a26d6573",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ckipp01",
-        "repo": "keytool-fish-completions",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -511,7 +495,6 @@
         "code": "code",
         "disko": "disko",
         "fish-bobthefish-theme": "fish-bobthefish-theme",
-        "fish-keytool-completions": "fish-keytool-completions",
         "flake-parts": "flake-parts",
         "gh-md-toc": "gh-md-toc",
         "home-manager": "home-manager",

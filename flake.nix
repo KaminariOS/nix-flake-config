@@ -79,11 +79,6 @@
       flake = false;
     };
 
-    fish-keytool-completions = {
-      url = "github:ckipp01/keytool-fish-completions";
-      flake = false;
-    };
-
     # Github Markdown ToC generator
 
     gh-md-toc = {
