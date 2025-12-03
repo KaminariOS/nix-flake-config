@@ -14,7 +14,7 @@
 
     directory = {
       # style = "bg:#DA627D";
-      format = "[ 📂 $path ]($style)[$read_only]($read_only_style)";
+      format = "[📂 $path ]($style)[$read_only]($read_only_style)";
       truncation_length = 5;
       truncate_to_repo = false;
       substitutions = {
@@ -22,14 +22,20 @@
       };
       truncation_symbol = "…/";
     };
-    gcloud.disabled = true; # annoying to always have on
-    hostname.style = "bold green"; # don't like the default
+    gcloud.disabled = true;
+    hostname = {
+      # annoying to always have on
+      style = "bold blue"; # don't like the default
+      ssh_only = false;
+      ssh_symbol = "🌏";
+      format = "[@$hostname$ssh_symbol]($style) ";
+    };
     memory_usage.disabled = true; # because it includes cached memory it's reported as full a lot
     username = {
       show_always = true;
       style_root = "bg:#9A348E";
       # style_user = "bg:#9A348E";
-      format = "[ 🗿$user ]($style)";
+      format = "[ 🗿$user]($style)";
     }; # don't like the default
 
     format = lib.concatStrings [
