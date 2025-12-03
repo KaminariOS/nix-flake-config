@@ -137,6 +137,8 @@
     # visual mode, but due to fish_cursor_default, is redundant here
     set fish_cursor_visual block blink
 
+    set -g fish_complete_path ${pkgs.fish}/share/fish/completions $fish_complete_path
+
     # function fish_greeting
     #   fortune -a
     # end
