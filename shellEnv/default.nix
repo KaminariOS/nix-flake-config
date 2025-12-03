@@ -28,6 +28,7 @@ in {
       ./bat
       # ./xplr
       ./gitui
+      ./jj
       # ./k9s
     ];
   home.file = {
