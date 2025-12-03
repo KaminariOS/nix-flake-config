@@ -26,7 +26,6 @@ in {
       ./terminfo.nix
       # ./nix-index.nix
       ./bat
-      # ./xplr
       ./gitui
       ./jj
       # ./k9s
