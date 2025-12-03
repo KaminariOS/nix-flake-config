@@ -18,6 +18,7 @@
     };
   };
   xdg.configFile."zellij/config.kdl".text = ''
+    pane_frames false
     // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
     keybinds clear-defaults=true {
         normal {
