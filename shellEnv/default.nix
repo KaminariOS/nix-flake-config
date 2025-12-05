@@ -14,9 +14,9 @@ in {
       ./nushell
       ./gemini
       ./tickrs
+      ./sops
     ]
     ++ [
-      ./sops
       # ./nvim
       ./starship
       ./zellij

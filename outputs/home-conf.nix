@@ -63,7 +63,7 @@ with inputs; let
       in [
         {
           imports =
-            commonImports
+            (pkgs.lib.optionals full commonImports)
             ++ [../home/home.nix]
             ++ pkgs.lib.optional gui inputs.stylix.homeModules.stylix;
         }
