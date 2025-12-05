@@ -37,7 +37,7 @@ with inputs; let
     nurpkgs = pkgs;
   };
   commonImports = [
-    # inputs.sops-nix.homeManagerModules.sops
+    inputs.sops-nix.homeManagerModules.sops
     # neovim-flake.homeManagerModules.default
   ];
 
