@@ -27,7 +27,7 @@ in {
       # ./nix-index.nix
       ./bat
       ./gitui
-      ./jj
+      # ./jj
       # ./k9s
     ];
   home.file = {
