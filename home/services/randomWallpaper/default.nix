@@ -6,6 +6,7 @@
 }: let
   wallpaperD = pkgs.writers.writeRuby "randomWallpaperD" {} ''
     require 'fileutils'
+    require 'open3'
 
     directory = "${config.home.homeDirectory}/Pictures/wallpaper/"
     current_pids = {}
@@ -31,13 +32,16 @@
     end
 
     def get_outputs
-      hyprctl = IO.popen(["${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"}", 'monitors']).read
-      swaymsg = IO.popen(["${lib.getExe' config.wayland.windowManager.sway.package "swaymsg"}", '-t', 'get_outputs', '-p']).readlines
+      # Use capture2 so helper processes are fully reaped; previous popen calls
+      # leaked zombies and eventually hit the per-user process limit, making
+      # later forks fail with "Resource temporarily unavailable".
+      hyprctl, _ = Open3.capture2("${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"}", 'monitors')
+      swaymsg, _ = Open3.capture2("${lib.getExe' config.wayland.windowManager.sway.package "swaymsg"}", '-t', 'get_outputs', '-p')
 
       hypr_outputs = hyprctl.each_line.map { |line| line.split[1] if line.include?('Monitor') }.compact
-      sway_outputs = swaymsg.select { |line| line.include?('Output') }.map { |line| line.split[1] }
+      sway_outputs = swaymsg.each_line.select { |line| line.include?('Output') }.map { |line| line.split[1] }
 
-      return (sway_outputs | hypr_outputs)
+      (sway_outputs | hypr_outputs)
     end
 
     sleep 1
@@ -62,7 +66,13 @@
 
       # Remove wallpapers from removed monitors
       removed_monitors.each do |monitor|
-        Process.kill('TERM', current_pids[monitor]) if current_pids[monitor]
+        if current_pids[monitor]
+          Process.kill('TERM', current_pids[monitor])
+          begin
+            Process.wait(current_pids[monitor])
+          rescue Errno::ECHILD, Errno::ESRCH
+          end
+        end
         current_pids.delete(monitor)
         last_update_time.delete(monitor)
         known_monitors.delete(monitor)
