@@ -87,10 +87,10 @@ For a minimal CLI environment that works on non-NixOS systems:
 nix run \
   --extra-experimental-features nix-command \
   --extra-experimental-features flakes \
-  github:KaminariOS/nix-flake-config/dev#homeConfigurations.cloud.activationPackage
+  github:KaminariOS/nix-flake-config/dev#homeConfigurations.cloud.activationPackage # --substituters https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store
 
 # Optional: Install Neovim profile
-nix profile add github:KaminariOS/neovim-flake/dev --extra-experimental-features nix-command --extra-experimental-features flakes
+nix profile add github:KaminariOS/neovim-flake/dev --extra-experimental-features nix-command --extra-experimental-features flakes # --substituters https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store
 ```
 
 ### Switching Home Manager Configurations
