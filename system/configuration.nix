@@ -91,6 +91,14 @@ in {
       atomix # puzzle game
     ]);
   programs = {
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+    };
+    appimage.enable = true;
+    appimage.binfmt = true;
+
     virt-manager.enable = true;
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
