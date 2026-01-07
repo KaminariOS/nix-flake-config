@@ -166,7 +166,7 @@ in {
       // imageTypes
       // videoTypes;
   };
-  xdg.desktopEntries = let
+  xdg.desktopEntries = mkIf gui (let
     mkDefaultEntry = name: package: {
       name = "Default ${name}";
       exec = "QT_SCALE_FACTOR=2 ${lib.getExe package} %U";
@@ -183,7 +183,7 @@ in {
     defaultPdfViewer = mkDefaultEntry "PDF Viewer" pkgs.kdePackages.okular;
     # defaultVideoPlayer = mkDefaultEntry "Video Player" cfg.videoPlayer;
     # defaultWebBrowser = mkDefaultEntry "Web Browser" cfg.webBrowser;
-  };
+  });
 
   # notifications about home-manager news
   news.display = "silent";
