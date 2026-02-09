@@ -50,7 +50,7 @@
       fend
 
       # Pipr is a commandline pipe-building tool, written in Rust!
-      pipr
+      # pipr
 
       # stock price
       tickrs
