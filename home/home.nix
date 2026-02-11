@@ -33,7 +33,8 @@
     pulseaudio
     # android-studio
     code-cursor
-    windsurf
+    antigravity
+    # windsurf
     warp-terminal
     protonvpn-gui
     feishu
