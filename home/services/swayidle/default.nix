@@ -12,20 +12,10 @@ in {
     services.swayidle = {
       enable = true;
 
-      events = [
-        {
-          event = "before-sleep";
-          command = "${lib.getExe pkgs.playerctl} pause";
-        }
-        {
-          event = "before-sleep";
-          command = "${lib.getExe pkgs.swaylock} -i ${config.home.homeDirectory}/Pictures/wallpaper/wallpaper.jpg && ${lib.getExe' pkgs.coreutils "sleep"} 2";
-        }
-        {
-          event = "lock";
-          command = "${lib.getExe pkgs.swaylock} -i ${config.home.homeDirectory}/Pictures/wallpaper/wallpaper.jpg";
-        }
-      ];
+      events = {
+        before-sleep = "${lib.getExe pkgs.playerctl} pause || true; ${lib.getExe pkgs.swaylock} -i ${config.home.homeDirectory}/Pictures/wallpaper/wallpaper.jpg && ${lib.getExe' pkgs.coreutils "sleep"} 2";
+        lock = "${lib.getExe pkgs.swaylock} -i ${config.home.homeDirectory}/Pictures/wallpaper/wallpaper.jpg";
+      };
 
       timeouts =
         [

@@ -6,7 +6,7 @@
   home = "${config.xdg.configHome}/nixpkgs";
   fish = "${pkgs.fish}/bin/fish";
   rg = "${pkgs.ripgrep}/bin/rg";
-  xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
+  xrandr = "${pkgs.xrandr}/bin/xrandr";
 in
   pkgs.writeShellScriptBin "hms" ''
     monitors=$(${xrandr} --query | ${rg} '\bconnected')

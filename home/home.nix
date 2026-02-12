@@ -100,12 +100,37 @@ in {
     #   };
     # };
     services = let
-      mkRcloneService = node: {
+      mkRcloneService = node: let
+        mountPoint = "%h/${node}";
+        prepareMountpoint = pkgs.writeShellScript "prepare-rclone-mount-${node}" ''
+          set -eu
+
+          mount_point="$1"
+          home_dir="$2"
+
+          # Clean up stale FUSE mounts left behind by crashes or abrupt restarts.
+          if ${pkgs.util-linux}/bin/mountpoint -q "$mount_point"; then
+            ${pkgs.fuse3}/bin/fusermount3 -uz "$mount_point" || true
+            ${pkgs.coreutils}/bin/sleep 1
+          fi
+
+          ${pkgs.coreutils}/bin/mkdir -p "$mount_point"
+
+          # rclone refuses to mount on non-empty dirs; stash any local leftovers.
+          if [ -n "$(${pkgs.findutils}/bin/find "$mount_point" -mindepth 1 -maxdepth 1 -print -quit)" ]; then
+            stash_dir="$home_dir/.local/share/rclone-mount-stash/${node}/$(${pkgs.coreutils}/bin/date +%Y%m%d-%H%M%S)"
+            ${pkgs.coreutils}/bin/mkdir -p "$stash_dir"
+            ${pkgs.findutils}/bin/find "$mount_point" -mindepth 1 -maxdepth 1 -exec ${pkgs.coreutils}/bin/mv -t "$stash_dir" -- {} +
+            ${pkgs.coreutils}/bin/echo "Moved pre-existing files from $mount_point to $stash_dir"
+          fi
+        '';
+      in {
         Service = {
           Type = "simple";
-          ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/${node}";
-          ExecStart = "${pkgs.rclone}/bin/rclone mount --umask 022 --allow-other ${node}: %h/${node} --vfs-cache-mode full --vfs-fast-fingerprint --vfs-cache-max-size 10G";
-          ExecStop = "${pkgs.util-linux}/bin/umount %h/${node}";
+          ExecStartPre = "${prepareMountpoint} ${mountPoint} %h";
+          ExecStart = "${pkgs.rclone}/bin/rclone mount --umask 022 --allow-other ${node}: ${mountPoint} --vfs-cache-mode full --vfs-fast-fingerprint --vfs-cache-max-size 10G";
+          ExecStop = "-${pkgs.fuse3}/bin/fusermount3 -u ${mountPoint}";
+          ExecStopPost = "-${pkgs.fuse3}/bin/fusermount3 -uz ${mountPoint}";
           Environment = ["PATH=/run/wrappers/bin/:$PATH"];
         };
         Install.WantedBy = ["default.target"];
