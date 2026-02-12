@@ -281,6 +281,7 @@
       rage
 
       cloudflared
+      happy-coder
     ]
     ++ [
       nodejs
