@@ -185,10 +185,14 @@ in {
     };
     resolved = {
       enable = true;
-      dnssec = "true";
-      domains = ["~."];
-      fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
-      dnsovertls = "true";
+      settings = {
+        Resolve = {
+          DNSSEC = "true";
+          Domains = ["~."];
+          FallbackDNS = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+          DNSOverTLS = "true";
+        };
+      };
     };
     auto-cpufreq.enable = true;
     xserver = {
@@ -417,7 +421,7 @@ in {
   nix = {
     # Automate garbage collection
     gc = {
-      automatic = true;
+      automatic = false;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
