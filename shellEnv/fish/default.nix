@@ -258,8 +258,10 @@ in {
       gd = "git diff";
       gl = "git plo --ff-only";
       gsh = "git show";
+      tms = "tmux choose-tree -s";
       gcl = "git clone";
       gdb = "gdb";
+      ta = "tmux -S /tmp/tmux-(id -u)/shared.sock new -As shared";
       zel = "zellij -l compact";
       logout = "pkill -u $USER";
       uvr = "uv run";

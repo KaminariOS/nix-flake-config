@@ -3,12 +3,13 @@
   pkgs,
   ...
 }: let
-  plugins = pkgs.tmuxPlugins // pkgs.callPackage ./custom-plugins.nix {};
+  plugins = pkgs.tmuxPlugins;
   tmuxConf = builtins.readFile ./default.conf;
 in {
   programs.tmux = {
     enable = true;
-    aggressiveResize = true;
+    secureSocket = false;
+    aggressiveResize = false;
     baseIndex = 1;
     extraConfig = tmuxConf;
     escapeTime = 0;
