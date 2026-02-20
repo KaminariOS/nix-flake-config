@@ -29,7 +29,8 @@ in {
         outer-margin = 20;
 
         # mode="do-not-disturb";
-        invisible = 1;
+        # Show notifications on screen.
+        invisible = 0;
       };
     };
 
