@@ -16,6 +16,12 @@ in {
     keyMode = "vi";
     plugins = with plugins; [
       cpu
+      {
+        plugin = tmux-which-key;
+        extraConfig = ''
+          set -g @tmux-which-key-xdg-enable true
+        '';
+      }
       nord # theme
       {
         plugin = resurrect;
