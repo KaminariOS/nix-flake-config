@@ -525,6 +525,7 @@ alias swim = home-manager switch --flake '/home/kosumi/nixpkgs#kosumi'
 alias swir = home-manager switch --flake '/home/kaminari/nixpkgs#kaminari'
 alias nico = nvim ~/.config/nixpkgs/home.nix
 alias ll = eza -l
+alias t = tmux new -A
 alias v = nvim
 alias grep = ripgrep
 alias his = history

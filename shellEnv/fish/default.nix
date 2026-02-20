@@ -211,6 +211,7 @@ in {
     };
     shellAliases = {
       # v = "${config.home.homeDirectory}/nix/neovim-flake/result/bin/nvim";
+      t = "tmux new -A";
       v = "nvim";
       vc = "nvim --clean";
       c = "bat";
