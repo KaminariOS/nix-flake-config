@@ -205,6 +205,19 @@ in {
           temperature = {
             format = "🌡️{temperatureC}°";
           };
+
+          "custom/wttrbar" = let
+            wttrbarWaybarCompat = pkgs.writeShellScript "wttrbar-waybar-compat" ''
+              ${lib.getExe pkgs.wttrbar} --nerd | ${lib.getExe pkgs.jq} -c 'if .tooltip then .tooltip |= gsub("\n"; "\r") else . end'
+            '';
+          in {
+            exec = "${wttrbarWaybarCompat}";
+            format = "{}";
+            interval = 3600;
+            return-type = "json";
+            tooltip = true;
+          };
+
           systemd-failed-units = {
             hide-on-ok = true;
             format = "⚠️{nr_failed}";
@@ -277,6 +290,7 @@ in {
                 "pulseaudio"
                 "memory"
                 "cpu"
+                "custom/wttrbar"
                 "systemd-failed-units"
                 "temperature"
                 # "bluetooth" "network"
@@ -317,6 +331,7 @@ in {
           #custom-app-close,
           #custom-logout,
           #custom-menu,
+          #custom-wttrbar,
           #idle_inhibitor,
           #mode,
           #network,
