@@ -321,6 +321,8 @@ in {
       10250 # Kubelet
       2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
       22 # ssh
+      8081 # Expo Go
+      8765 # codex
     ];
     allowedUDPPorts = [
       8472 # k3s, flannel: required if using multi-node for inter-node networking
