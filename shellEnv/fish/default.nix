@@ -201,6 +201,13 @@ in {
           end
         '';
       };
+      tmux = {
+        description = "Run tmux against a shared user socket";
+        body = ''
+          set -l socket "/tmp/tmux-"(id -u)"/shared.sock"
+          command tmux -S $socket $argv
+        '';
+      };
     };
     shellAliases = {
       # v = "${config.home.homeDirectory}/nix/neovim-flake/result/bin/nvim";
