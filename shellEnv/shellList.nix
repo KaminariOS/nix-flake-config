@@ -11,7 +11,7 @@
       # email client
       himalaya
 
-      aichat
+      # aichat
       argc
       jq
       # xsv
