@@ -101,6 +101,7 @@
 
       ripgrep # fast grep
       ripgrep-all
+      ast-grep
 
       # navi # cheatsheet
       # skim # Half of our life is spent on navigation: files, lines, commands… You need skim! It is a general fuzzy finder that saves you time.
