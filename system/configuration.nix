@@ -135,13 +135,6 @@ in {
       enable = true;
       autoPrune.enable = true;
     };
-    docker = {
-      # enable = true;
-      autoPrune = {
-        enable = true;
-        dates = "weekly";
-      };
-    };
   };
 
   # hardware.pulseaudio = {
@@ -314,9 +307,6 @@ in {
       53 # k3s DNS
     ];
   };
-  # services.k3s.enable = true;
-  services.k3s.extraFlags = [
-  ];
   # Making fonts accessible to applications.
   fonts = {
     enableDefaultPackages = true;
@@ -327,8 +317,6 @@ in {
       font-awesome
       myfonts.flags-world-color
       myfonts.icomoon-feather
-
-      noto-fonts-color-emoji
       nerd-fonts.iosevka
       sarasa-gothic
       fira-code
