@@ -128,14 +128,15 @@
   in {
     formatter = forDefaultSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
 
-    packages = forDefaultSystems (system: {
-      homeConfigurations = import ./outputs/home-conf.nix {
-        inherit inputs system;
-      };
-      nixosConfigurations = import ./outputs/nixos-conf.nix {
-        inherit inputs system;
-      };
-    });
+    homeConfigurations = import ./outputs/home-conf.nix {
+      inherit inputs;
+      system = "x86_64-linux";
+    };
+
+    nixosConfigurations = import ./outputs/nixos-conf.nix {
+      inherit inputs;
+      system = "x86_64-linux";
+    };
 
     checks = forDefaultSystems (
       system: {
