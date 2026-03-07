@@ -43,14 +43,13 @@
   inherit (config.home) homeDirectory;
 in {
   imports =
-    builtins.concatMap import
-    (optionals gui [
+    (lib.concatMap import (optionals gui [
       #      ./age
       ./programs
       ./scripts
       ./services
       #      ./themes
-    ])
+    ]))
     ++ (optionals gui [
       ./options.nix
       ./stylix.nix

@@ -4,8 +4,11 @@
   ...
 }:
 with inputs; let
-  fishOverlay = f: p: {
+  fishOverlay = final: prev: {
     inherit fish-bobthefish-theme;
+  };
+  tex2nixOverlay = final: prev: {
+    tex2nix = tex2nix.defaultPackage.${system};
   };
   pkgs = import nixpkgs {
     inherit system;
@@ -24,9 +27,8 @@ with inputs; let
       fishOverlay
       nurpkgs.overlays.default
       # (import ../overlay.nix)
-      nurpkgs.overlays.default
       #neovim-flake.overlays.${system}.default
-      (f: p: {tex2nix = tex2nix.defaultPackage.${system};})
+      tex2nixOverlay
       ((import ../home/overlays/md-toc) {inherit (inputs) gh-md-toc;})
       (import ../home/overlays/ranger)
     ];
