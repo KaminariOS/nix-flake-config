@@ -131,6 +131,7 @@ in {
     yazi = {
       enable = true;
       enableFishIntegration = true;
+      shellWrapperName = "yy";
     };
     eza = {
       enable = true;
