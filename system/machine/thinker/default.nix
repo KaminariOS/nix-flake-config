@@ -37,24 +37,17 @@
   # Enable networking
   networking.networkmanager.enable = true;
   services = {
-    # k3s = let
-    #   nodeip = "=100.89.217.50";
-    # in {
-    #   role = "server";
-    #   # serverAddr = "https://100.124.90.107:6443";
-    #   tokenFile = "/etc/k3s.token";
-    #   extraFlags = [
-    #     "--disable=traefik"
-    #     "--disable=servicelb"
-    #     "--write-kubeconfig-mode=644"
-    #     "--secrets-encryption"
-    #     "--etcd-expose-metrics=false"
-    #     ("--node-ip" + nodeip)
-    #     ("--advertise-address" + nodeip)
-    #     ("--tls-san" + nodeip)
-    #     "--flannel-backend=wireguard-native"
-    #   ];
-    # };
+    k3s = {
+      enable = true;
+      role = "agent";
+      serverAddr = "https://100.82.130.68:6443";
+      tokenFile = "/etc/k3s.token";
+      extraFlags = [
+        "--node-ip=100.89.217.50"
+        "--flannel-iface=tailscale0"
+        "--with-node-id"
+      ];
+    };
     # Set your time zone.
     # time.timeZone = "America/Denver";
 

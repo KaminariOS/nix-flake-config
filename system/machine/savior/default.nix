@@ -57,21 +57,15 @@ in {
   };
   services = {
     k3s = {
-      # Select internationalisation properties.
-      # i18n.defaultLocale = "en_US.utf8";
-      clusterInit = true;
-      extraFlags = [
-        "--disable=traefik"
-        "--disable=servicelb"
-        "--write-kubeconfig-mode=600"
-        "--secrets-encryption"
-        "--etcd-expose-metrics=false"
-        "--node-ip=100.124.90.107"
-        "--advertise-address=100.124.90.107"
-        "--tls-san=100.124.90.107"
-      ];
-      role = "server";
+      enable = true;
+      role = "agent";
+      serverAddr = "https://100.82.130.68:6443";
       tokenFile = "/etc/k3s.token";
+      extraFlags = [
+        "--node-ip=100.124.90.107"
+        "--flannel-iface=tailscale0"
+        "--with-node-id"
+      ];
     };
     xserver.videoDrivers = ["nvidia"];
 

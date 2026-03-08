@@ -102,6 +102,7 @@
         "--node-ip=100.82.130.68"
         "--advertise-address=100.82.130.68"
         "--tls-san=100.82.130.68"
+        "--flannel-iface=tailscale0"
         "--flannel-backend=wireguard-native"
       ];
 
