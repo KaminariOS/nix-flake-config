@@ -29,7 +29,7 @@
     };
 
     home.packages = with pkgs; [
-      blueberry
+      blueman
       file-roller
       libnotify
       networkmanagerapplet

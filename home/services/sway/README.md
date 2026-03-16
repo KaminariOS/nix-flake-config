@@ -10,7 +10,7 @@
 
 ## Desktop Utilities
 
-- Bluetooth: [blueberry.py](https://github.com/linuxmint/blueberry).
+- Bluetooth: [blueman](https://github.com/blueman-project/blueman).
 - Idle daemon: [swayidle](https://github.com/swaywm/swayidle).
 - Launcher [rofi-wayland](https://github.com/lbonn/rofi).
 - Notifications: [mako](https://github.com/emersion/mako).
