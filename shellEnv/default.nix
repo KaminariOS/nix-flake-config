@@ -177,6 +177,28 @@ in {
           If you need to run a command but it is not found, you can try to run it with nix shell
         '';
         settings = {
+          agent.title.model = "github-copilot/gpt-5.4";
+          small_model = "github-copilot/gpt-5.4-mini";
+          mcp = {
+            context7 = {
+              type = "local";
+              command = [
+                "npx"
+                "-y"
+                "@upstash/context7-mcp"
+                "--api-key"
+                "{env:CONTEXT7_API_KEY}"
+              ];
+            };
+            chrome-devtools = {
+              type = "local";
+              command = [
+                "npx"
+                "chrome-devtools-mcp@latest"
+                "--autoConnect"
+              ];
+            };
+          };
           permission = {
             webfetch = "allow";
             websearch = "allow";
