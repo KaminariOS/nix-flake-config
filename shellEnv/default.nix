@@ -179,6 +179,9 @@ in {
         settings = {
           agent.title.model = "github-copilot/gpt-5.4";
           small_model = "github-copilot/gpt-5.4-mini";
+          plugin = [
+            "opencode-scheduler"
+          ];
           mcp = {
             context7 = {
               type = "local";
