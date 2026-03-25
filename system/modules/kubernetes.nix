@@ -1,4 +1,13 @@
-{...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  usesTailscaleFlannel =
+    config.services.k3s.enable
+    && lib.any (flag: lib.hasPrefix "--flannel-iface=tailscale0" flag) config.services.k3s.extraFlags;
+in {
   networking.firewall = {
     enable = true;
     allowPing = false;
@@ -19,4 +28,26 @@
   };
 
   services.k3s.extraFlags = [];
+
+  systemd.services.k3s = lib.mkIf usesTailscaleFlannel {
+    wants = ["tailscaled.service"];
+    after = ["tailscaled.service"];
+    preStart = lib.mkBefore ''
+      ready=0
+      i=0
+      while [ "$i" -lt 30 ]; do
+        if ${pkgs.iproute2}/bin/ip link show tailscale0 >/dev/null 2>&1; then
+          ready=1
+          break
+        fi
+        i=$((i + 1))
+        ${pkgs.coreutils}/bin/sleep 2
+      done
+
+      if [ "$ready" -ne 1 ]; then
+        echo "tailscale0 did not appear before k3s start" >&2
+        exit 1
+      fi
+    '';
+  };
 }
