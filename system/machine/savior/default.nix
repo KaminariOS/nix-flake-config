@@ -50,6 +50,10 @@ in {
       powerManagement.enable = false;
       open = !true;
     };
+    nvidia-container-toolkit = {
+      enable = true;
+      mount-nvidia-executables = true;
+    };
     graphics = {
       enable = true;
       # extraPackages = with pkgs; [mesa mesa.drivers];
@@ -61,6 +65,15 @@ in {
       role = "agent";
       serverAddr = "https://100.82.130.68:6443";
       tokenFile = "/etc/k3s.token";
+      containerdConfigTemplate = ''
+        {{ template "base" . }}
+
+        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
+          privileged_without_host_devices = false
+          runtime_engine = ""
+          runtime_root = ""
+          runtime_type = "io.containerd.runc.v2"
+      '';
       extraFlags = [
         "--node-ip=100.124.90.107"
         "--flannel-iface=tailscale0"
