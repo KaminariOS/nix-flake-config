@@ -100,8 +100,8 @@ in {
 
   systemd.tmpfiles.rules = [
     "d /run/nvidia/driver-root 0755 root root -"
-    "L+ /run/nvidia/driver-root/bin - - - - /run/current-system/sw/bin"
-    "L+ /run/nvidia/driver-root/lib64 - - - - /run/opengl-driver/lib"
+    "L+ /run/nvidia/driver-root/bin - - - - /host/run/current-system/sw/bin"
+    "L+ /run/nvidia/driver-root/lib64 - - - - /host/run/opengl-driver/lib"
   ];
 
   # Enable touchpad support (enabled default in most desktopManager).
