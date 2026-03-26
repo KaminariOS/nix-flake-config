@@ -99,7 +99,9 @@ in {
   };
 
   systemd.tmpfiles.rules = [
-    "L+ /usr/bin/nvidia-smi - - - - /run/current-system/sw/bin/nvidia-smi"
+    "d /run/nvidia/driver-root 0755 root root -"
+    "L+ /run/nvidia/driver-root/bin - - - - /run/current-system/sw/bin"
+    "L+ /run/nvidia/driver-root/lib64 - - - - /run/opengl-driver/lib"
   ];
 
   # Enable touchpad support (enabled default in most desktopManager).
