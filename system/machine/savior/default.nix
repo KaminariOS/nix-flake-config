@@ -98,6 +98,10 @@ in {
     };
   };
 
+  systemd.tmpfiles.rules = [
+    "L+ /usr/bin/nvidia-smi - - - - /run/current-system/sw/bin/nvidia-smi"
+  ];
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
