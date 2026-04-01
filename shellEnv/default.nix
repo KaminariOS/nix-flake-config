@@ -170,7 +170,7 @@ in {
 
           After making changes in a Git repo, give me the command to git add those files, give me a commit command like `git cm "feat: ..."`, `fix: ...`, `ci: ...`, `chore: ...`, `doc: ...`. I may copy-paste to run them.
 
-          When I talk about a Github project, check if it is already cloned in ~/repos. If not, clone it and answer based on the source.
+          When I talk about a Github project, check if it is already cloned in ~/repos. If not, shallow clone it and answer based on the source.
 
           If you need to use browser cookies, use the one from Brave by default.
 
