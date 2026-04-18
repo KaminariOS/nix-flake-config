@@ -6,6 +6,7 @@
 }: let
   cfg = config.ar.home;
   hyprctl = lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl";
+  loginctl = lib.getExe' pkgs.systemd "loginctl";
   swaymsg = lib.getExe' config.wayland.windowManager.sway.package "swaymsg";
 in {
   config = lib.mkIf cfg.services.swayidle.enable {
@@ -32,7 +33,7 @@ in {
         ++ lib.optional (!cfg.desktop.autoSuspend)
         {
           timeout = 600;
-          command = "${lib.getExe pkgs.swaylock} -i ${config.home.homeDirectory}/Pictures/wallpaper/wallpaper.jpg";
+          command = "${loginctl} lock-session";
         }
         ++ lib.optional (!cfg.desktop.autoSuspend && cfg.desktop.hyprland.enable)
         {
