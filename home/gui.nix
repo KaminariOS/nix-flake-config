@@ -40,7 +40,7 @@
 
     steam-run
 
-    (pkgs.extend (import ../overlay.nix)).okular
+    kdePackages.okular
 
     oculante
 
