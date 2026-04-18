@@ -36,7 +36,7 @@
     antigravity
     # windsurf
     warp-terminal
-    protonvpn-gui
+    pkgs."proton-vpn"
     feishu
     # unityhub
   ];
@@ -239,6 +239,7 @@ in {
   };
   gtk = mkIf gui {
     enable = true;
+    gtk4.theme = config.gtk.theme;
     iconTheme = {
       name = "WhiteSure";
       package = pkgs.whitesur-icon-theme;

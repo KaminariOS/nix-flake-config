@@ -157,7 +157,7 @@ in {
             "4096"
           ];
         };
-        rules = ''
+        context = ''
           If you want to run Python, use uv instead
 
           I am on NixOS with Sway/Wayland/Waybar. Usually my project has a Nix flake for dev env.

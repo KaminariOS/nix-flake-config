@@ -76,6 +76,7 @@ in {
       "*.jvmopts" # should be local to every project
     ];
     signing = {
+      format = "openpgp";
       key = "0x5710C5966568BAC5";
     };
   };
