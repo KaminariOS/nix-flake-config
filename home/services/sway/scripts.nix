@@ -6,6 +6,10 @@
 }: let
   swaymsg = lib.getExe' config.wayland.windowManager.sway.package "swaymsg";
 in {
+  screenshotClipboard = pkgs.writeShellScriptBin "screenshot-clipboard" ''
+    ${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp} -o)" - \
+      | ${lib.getExe' pkgs.wl-clipboard-rs "wl-copy"} -t image/png
+  '';
   clamshell = pkgs.writeShellScript "sway-clamshell" ''
     docked() {
       	[ "$(${swaymsg} -t get_outputs | ${lib.getExe pkgs.jq} '. | length')" -ne 1 ] && return 0
