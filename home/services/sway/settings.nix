@@ -110,8 +110,7 @@ in {
         "${modifier}+Ctrl+less" = "move workspace to output left";
         "${modifier}+Shift+Ctrl+greater" = "move window to output right";
         "${modifier}+Shift+Ctrl+less" = "move window to output left";
-        # "${modifier}+P" = "exec flameshot gui";
-        "${modifier}+P" = "exec ${lib.getExe scripts.screenshotScript}";
+        "${modifier}+P" = "exec ${lib.getExe config.services.flameshot.package} gui";
         "${modifier}+Tab" = "fullscreen toggle , focus right, fullscreen toggle";
         "${modifier}+Shift+Tab" = "fullscreen toggle , focus left, fullscreen toggle";
         "${modifier}+Shift+d" = "exec 'rofi -show window";
