@@ -28,6 +28,7 @@
   # };
 
   networking.hostName = "thinker"; # Define your hostname.
+  networking.hosts."100.83.176.86" = ["sciflow161.yuanwuzhi.io"];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -36,6 +37,22 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.nftables = {
+    enable = true;
+    ruleset = ''
+      table ip local_alias {
+        chain output {
+          type nat hook output priority dstnat; policy accept;
+          ip daddr 192.168.3.161 dnat to 100.83.176.86
+        }
+
+        chain postrouting {
+          type nat hook postrouting priority srcnat; policy accept;
+          ip daddr 100.83.176.86 masquerade
+        }
+      }
+    '';
+  };
   services = {
     k3s = {
       enable = true;
