@@ -4,52 +4,56 @@
   ...
 }:
 with inputs; let
-  fishOverlay = final: prev: {
-    inherit fish-bobthefish-theme;
-  };
-  tex2nixOverlay = final: prev: {
-    tex2nix = tex2nix.defaultPackage.${system};
-  };
-  pkgs = import nixpkgs {
-    inherit system;
+  mkPkgs = system: let
+    fishOverlay = final: prev: {
+      inherit fish-bobthefish-theme;
+    };
+    tex2nixOverlay = final: prev: {
+      tex2nix = tex2nix.defaultPackage.${system};
+    };
+  in
+    import nixpkgs {
+      inherit system;
 
-    config.allowUnfree = true;
-    config = {
-      packageOverrides = pkgs: {
-        espanso = pkgs.espanso.override {
-          x11Support = false;
-          waylandSupport = true;
+      config.allowUnfree = true;
+      config = {
+        packageOverrides = pkgs: {
+          espanso = pkgs.espanso.override {
+            x11Support = false;
+            waylandSupport = true;
+          };
         };
       };
+
+      overlays = [
+        fishOverlay
+        nurpkgs.overlays.default
+        # (import ../overlay.nix)
+        #neovim-flake.overlays.${system}.default
+        tex2nixOverlay
+        ((import ../home/overlays/md-toc) {inherit (inputs) gh-md-toc;})
+        (import ../home/overlays/ranger)
+      ];
     };
-
-    overlays = [
-      fishOverlay
-      nurpkgs.overlays.default
-      # (import ../overlay.nix)
-      #neovim-flake.overlays.${system}.default
-      tex2nixOverlay
-      ((import ../home/overlays/md-toc) {inherit (inputs) gh-md-toc;})
-      (import ../home/overlays/ranger)
-    ];
-  };
-
-  nur = import nurpkgs {
-    inherit pkgs;
-    nurpkgs = pkgs;
-  };
   commonImports = [
     inputs.sops-nix.homeManagerModules.sops
     # neovim-flake.homeManagerModules.default
   ];
 
   mkHome = {
+    hostSystem ? system,
     hidpi ? false,
     username,
     gui ? false,
     full ? true,
     homed,
-  }: (
+  }: let
+    pkgs = mkPkgs hostSystem;
+    nur = import nurpkgs {
+      inherit pkgs;
+      nurpkgs = pkgs;
+    };
+  in (
     home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
@@ -83,6 +87,19 @@ with inputs; let
       ];
     }
   );
+  mkCloud = hostSystem: let
+    username = "kosumi";
+  in
+    mkHome {
+      inherit hostSystem;
+      hidpi = false;
+      inherit username;
+      gui = false;
+      full = false;
+      homed = "/home/${username}";
+    };
+  cloudAarch64 = mkCloud "aarch64-linux";
+  cloudX86_64 = mkCloud "x86_64-linux";
 in {
   kosumi = let
     username = "kosumi";
@@ -125,16 +142,9 @@ in {
       full = false;
       homed = "/home/${username}";
     };
-  cloud = let
-    username = "kosumi";
-  in
-    mkHome {
-      hidpi = false;
-      inherit username;
-      gui = false;
-      full = false;
-      homed = "/home/${username}";
-    };
+  cloud = cloudAarch64;
+  "cloud-aarch64-linux" = cloudAarch64;
+  "cloud-x86_64-linux" = cloudX86_64;
   # Continuous Integration automation
   #  ci = {
   #    metals = pkgs.callPackage ../home/programs/neovim-ide/metals.nix { };
