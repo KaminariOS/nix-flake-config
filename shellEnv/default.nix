@@ -51,6 +51,7 @@ in {
   };
   home.sessionPath = [
     "${homeDirectory}/.cargo/bin"
+    "${homeDirectory}/.npm-global/bin"
   ];
   programs =
     {

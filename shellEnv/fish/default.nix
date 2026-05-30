@@ -60,6 +60,8 @@
   fishConfig =
     "
 
+    fish_add_path -g $HOME/.npm-global/bin
+
     set -g fish_color_autosuggestion 555 yellow
     set -g fish_color_command 5f87d7
     set -g fish_color_comment 808080
