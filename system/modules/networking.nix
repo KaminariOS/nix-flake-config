@@ -24,6 +24,9 @@
 
   boot.kernel.sysctl = {
     "net.ipv6.conf.all.forwarding" = true;
+    "net.ipv6.conf.all.disable_ipv6" = false;
+    "net.ipv6.conf.default.disable_ipv6" = false;
+    "net.ipv6.conf.tailscale0.disable_ipv6" = false;
     "net.ipv4.conf.all.forwarding" = true;
   };
 

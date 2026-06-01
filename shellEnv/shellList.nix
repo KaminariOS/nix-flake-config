@@ -314,6 +314,7 @@
       sshfs
 
       gemini-cli
+      ctx7
       # Postgres cli
       # pgcli
     ]);
