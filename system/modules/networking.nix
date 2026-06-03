@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   networking = {
     nameservers = [
-      "1.1.1.1"
       "8.8.8.8"
+      "1.1.1.1"
     ];
     networkmanager = {
       enable = true;
