@@ -56,5 +56,6 @@ in {
   portable = mkHost "portable";
   redmoon = mkHost "redmoon";
   thinker = mkHost "thinker";
+  thinker-242 = mkHost "thinker-242";
   droid = mkHostDroid "droid";
 }
