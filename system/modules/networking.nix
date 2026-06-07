@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: let
+  fcitx5-vinput = inputs.fcitx5-vinput.packages.${pkgs.stdenv.hostPlatform.system}.default;
+in {
   networking = {
     nameservers = [
       "8.8.8.8"
@@ -17,7 +24,27 @@
     type = "fcitx5";
     enable = true;
     fcitx5.waylandFrontend = true;
-    fcitx5.addons = with pkgs; [fcitx5-rime qt6Packages.fcitx5-chinese-addons fcitx5-mozc];
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      qt6Packages.fcitx5-chinese-addons
+      fcitx5-mozc
+      fcitx5-vinput
+    ];
+  };
+
+  environment.systemPackages = [
+    fcitx5-vinput
+  ];
+
+  systemd.user.services.vinput-daemon = {
+    description = "Vinput Voice Input Daemon";
+    after = ["pipewire.service"];
+    wantedBy = ["default.target"];
+    serviceConfig = {
+      Type = "dbus";
+      BusName = "org.fcitx.Vinput";
+      ExecStart = lib.getExe' fcitx5-vinput "vinput-daemon";
+    };
   };
 
   time.timeZone = "America/New_York";

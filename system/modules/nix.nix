@@ -20,6 +20,8 @@
       auto-optimise-store = true;
       trusted-users = ["root" "kosumi"];
       experimental-features = ["nix-command" "flakes"];
+      extra-substituters = ["https://fcitx5-vinput.cachix.org"];
+      extra-trusted-public-keys = ["fcitx5-vinput.cachix.org-1:XpX3AA6+dDIX4qJhb1QM7sbTwX6/qSlGvW8Z5NK6XdU="];
       keep-outputs = true;
       keep-derivations = true;
     };

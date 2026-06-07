@@ -1,5 +1,11 @@
 {
   description = "Home Manager configuration of Kosumi";
+
+  nixConfig = {
+    extra-substituters = ["https://fcitx5-vinput.cachix.org"];
+    extra-trusted-public-keys = ["fcitx5-vinput.cachix.org-1:XpX3AA6+dDIX4qJhb1QM7sbTwX6/qSlGvW8Z5NK6XdU="];
+  };
+
   inputs = {
     # colmena.url = "github:zhaofengli/colmena";
     disko = {
@@ -16,6 +22,10 @@
     code = {
       url = "github:just-every/code";
       # optional, but helps keep nixpkgs versions aligned
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fcitx5-vinput = {
+      url = "github:xifan2333/fcitx5-vinput";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nurpkgs.url = "github:nix-community/NUR";
