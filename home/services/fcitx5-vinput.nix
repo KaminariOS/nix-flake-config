@@ -1,0 +1,29 @@
+{
+  xdg.configFile."fcitx5/conf/vinput.conf" = {
+    force = true;
+    text = ''
+      # Trigger Mode
+      TriggerMode=Both
+
+      [TriggerKey]
+      0=ISO_Level3_Shift
+
+      [CommandKeys]
+      0=Control_R
+
+      [SceneMenuKey]
+      0=Shift_R
+
+      [AsrMenuKey]
+      0=F8
+
+      [PagePrevKeys]
+      0=Page_Up
+      1=KP_Page_Up
+
+      [PageNextKeys]
+      0=Next
+      1=KP_Next
+    '';
+  };
+}

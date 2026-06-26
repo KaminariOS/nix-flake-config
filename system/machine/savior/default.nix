@@ -27,6 +27,7 @@ in {
   };
 
   networking.hostName = name; # Define your hostname.
+  networking.firewall.checkReversePath = false;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -35,6 +36,8 @@ in {
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  boot.kernel.sysctl."net.ipv4.conf.all.src_valid_mark" = true;
 
   virtualisation = {
     # virtualbox.host = {

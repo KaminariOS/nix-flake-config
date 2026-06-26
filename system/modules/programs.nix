@@ -8,7 +8,7 @@
       wget
       home-manager
     ])
-    ++ (with pkgs.libsForQt5.qt5; [qtgraphicaleffects qtsvg qtquickcontrols])
+    ++ (with pkgs.qt5; [qtgraphicaleffects qtsvg qtquickcontrols])
     ++ [themes.sddm-sugar-candy];
 
   environment.gnome.excludePackages =

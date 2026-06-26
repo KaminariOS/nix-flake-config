@@ -5,6 +5,7 @@
     logind.settings.Login.HandleLidSwitch = "ignore";
     gvfs.enable = true;
     tailscale.enable = true;
+    v2raya.enable = true;
 
     resolved = {
       enable = true;

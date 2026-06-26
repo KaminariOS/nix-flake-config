@@ -21,6 +21,7 @@ in [
   ./i3
   # ./eww
   ./espanso
+  ./fcitx5-vinput.nix
 
   ./sway
   ./wayland

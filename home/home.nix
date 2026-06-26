@@ -239,7 +239,7 @@ in {
   };
   gtk = mkIf gui {
     enable = true;
-    gtk4.theme = config.gtk.theme;
+    gtk4.theme = lib.mkDefault config.gtk.theme;
     iconTheme = {
       name = "WhiteSure";
       package = pkgs.whitesur-icon-theme;
