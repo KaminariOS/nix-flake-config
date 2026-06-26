@@ -72,6 +72,8 @@ in {
     };
   };
 
+  wayland.windowManager.hyprland.configType = mkIf gui "hyprlang";
+
   # fonts.fontconfig = mkIf gui {
   #   enable = true;
   #   defaultFonts = {

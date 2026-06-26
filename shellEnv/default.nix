@@ -143,7 +143,7 @@ in {
         enable = true;
         enableFishIntegration = true;
       };
-      gemini-cli = {
+      antigravity-cli = {
         settings.general = {
           "vimMode" = true;
           "preferredEditor" = "nvim";
