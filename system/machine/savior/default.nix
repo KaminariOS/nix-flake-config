@@ -27,7 +27,6 @@ in {
   };
 
   networking.hostName = name; # Define your hostname.
-  networking.firewall.checkReversePath = false;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -36,8 +35,6 @@ in {
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  boot.kernel.sysctl."net.ipv4.conf.all.src_valid_mark" = true;
 
   virtualisation = {
     # virtualbox.host = {
@@ -98,6 +95,14 @@ in {
       #jack.enable = true;
 
       wireplumber.enable = true;
+    };
+
+    resolved.settings.Resolve = {
+      DNS = lib.mkForce [];
+      FallbackDNS = lib.mkForce ["223.5.5.5" "119.29.29.29"];
+      Domains = lib.mkForce [];
+      DNSOverTLS = lib.mkForce "false";
+      DNSSEC = lib.mkForce "false";
     };
   };
 

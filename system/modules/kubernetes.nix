@@ -11,6 +11,7 @@ in {
   networking.firewall = {
     enable = true;
     allowPing = false;
+    checkReversePath = lib.mkIf usesTailscaleFlannel false;
     trustedInterfaces = ["cni+" "flannel.1" "calico+" "cilium+" "lxc+"];
     allowedTCPPorts = [
       6443
@@ -28,6 +29,10 @@ in {
   };
 
   services.k3s.extraFlags = [];
+
+  boot.kernel.sysctl = lib.mkIf usesTailscaleFlannel {
+    "net.ipv4.conf.all.src_valid_mark" = true;
+  };
 
   systemd.services.k3s = lib.mkIf usesTailscaleFlannel {
     wants = ["tailscaled.service"];
