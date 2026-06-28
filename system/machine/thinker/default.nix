@@ -37,6 +37,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [8000];
   networking.nftables = {
     enable = true;
     ruleset = ''

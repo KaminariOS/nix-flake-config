@@ -183,8 +183,8 @@ in {
           If you need to run a command but it is not found, you can try to run it with nix shell
         '';
         settings = {
-          agent.title.model = "github-copilot/gpt-5.4";
-          small_model = "github-copilot/gpt-5.4-mini";
+          agent.title.model = "openai/gpt-5.4-mini";
+          small_model = "openai/gpt-5.4-mini";
           plugin = [
             "opencode-scheduler"
           ];
