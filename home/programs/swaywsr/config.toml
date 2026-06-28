@@ -17,6 +17,8 @@ TelegramDesktop = "✈️"
 "firefox" = "🦊" 
 "brave" = "🦁"
 "brave-browser" = "🦁"
+"google-chrome" = "🦖"
+"Bytedance-feishu" = "📘"
 
 [general]
 separator = ""
