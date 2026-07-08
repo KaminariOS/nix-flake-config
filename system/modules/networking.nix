@@ -50,6 +50,7 @@ in {
   time.timeZone = "America/New_York";
 
   boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 1048576;
     "net.ipv6.conf.all.forwarding" = true;
     "net.ipv6.conf.all.disable_ipv6" = false;
     "net.ipv6.conf.default.disable_ipv6" = false;
