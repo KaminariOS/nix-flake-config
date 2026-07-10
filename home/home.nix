@@ -230,6 +230,7 @@ in {
   };
 
   home.pointerCursor = mkIf gui {
+    enable = true;
     # x11.enable = true;
     # name = "Adwaita";
     # package = pkgs.gnome.adwaita-icon-theme;
