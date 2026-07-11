@@ -33,10 +33,8 @@
     # seahorse
     pulseaudio
     # android-studio
-    code-cursor
     antigravity
     # windsurf
-    warp-terminal
     pkgs."proton-vpn"
     feishu
     # unityhub
