@@ -3,7 +3,7 @@
     acpilight.enable = true;
     sane = {
       enable = true;
-      extraBackends = [pkgs.epkowa pkgs.sane-airscan];
+      extraBackends = [pkgs.sane-airscan];
     };
     graphics.enable32Bit = true;
     graphics.enable = true;
