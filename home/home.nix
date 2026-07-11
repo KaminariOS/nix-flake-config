@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf optionals;
+  cfg = config.ar.home.defaultApps;
   mimeTypes = import ./mimeTypes.nix;
   defaultPkgs = with pkgs; [
     arandr # simple GUI for xrandr
@@ -64,7 +65,7 @@ in {
     sessionVariables = {
       DISPLAY = ":0";
       EDITOR = "nvim";
-      BROWSER = "firefox";
+      BROWSER = lib.getExe cfg.webBrowser;
       TERM_PROGRAM = "WezTerm";
       TMUX_TMPDIR = "/tmp";
       QT_SCALE_FACTOR = 2;
@@ -210,7 +211,12 @@ in {
     # defaultImageViewer = mkDefaultEntry "Image Viewer" cfg.imageViewer;
     defaultPdfViewer = mkDefaultEntry "PDF Viewer" pkgs.kdePackages.okular;
     # defaultVideoPlayer = mkDefaultEntry "Video Player" cfg.videoPlayer;
-    # defaultWebBrowser = mkDefaultEntry "Web Browser" cfg.webBrowser;
+    defaultWebBrowser =
+      (mkDefaultEntry "Web Browser" cfg.webBrowser)
+      // {
+        exec = "${lib.getExe cfg.webBrowser} %U";
+        mimeType = mimeTypes.browserFiles;
+      };
   });
 
   # notifications about home-manager news
