@@ -10,5 +10,8 @@
 
     [ui]
     agent_panel_sort = "priority"
+
+    [ui.toast]
+    delivery = "system"
   '';
 }
