@@ -12,7 +12,6 @@ in {
     optionals full [
       ./helix
       ./nushell
-      ./gemini
       ./tickrs
       ./sops
     ]

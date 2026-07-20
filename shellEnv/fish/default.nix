@@ -275,7 +275,6 @@ in {
       zel = "zellij -l compact";
       logout = "pkill -u $USER";
       uvr = "uv run";
-      ge = "gemini";
       dk = "docker";
       pm = "podman";
       pr = "podman -r";

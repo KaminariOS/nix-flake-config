@@ -264,14 +264,11 @@
 
       awscli2
 
-      gemini-cli
       # code-rs
 
       # minikube
       terraform
 
-      # Run your GitHub Actions locally
-      act
       csvlens
 
       # Simple and flexible tool for managing secrets
@@ -313,7 +310,6 @@
       gh
       sshfs
 
-      gemini-cli
       ctx7
       # Postgres cli
       # pgcli

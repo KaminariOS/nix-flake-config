@@ -18,9 +18,6 @@
 
     maim
     gdbgui
-    # Your One-Stop Publication Workbench
-    zettlr
-
     blender
     steam
     # heroic
