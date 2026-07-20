@@ -157,7 +157,7 @@
         # eval-tests = allSystems.${system}.evalTests == {};
 
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
-          src = ".";
+          src = ./.;
           hooks = {
             alejandra.enable = true; # formatter
             # Source code spell checker

@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+
+      - name: Check formatting
+        run: nix build --no-link --print-build-logs --no-write-lock-file '.#checks.x86_64-linux.pre-commit-check'
+
+  eval-nixos:
+    name: Evaluate NixOS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+
+      - name: Evaluate configurations
+        run: |
+          for host in savior portable redmoon thinker thinker-242 oracle; do
+            echo "::group::$host"
+            nix eval \
+              --raw \
+              --show-trace \
+              --no-write-lock-file \
+              ".#nixosConfigurations.\"$host\".config.system.build.toplevel.drvPath"
+            echo
+            echo "::endgroup::"
+          done
+
+  eval-home:
+    name: Evaluate Home Manager
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+
+      - name: Evaluate configurations
+        run: |
+          for profile in \
+            kosumi \
+            shellhome \
+            droid \
+            shellhomeForWork \
+            cloud-aarch64-linux \
+            cloud-x86_64-linux
+          do
+            echo "::group::$profile"
+            nix eval \
+              --raw \
+              --show-trace \
+              --no-write-lock-file \
+              ".#homeConfigurations.\"$profile\".activationPackage.drvPath"
+            echo
+            echo "::endgroup::"
+          done
