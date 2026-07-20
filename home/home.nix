@@ -50,10 +50,10 @@ in {
       #      ./themes
     ]))
     ++ (optionals gui [
-      ./options.nix
       ./stylix.nix
     ])
     ++ [
+      ./options.nix
       ../shellEnv
     ];
   home = {
