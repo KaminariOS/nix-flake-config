@@ -18,5 +18,4 @@
   ./swaywsr
   ./obs.nix
   ./vscode.nix
-  ./tmux
 ]

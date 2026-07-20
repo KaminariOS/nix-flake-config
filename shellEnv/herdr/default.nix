@@ -1,4 +1,6 @@
-{
+{herdr, ...}: {
+  home.packages = [herdr];
+
   xdg.configFile."herdr/config.toml".text = ''
     [keys]
     prefix = "ctrl+a"

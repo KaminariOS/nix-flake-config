@@ -18,7 +18,6 @@ in {
     ++ [
       # ./nvim
       ./starship
-      ./zellij
       ./herdr
       ./git
       ./fish

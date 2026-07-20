@@ -46,6 +46,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    herdr = {
+      url = "github:ogulcancelik/herdr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # agenix = {
     #   inputs.nixpkgs.follows = "nixpkgs";

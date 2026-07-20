@@ -203,17 +203,9 @@ in {
           end
         '';
       };
-      tmux = {
-        description = "Run tmux against a shared user socket";
-        body = ''
-          set -l socket "/tmp/tmux-"(id -u)"/shared.sock"
-          command tmux -S $socket $argv
-        '';
-      };
     };
     shellAliases = {
       # v = "${config.home.homeDirectory}/nix/neovim-flake/result/bin/nvim";
-      t = "tmux new -A";
       v = "nvim";
       vc = "nvim --clean";
       c = "bat";
@@ -268,11 +260,8 @@ in {
       gd = "git diff";
       gl = "git plo --ff-only";
       gsh = "git show";
-      tms = "tmux choose-tree -s";
       gcl = "git clone";
       gdb = "gdb";
-      ta = "tmux -S /tmp/tmux-(id -u)/shared.sock new -As shared";
-      zel = "zellij -l compact";
       logout = "pkill -u $USER";
       uvr = "uv run";
       dk = "docker";

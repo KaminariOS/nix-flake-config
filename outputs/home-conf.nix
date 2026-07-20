@@ -61,6 +61,7 @@ with inputs; let
         inherit hidpi;
         inherit full;
         inherit gui;
+        herdr = inputs.herdr.packages.${hostSystem}.default;
         addons = nur.repos.rycee.firefox-addons;
       };
 
