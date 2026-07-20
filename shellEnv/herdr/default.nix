@@ -5,6 +5,8 @@
 
     [theme]
     name = "tokyo-night"
+
+    [ui]
     agent_panel_sort = "priority"
   '';
 }
