@@ -102,7 +102,7 @@
       extraFlags = [
         # "--disable=traefik"
         # "--disable=servicelb"
-        "--write-kubeconfig-mode=644"
+        "--write-kubeconfig-mode=600"
         "--secrets-encryption"
         "--etcd-expose-metrics=false"
         "--node-ip=100.82.130.68"

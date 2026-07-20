@@ -39,10 +39,6 @@ in {
       set auto-load safe-path /
       tui enable
     '';
-    ".config/opencode/web.env".text = ''
-      CODEX_NOTIFY_DISABLE_TMUX_SESSION=1
-      NTFY_CLICK=http://thinker:4096
-    '';
   };
   home.packages = pkgs.callPackage ../shellEnv/shellList.nix {inherit full;};
   home.sessionVariables = {
@@ -150,16 +146,7 @@ in {
     };
     opencode = {
       enable = true;
-      web = {
-        enable = true;
-        environmentFile = "${homeDirectory}/.config/opencode/web.env";
-        extraArgs = [
-          "--hostname"
-          "0.0.0.0"
-          "--port"
-          "4096"
-        ];
-      };
+      web.enable = false;
       context = ''
         If you want to run Python, use uv instead
 

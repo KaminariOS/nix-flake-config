@@ -13,7 +13,7 @@
   urgent = config.lib.stylix.colors.withHashtag.base08;
 in {
   enable = true;
-  checkConfig = false;
+  checkConfig = true;
   wrapperFeatures.gtk = true;
   systemd = {
     enable = true;
@@ -105,7 +105,7 @@ in {
         "${modifier}+Shift+W" = "fullscreen toggle";
         "${modifier}+Return" = "exec ${lib.getExe cfg.defaultApps.terminal}";
         # "${modifier}+Tab" = "exec ${lib.getExe config.programs.rofi.package} -show window";
-        "${modifier}+D" = "exec 'rofi -modi run, drun, window -show drun'";
+        "${modifier}+D" = "exec ${lib.getExe config.programs.rofi.package} -modi run,drun,window -show drun";
         "${modifier}+Ctrl+greater" = "move workspace to output right";
         "${modifier}+Ctrl+less" = "move workspace to output left";
         "${modifier}+Shift+Ctrl+greater" = "move window to output right";
@@ -114,7 +114,7 @@ in {
         "${modifier}+Shift+P" = "exec ${lib.getExe config.services.flameshot.package} gui";
         "${modifier}+Tab" = "fullscreen toggle , focus right, fullscreen toggle";
         "${modifier}+Shift+Tab" = "fullscreen toggle , focus left, fullscreen toggle";
-        "${modifier}+Shift+d" = "exec 'rofi -show window";
+        "${modifier}+Shift+d" = "exec ${lib.getExe config.programs.rofi.package} -show window";
         "Control+F12" = "exec ${helpers.screenshot}";
         "Ctrl+Mod1+M" = "mode move";
         "Ctrl+Mod1+R" = "mode resize";
