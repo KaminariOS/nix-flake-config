@@ -55,8 +55,8 @@ in {
           #        "${mod}+Shift+x" = "exec i3lock-fancy-dualmonitor";
           "${mod}+Shift+x" = "exec loginctl lock-session";
           "${mod}+Return" = "exec wezterm; workspace1";
-          "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -modi drun -show drun";
-          "${mod}+Shift+d" = "exec ${pkgs.rofi}/bin/rofi -show window";
+          "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -modes drun -show drun";
+          "${mod}+Shift+d" = "exec ${pkgs.rofi}/bin/rofi -modes window -show window";
           # Focus
           "${mod}+h" = "focus left";
           "${mod}+j" = "focus down";

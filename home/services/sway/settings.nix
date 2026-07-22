@@ -91,21 +91,21 @@ in {
         "${modifier}+E" = "exec ${lib.getExe cfg.defaultApps.editor}";
         "${modifier}+F" = "fullscreen toggle";
         "${modifier}+F11" = "exec pkill -SIGUSR1 waybar"; # Show/hide waybar
-        "${modifier}+M" = ''exec ${lib.getExe config.programs.rofi.package} -show power-menu -modi "power-menu:${lib.getExe pkgs.rofi-power-menu} --choices=logout/lockscreen/suspend/shutdown/reboot"'';
+        "${modifier}+M" = ''exec ${lib.getExe config.programs.rofi.package} -show power-menu -modes "power-menu:${lib.getExe pkgs.rofi-power-menu} --choices=logout/lockscreen/suspend/shutdown/reboot"'';
         "${modifier}+Period" = "workspace next";
-        "${modifier}+R" = "exec ${lib.getExe config.programs.rofi.package} -show combi";
+        "${modifier}+R" = "exec ${lib.getExe config.programs.rofi.package} -modes combi -show combi";
         "${modifier}+S" = "scratchpad show";
         "${modifier}+Shift+Backslash" = "layout toggle split";
         "${modifier}+Shift+Comma" = "move container to workspace prev; workspace prev";
         "${modifier}+Shift+G" = "layout toggle splitv tabbed";
         "${modifier}+Shift+Period" = "move container to workspace next; workspace next";
-        "${modifier}+Shift+R" = "exec ${lib.getExe config.programs.rofi.package} -show run";
+        "${modifier}+Shift+R" = "exec ${lib.getExe config.programs.rofi.package} -modes run -show run";
         "${modifier}+Shift+S" = "move scratchpad";
         "${modifier}+Shift+V" = "floating toggle";
         "${modifier}+Shift+W" = "fullscreen toggle";
         "${modifier}+Return" = "exec ${lib.getExe cfg.defaultApps.terminal}";
         # "${modifier}+Tab" = "exec ${lib.getExe config.programs.rofi.package} -show window";
-        "${modifier}+D" = "exec ${lib.getExe config.programs.rofi.package} -modi run,drun,window -show drun";
+        "${modifier}+D" = "exec ${lib.getExe config.programs.rofi.package} -show drun";
         "${modifier}+Ctrl+greater" = "move workspace to output right";
         "${modifier}+Ctrl+less" = "move workspace to output left";
         "${modifier}+Shift+Ctrl+greater" = "move window to output right";
@@ -114,7 +114,7 @@ in {
         "${modifier}+Shift+P" = "exec ${lib.getExe config.services.flameshot.package} gui";
         "${modifier}+Tab" = "fullscreen toggle , focus right, fullscreen toggle";
         "${modifier}+Shift+Tab" = "fullscreen toggle , focus left, fullscreen toggle";
-        "${modifier}+Shift+d" = "exec ${lib.getExe config.programs.rofi.package} -show window";
+        "${modifier}+Shift+d" = "exec ${lib.getExe config.programs.rofi.package} -modes window -show window";
         "Control+F12" = "exec ${helpers.screenshot}";
         "Ctrl+Mod1+M" = "mode move";
         "Ctrl+Mod1+R" = "mode resize";
