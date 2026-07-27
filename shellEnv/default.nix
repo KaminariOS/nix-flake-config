@@ -40,6 +40,9 @@ in {
       tui enable
     '';
   };
+  xdg.configFile."nvf/after/plugin/clipboard.lua".text = ''
+    vim.opt.clipboard:append("unnamedplus")
+  '';
   home.packages = pkgs.callPackage ../shellEnv/shellList.nix {inherit full;};
   home.sessionVariables = {
     KUBECONFIG = "${homeDirectory}/.kube/config";
