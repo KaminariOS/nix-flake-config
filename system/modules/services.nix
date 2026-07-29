@@ -4,16 +4,48 @@
     upower.enable = true;
     logind.settings.Login.HandleLidSwitch = "ignore";
     gvfs.enable = true;
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      extraSetFlags = ["--accept-dns=false"];
+    };
     v2raya.enable = true;
 
     resolved = {
       enable = true;
       settings.Resolve = {
-        DNSSEC = "true";
+        DNS = ["127.0.0.1:5335"];
+        DNSSEC = "allow-downgrade";
         Domains = ["~."];
-        FallbackDNS = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
-        DNSOverTLS = "true";
+        FallbackDNS = [];
+        DNSOverTLS = "false";
+      };
+    };
+
+    smartdns = {
+      enable = true;
+      bindPort = 5335;
+      settings = {
+        bind = [
+          "127.0.0.1:5335"
+          "[::1]:5335"
+        ];
+        cache-size = 8192;
+        prefetch-domain = true;
+        response-mode = "fastest-response";
+
+        server-https = [
+          # Prefer censorship-resistant public resolvers.
+          "https://cloudflare-dns.com/dns-query -host-ip 1.1.1.1"
+          "https://dns.google/dns-query -host-ip 8.8.8.8"
+
+          # Keep DNS usable when the primary DoH endpoints are unreachable.
+          "https://dns.alidns.com/dns-query -host-ip 223.5.5.5 -fallback"
+          "https://doh.pub/dns-query -host-ip 1.12.12.12 -fallback"
+        ];
+
+        # Tailscale's local resolver remains available when accept-dns is off.
+        server = "100.100.100.100 -group tailscale -exclude-default-group";
+        nameserver = "/tail79e65.ts.net/tailscale";
       };
     };
 

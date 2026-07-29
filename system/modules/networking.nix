@@ -7,11 +7,8 @@
   fcitx5-vinput = inputs.fcitx5-vinput.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   networking = {
-    nameservers = [
-      "8.8.8.8"
-      "1.1.1.1"
-    ];
     networkmanager = {
+      dns = "systemd-resolved";
       enable = true;
       plugins = [pkgs.networkmanager-openvpn];
     };

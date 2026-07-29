@@ -96,14 +96,6 @@ in {
 
       wireplumber.enable = true;
     };
-
-    resolved.settings.Resolve = {
-      DNS = lib.mkForce [];
-      FallbackDNS = lib.mkForce ["223.5.5.5" "119.29.29.29"];
-      Domains = lib.mkForce [];
-      DNSOverTLS = lib.mkForce "false";
-      DNSSEC = lib.mkForce "false";
-    };
   };
 
   systemd.tmpfiles.rules = [
