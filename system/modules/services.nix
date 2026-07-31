@@ -6,7 +6,7 @@
     gvfs.enable = true;
     tailscale = {
       enable = true;
-      extraSetFlags = ["--accept-dns=false"];
+      extraSetFlags = ["--accept-dns=true"];
     };
     v2raya.enable = true;
 
@@ -42,10 +42,6 @@
           "https://dns.alidns.com/dns-query -host-ip 223.5.5.5 -fallback"
           "https://doh.pub/dns-query -host-ip 1.12.12.12 -fallback"
         ];
-
-        # Tailscale's local resolver remains available when accept-dns is off.
-        server = "100.100.100.100 -group tailscale -exclude-default-group";
-        nameserver = "/tail79e65.ts.net/tailscale";
       };
     };
 
