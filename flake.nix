@@ -18,11 +18,6 @@
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    code = {
-      url = "github:just-every/code";
-      # optional, but helps keep nixpkgs versions aligned
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     fcitx5-vinput = {
       url = "github:xifan2333/fcitx5-vinput";
       inputs.nixpkgs.follows = "nixpkgs";
