@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   services = {
     acpid.enable = true;
+    fwupd.enable = true;
     upower.enable = true;
     logind.settings.Login.HandleLidSwitch = "ignore";
     gvfs.enable = true;

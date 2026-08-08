@@ -1,15 +1,10 @@
 {pkgs, ...}: {
-  environment.systemPackages = let
-    themes = pkgs.callPackage ../sddm-theme.nix {};
-  in
-    (with pkgs; [
-      firejail
-      neovim
-      wget
-      home-manager
-    ])
-    ++ (with pkgs.qt5; [qtgraphicaleffects qtsvg qtquickcontrols])
-    ++ [themes.sddm-sugar-candy];
+  environment.systemPackages = with pkgs; [
+    firejail
+    neovim
+    wget
+    home-manager
+  ];
 
   environment.gnome.excludePackages =
     (with pkgs; [
@@ -52,6 +47,7 @@
     fish.enable = true;
     fuse.userAllowOther = true;
     partition-manager.enable = true;
+    steam.enable = true;
     sway.enable = true;
     sway.xwayland.enable = true;
     xwayland.enable = true;

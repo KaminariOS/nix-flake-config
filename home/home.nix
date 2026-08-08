@@ -33,7 +33,6 @@
     # seahorse
     pulseaudio
     # android-studio
-    antigravity
     # windsurf
     pkgs."proton-vpn"
     feishu
@@ -55,6 +54,9 @@ in {
       ./options.nix
       ../shellEnv
     ];
+
+  ar.home.defaultApps.enable = lib.mkDefault gui;
+
   home = {
     stateVersion = "22.05";
     #    packages = defaultPkgs ++ gnomePkgs;
@@ -154,7 +156,7 @@ in {
     };
   };
 
-  xdg.mimeApps = mkIf gui {
+  xdg.mimeApps = mkIf cfg.enable {
     enable = true;
     defaultApplications = let
       mkDefaults = files: desktopFile: lib.genAttrs files (_: [desktopFile]);
@@ -192,22 +194,26 @@ in {
       // imageTypes
       // videoTypes;
   };
-  xdg.desktopEntries = mkIf gui (let
+  xdg.desktopEntries = mkIf cfg.enable (let
     mkDefaultEntry = name: package: {
       name = "Default ${name}";
-      exec = "QT_SCALE_FACTOR=2 ${lib.getExe package} %U";
+      exec = "${lib.getExe package} %U";
       terminal = false;
       settings = {
         NoDisplay = "true";
       };
     };
   in {
-    # defaultAudioPlayer = mkDefaultEntry "Audio Player" cfg.audioPlayer;
-    # defaultEditor = mkDefaultEntry "Editor" cfg.editor;
-    # defaultFileManager = mkDefaultEntry "File Manager" cfg.fileManager;
-    # defaultImageViewer = mkDefaultEntry "Image Viewer" cfg.imageViewer;
-    defaultPdfViewer = mkDefaultEntry "PDF Viewer" pkgs.kdePackages.okular;
-    # defaultVideoPlayer = mkDefaultEntry "Video Player" cfg.videoPlayer;
+    defaultAudioPlayer = mkDefaultEntry "Audio Player" cfg.audioPlayer;
+    defaultEditor =
+      (mkDefaultEntry "Editor" cfg.editor)
+      // {
+        terminal = true;
+      };
+    defaultFileManager = mkDefaultEntry "File Manager" cfg.fileManager;
+    defaultImageViewer = mkDefaultEntry "Image Viewer" cfg.imageViewer;
+    defaultPdfViewer = mkDefaultEntry "PDF Viewer" cfg.pdfViewer;
+    defaultVideoPlayer = mkDefaultEntry "Video Player" cfg.videoPlayer;
     defaultWebBrowser =
       (mkDefaultEntry "Web Browser" cfg.webBrowser)
       // {

@@ -143,12 +143,6 @@ in {
       enable = true;
       enableFishIntegration = true;
     };
-    antigravity-cli = {
-      settings.general = {
-        "vimMode" = true;
-        "preferredEditor" = "nvim";
-      };
-    };
     opencode = {
       enable = true;
       web.enable = false;

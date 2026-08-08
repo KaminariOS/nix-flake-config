@@ -70,9 +70,9 @@
       enable = lib.mkEnableOption "Declaratively set default apps and file associations.";
       audioPlayer = lib.mkPackageOption pkgs "audio player" {default = ["celluloid"];};
       editor = lib.mkPackageOption pkgs "text editor" {default = ["neovim"];};
-      fileManager = lib.mkPackageOption pkgs "file manager" {default = ["cinnamon" "nemo"];};
-      imageViewer = lib.mkPackageOption pkgs "image viewer" {default = ["gnome" "eog"];};
-      pdfViewer = lib.mkPackageOption pkgs "pdf viewer" {default = ["okular"];};
+      fileManager = lib.mkPackageOption pkgs "file manager" {default = ["nautilus"];};
+      imageViewer = lib.mkPackageOption pkgs "image viewer" {default = ["oculante"];};
+      pdfViewer = lib.mkPackageOption pkgs "pdf viewer" {default = ["kdePackages" "okular"];};
       terminal = lib.mkPackageOption pkgs "terminal emulator" {default = ["wezterm"];};
       terminalEditor = lib.mkPackageOption pkgs "terminal text editor" {default = ["neovim"];};
       videoPlayer = lib.mkPackageOption pkgs "video player" {default = ["mpv"];};

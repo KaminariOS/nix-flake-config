@@ -19,7 +19,6 @@
     maim
     gdbgui
     blender
-    steam
     # heroic
     # lutris
     mpv
