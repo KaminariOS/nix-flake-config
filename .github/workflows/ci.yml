@@ -15,9 +15,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  format:
-    name: Format
+  lint:
+    name: Lint and format
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Check out repository
         uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
@@ -29,12 +30,13 @@ jobs:
         with:
           determinate: false
 
-      - name: Check formatting
+      - name: Run pre-commit checks
         run: nix build --no-link --print-build-logs --no-write-lock-file '.#checks.x86_64-linux.pre-commit-check'
 
-  eval-nixos:
-    name: Evaluate NixOS
+  flake:
+    name: Evaluate flake
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Check out repository
         uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
@@ -46,22 +48,13 @@ jobs:
         with:
           determinate: false
 
-      - name: Evaluate configurations
-        run: |
-          for host in savior thinker thinker-242 oracle; do
-            echo "::group::$host"
-            nix eval \
-              --raw \
-              --show-trace \
-              --no-write-lock-file \
-              ".#nixosConfigurations.\"$host\".config.system.build.toplevel.drvPath"
-            echo
-            echo "::endgroup::"
-          done
+      - name: Evaluate every advertised system
+        run: nix flake check --no-build --all-systems --show-trace --no-write-lock-file
 
   eval-home:
     name: Evaluate Home Manager
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Check out repository
         uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
@@ -91,3 +84,25 @@ jobs:
             echo
             echo "::endgroup::"
           done
+
+  security:
+    name: Security
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository history
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+
+      - name: Scan Git history for secrets
+        run: nix develop --command gitleaks git --redact --no-banner .
+
+      - name: Audit GitHub Actions
+        run: nix develop --command zizmor --min-severity medium .github

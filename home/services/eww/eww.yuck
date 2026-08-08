@@ -146,7 +146,7 @@
 	    (revealer :transition "slideright"
 			      :reveal music_reveal
 			      :duration "350ms"
-          (box :vexpand "false" :hexpand "false" :oreintation "h" 
+          (box :vexpand "false" :hexpand "false" :orientation "h"
                     (button :class "song_btn_prev" :onclick "~/.config/eww/scripts/music_info --prev" "")
 					(button :class "song_btn_play" :onclick "~/.config/eww/scripts/music_info --toggle" song_status)
 					(button :class "song_btn_next" :onclick "~/.config/eww/scripts/music_info --next" ""))))))
@@ -345,4 +345,3 @@
 		(defwindow music_win :stacking "fg" :focusable "false" :screen 1
 			    :geometry (geometry :x "0" :y "7%" :width 428 :height 104 :anchor "top center")
 			     				(music_pop))
-

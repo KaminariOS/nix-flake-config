@@ -27,7 +27,7 @@ in {
               DPI=96
               ;;
             *)
-              ${notify} -i display "Unknown profle: $AUTORANDR_CURRENT_PROFILE"
+              ${notify} -i display "Unknown profile: $AUTORANDR_CURRENT_PROFILE"
               exit 1
           esac
 

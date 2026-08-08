@@ -109,7 +109,7 @@ in {
     systemd.user.services.randomWallpaper = {
       Unit = {
         After = "graphical-session.target";
-        BindsTo = lib.optional (config.ar.home.desktop.hyprland.enable) "hyprland-session.target" ++ lib.optional (config.ar.home.desktop.sway.enable) "sway-session.target";
+        BindsTo = lib.optional config.ar.home.desktop.hyprland.enable "hyprland-session.target" ++ lib.optional config.ar.home.desktop.sway.enable "sway-session.target";
         Description = "Lightweight swaybg-based random wallpaper daemon.";
         PartOf = "graphical-session.target";
       };
@@ -119,7 +119,7 @@ in {
         Restart = "no";
       };
 
-      Install.WantedBy = lib.optional (config.ar.home.desktop.hyprland.enable) "hyprland-session.target" ++ lib.optional (config.ar.home.desktop.sway.enable) "sway-session.target";
+      Install.WantedBy = lib.optional config.ar.home.desktop.hyprland.enable "hyprland-session.target" ++ lib.optional config.ar.home.desktop.sway.enable "sway-session.target";
     };
   };
 }

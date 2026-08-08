@@ -2,7 +2,7 @@
   lib,
   pkgs,
   ...
-} @ args: {
+}: {
   programs.k9s = {
     enable = true;
   };

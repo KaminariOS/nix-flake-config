@@ -66,7 +66,7 @@ get_cover() {
 	ffmpeg -i "${MUSIC_DIR}/$(mpc current -f %file%)" "${COVER}" -y &> /dev/null
 	STATUS=$?
 
-	# Check if the file has a embbeded album art
+    # Check if the file has embedded album art
 	if [ "$STATUS" -eq 0 ];then
 		echo "$COVER"
 	else

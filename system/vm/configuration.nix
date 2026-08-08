@@ -16,11 +16,6 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
-  services.openssh.enable = true;
-  services.openssh.settings = {
-    PasswordAuthentication = false;
-    KbdInteractiveAuthentication = false;
-  };
   boot.kernel.sysctl = {
     "net.ipv6.conf.all.forwarding" = true;
     # Optionally, enable for IPv4 as well
@@ -85,6 +80,13 @@
   };
 
   services = {
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+    };
     tailscale.enable = true;
     resolved = {
       enable = true;

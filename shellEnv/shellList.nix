@@ -143,42 +143,6 @@
       # code-rs
     ]);
 
-  security = with pkgs; [
-    rustcat # Port listener and reverse shell
-    rustscan # Port scanner
-    feroxbuster # Fast, simple, recursive content discovery tool
-
-    ropgadget # Tool to search for gadgets in binaries to facilitate ROP exploitation
-    pwndbg # Exploit Development and Reverse Engineering with GDB Made Easy
-
-    metasploit # pentesting
-
-    hashcat # Fast password cracker
-    hashcat-utils # Small utilities that are useful in advanced password cracking
-
-    aircrack-ng
-    kismet # Wireless network sniffer
-    burpsuite # An integrated platform for performing security testing of web applications
-  ];
-
-  cargoAddons = with pkgs; [
-    cargo-audit
-    cargo-feature
-    cargo-readme
-    cargo-geiger
-    cargo-msrv
-    cargo-expand
-    cargo-bloat
-    cargo-flamegraph
-    cargo-license
-    cargo-supply-chain
-    cargo-hack
-    cargo-deny
-    cargo-llvm-lines
-    cargo-outdated
-    cargo-udeps
-  ];
-
   nixAddons = with pkgs; (optionals full [
       cachix # nix caching
       nix-du

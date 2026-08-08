@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}: let
-  cfg = config.ar.home;
-in {
+}: {
   options.ar.home = {
     apps = {
       backblaze = {

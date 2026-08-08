@@ -1,0 +1,107 @@
+name: Nightly builds
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+      timezone: "America/New_York"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nightly-builds
+  cancel-in-progress: false
+
+jobs:
+  nixos:
+    name: Build NixOS (${{ matrix.host }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - host: savior
+            runner: ubuntu-latest
+          - host: thinker
+            runner: ubuntu-latest
+          - host: thinker-242
+            runner: ubuntu-latest
+          - host: oracle
+            runner: ubuntu-24.04-arm
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+
+      - name: Cache Nix store
+        uses: DeterminateSystems/magic-nix-cache-action@908b263ff629f4cc17666315b7fd3ec127c6244d # v14
+
+      - name: Build system
+        run: nix build --no-link --print-build-logs --no-write-lock-file ".#nixosConfigurations.\"${{ matrix.host }}\".config.system.build.toplevel"
+
+  home-manager:
+    name: Build Home Manager (${{ matrix.profile }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: kosumi
+            runner: ubuntu-latest
+          - profile: shellhome
+            runner: ubuntu-latest
+          - profile: shellhomeForWork
+            runner: ubuntu-latest
+          - profile: cloud-x86_64-linux
+            runner: ubuntu-latest
+          - profile: cloud-aarch64-linux
+            runner: ubuntu-24.04-arm
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+
+      - name: Cache Nix store
+        uses: DeterminateSystems/magic-nix-cache-action@908b263ff629f4cc17666315b7fd3ec127c6244d # v14
+
+      - name: Build activation package
+        run: nix build --no-link --print-build-logs --no-write-lock-file ".#homeConfigurations.\"${{ matrix.profile }}\".activationPackage"
+
+  darwin:
+    name: Build aarch64-darwin development outputs
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+
+      - name: Cache Nix store
+        uses: DeterminateSystems/magic-nix-cache-action@908b263ff629f4cc17666315b7fd3ec127c6244d # v14
+
+      - name: Build Darwin checks and development shell
+        run: >-
+          nix build --no-link --print-build-logs --no-write-lock-file
+          .#checks.aarch64-darwin.pre-commit-check
+          .#devShells.aarch64-darwin.default

@@ -12,6 +12,9 @@ extend-ignore-re = [
   "noice",                                                            # noice.nvim
   "crypted-nixos",
   "daed",
+  "mirrord",
+  "Siduction",
+  "WhiteSur",
 
   # catppuccin theme colors
   "11111b",

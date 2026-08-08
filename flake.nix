@@ -121,11 +121,6 @@
       "x86_64-linux"
       "aarch64-darwin"
     ];
-
-    forLinuxSystems = inputs.nixpkgs.lib.genAttrs [
-      "aarch64-linux"
-      "x86_64-linux"
-    ];
   in {
     formatter = forDefaultSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
 
@@ -147,12 +142,21 @@
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
+            actionlint.enable = true;
             alejandra.enable = true; # formatter
+            deadnix = {
+              enable = true;
+              settings = {
+                noLambdaArg = true;
+                noLambdaPatternNames = true;
+              };
+            };
+            statix.enable = true;
             # Source code spell checker
             typos = {
-              enable = !true;
+              enable = true;
               settings = {
-                write = true; # Automatically fix typos
+                write = false;
                 configPath = "./.typos.toml"; # relative to the flake root
               };
             };
@@ -163,8 +167,6 @@
                 configPath = "./.prettierrc.yaml"; # relative to the flake root
               };
             };
-            # deadnix.enable = true; # detect unused variable bindings in `*.nix`
-            # statix.enable = true; # lints and suggestions for Nix code(auto suggestions)
           };
         };
       }
@@ -183,8 +185,12 @@
             gcc
             # Nix-related
             alejandra
+            actionlint
             deadnix
+            gitleaks
+            shellcheck
             statix
+            zizmor
             # spell checker
             typos
             # code formatter

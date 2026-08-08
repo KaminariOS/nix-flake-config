@@ -53,7 +53,7 @@ with inputs; let
       inherit pkgs;
       nurpkgs = pkgs;
     };
-  in (
+  in
     home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
@@ -86,8 +86,7 @@ with inputs; let
           };
         }
       ];
-    }
-  );
+    };
   mkCloud = hostSystem: let
     username = "kosumi";
   in

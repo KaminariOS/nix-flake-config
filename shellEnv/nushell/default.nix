@@ -3,7 +3,7 @@
   pkgs,
   lib,
   ...
-} @ args: {
+}: {
   programs.nushell = {
     enable = true;
     configFile.source = ./config.nu;

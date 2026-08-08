@@ -29,28 +29,30 @@ in {
       # ./jj
       # ./k9s
     ];
-  home.file = {
-    ".ssh/config".text = ''
-      Host *.cloudlab.us
-        ForwardAgent yes
-        forwardX11Trusted yes
-    '';
-    ".gdbinit".text = ''
-      set auto-load safe-path /
-      tui enable
-    '';
+  home = {
+    file = {
+      ".ssh/config".text = ''
+        Host *.cloudlab.us
+          ForwardAgent yes
+          forwardX11Trusted yes
+      '';
+      ".gdbinit".text = ''
+        set auto-load safe-path /
+        tui enable
+      '';
+    };
+    packages = pkgs.callPackage ../shellEnv/shellList.nix {inherit full;};
+    sessionVariables = {
+      KUBECONFIG = "${homeDirectory}/.kube/config";
+    };
+    sessionPath = [
+      "${homeDirectory}/.cargo/bin"
+      "${homeDirectory}/.npm-global/bin"
+    ];
   };
   xdg.configFile."nvf/after/plugin/clipboard.lua".text = ''
     vim.opt.clipboard:append("unnamedplus")
   '';
-  home.packages = pkgs.callPackage ../shellEnv/shellList.nix {inherit full;};
-  home.sessionVariables = {
-    KUBECONFIG = "${homeDirectory}/.kube/config";
-  };
-  home.sessionPath = [
-    "${homeDirectory}/.cargo/bin"
-    "${homeDirectory}/.npm-global/bin"
-  ];
   programs = {
     kubecolor = {
       enable = true;

@@ -26,32 +26,33 @@
   #   extraPackages = with pkgs; [mesa mesa.drivers];
   # };
 
-  networking.hostName = "thinker"; # Define your hostname.
-  networking.hosts."100.83.176.86" = ["sciflow161.yuanwuzhi.io"];
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+    hostName = "thinker"; # Define your hostname.
+    hosts."100.83.176.86" = ["sciflow161.yuanwuzhi.io"];
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # Configure network proxy if necessary
+    # proxy.default = "http://user:password@proxy:port/";
+    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [8000];
-  networking.nftables = {
-    enable = true;
-    ruleset = ''
-      table ip local_alias {
-        chain output {
-          type nat hook output priority dstnat; policy accept;
-          ip daddr 192.168.3.161 dnat to 100.83.176.86
+    networkmanager.enable = true;
+    firewall.interfaces.tailscale0.allowedTCPPorts = [8000];
+    nftables = {
+      enable = true;
+      ruleset = ''
+        table ip local_alias {
+          chain output {
+            type nat hook output priority dstnat; policy accept;
+            ip daddr 192.168.3.161 dnat to 100.83.176.86
+          }
+
+          chain postrouting {
+            type nat hook postrouting priority srcnat; policy accept;
+            ip daddr 100.83.176.86 masquerade
+          }
         }
-
-        chain postrouting {
-          type nat hook postrouting priority srcnat; policy accept;
-          ip daddr 100.83.176.86 masquerade
-        }
-      }
-    '';
+      '';
+    };
   };
   services = {
     k3s = {

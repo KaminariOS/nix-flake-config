@@ -39,7 +39,6 @@
     feishu
     # unityhub
   ];
-  inherit (config.home) homeDirectory;
 in {
   imports =
     (lib.concatMap import (optionals gui [

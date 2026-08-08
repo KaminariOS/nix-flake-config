@@ -33,7 +33,7 @@ module completions {
     --write-fetch-head                            # Write fetched refs in FETCH_HEAD (default)
     --no-write-fetch-head                         # Do not write FETCH_HEAD
     --force(-f)                                   # Always update the local branch
-    --keep(-k)                                    # Keep dowloaded pack
+    --keep(-k)                                    # Keep downloaded pack
     --multiple                                    # Allow several arguments to be specified
     --auto-maintenance                            # Run 'git maintenance run --auto' at the end (default)
     --no-auto-maintenance                         # Don't run 'git maintenance' at the end
@@ -74,7 +74,7 @@ module completions {
     --ignore-other-worktrees                        # do not check if another worktree is holding the given ref
     --ignore-skip-worktree-bits                     # do not limit pathspecs to sparse entries only
     --merge(-m)                                     # perform a 3-way merge with the new branch
-    --orphan: string                                # new unparented branch
+    --orphan: string                                # new branch without parents
     --ours(-2)                                      # checkout our version for unmerged files
     --overlay                                       # use overlay mode (default)
     --overwrite-ignore                              # update ignored files (default)
@@ -290,7 +290,7 @@ let-env config = {
   }
   menus: [
       # Configuration for default nushell menus
-      # Note the lack of souce parameter
+      # Note the lack of source parameter
       {
         name: completion_menu
         only_buffer_difference: false

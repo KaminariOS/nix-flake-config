@@ -400,7 +400,7 @@ in {
     systemd.user.services.waybar = {
       Install.WantedBy = lib.mkForce (lib.optional cfg.desktop.hyprland.enable "hyprland-session.target" ++ lib.optional cfg.desktop.sway.enable "sway-session.target");
       Service.Restart = lib.mkForce "no";
-      Unit.BindsTo = lib.optional cfg.desktop.hyprland.enable "hyprland-session.target" ++ lib.optional (cfg.desktop.sway.enable) "sway-session.target";
+      Unit.BindsTo = lib.optional cfg.desktop.hyprland.enable "hyprland-session.target" ++ lib.optional cfg.desktop.sway.enable "sway-session.target";
     };
 
     xdg.configFile."nwg-drawer/drawer.css".text = ''
