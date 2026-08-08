@@ -5,6 +5,7 @@
   ...
 }: {
   disabledModules = [
+    ../thinker/amd-graphics.nix
     ../thinker/hardware-configuration.nix
   ];
 

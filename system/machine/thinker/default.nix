@@ -9,6 +9,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./amd-graphics.nix
+    ../../modules/hardware/laptop.nix
   ];
   boot = {
     loader = {
@@ -17,9 +19,6 @@
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
     };
-    blacklistedKernelModules = ["ideapad_laptop"];
-    initrd.kernelModules = ["amdgpu"];
-    kernelModules = ["amdgpu"];
   };
 
   # hardware.graphics = {

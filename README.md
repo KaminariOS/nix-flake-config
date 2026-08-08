@@ -59,9 +59,8 @@ This configuration includes a wide range of modules and tools tailored for produ
 │   ├── configuration.nix     # Common NixOS config
 │   ├── machine/              # Machine-specific configs
 │   │   ├── savior/
-│   │   ├── portable/
-│   │   ├── redmoon/
-│   │   └── thinker/
+│   │   ├── thinker/
+│   │   └── thinker-242/
 │   ├── fonts/                # Font packages
 │   └── cachix.nix            # Binary cache config
 ├── outputs/                  # Flake outputs
@@ -108,7 +107,7 @@ home-manager switch --flake '/path/to/this/repo#kosumi'
 For full system management:
 
 ```bash
-# Replace 'thinker' with your hostname (savior, portable, redmoon, thinker)
+# Replace 'thinker' with your hostname (savior, thinker, thinker-242)
 sudo nixos-rebuild switch --flake .#thinker
 ```
 
@@ -122,9 +121,8 @@ sudo nixos-rebuild switch --flake .#thinker
 
 ### NixOS Hosts
 - **`savior`**: Main desktop configuration
-- **`portable`**: Laptop configuration
-- **`redmoon`**: Secondary desktop
 - **`thinker`**: Workstation setup
+- **`thinker-242`**: Intel variant of the Thinker workstation
 
 ### Customization
 - Modify `home/home.nix` for global home-manager changes

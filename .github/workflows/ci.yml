@@ -48,7 +48,7 @@ jobs:
 
       - name: Evaluate configurations
         run: |
-          for host in savior portable redmoon thinker thinker-242 oracle; do
+          for host in savior thinker thinker-242 oracle; do
             echo "::group::$host"
             nix eval \
               --raw \
@@ -78,7 +78,6 @@ jobs:
           for profile in \
             kosumi \
             shellhome \
-            droid \
             shellhomeForWork \
             cloud-aarch64-linux \
             cloud-x86_64-linux

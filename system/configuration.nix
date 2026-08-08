@@ -4,7 +4,6 @@
     ./modules/networking.nix
     ./modules/programs.nix
     ./modules/virtualization.nix
-    ./modules/hardware.nix
     ./modules/desktop.nix
     ./modules/services.nix
     ./modules/kubernetes.nix

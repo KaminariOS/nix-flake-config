@@ -34,15 +34,6 @@
           {programs.nix-index-database.comma.enable = true;}
         ];
     };
-  mkHostDroid = name:
-    nixosSystem {
-      system = defaultSystem;
-      specialArgs = {inherit inputs;};
-      modules = [
-        ../system/machine/${name}
-        inputs.sops-nix.nixosModules.sops
-      ];
-    };
 in {
   oracle = mkCustomHost {
     system = "aarch64-linux";
@@ -53,9 +44,6 @@ in {
     ];
   };
   savior = mkHost "savior";
-  portable = mkHost "portable";
-  redmoon = mkHost "redmoon";
   thinker = mkHost "thinker";
   thinker-242 = mkHost "thinker-242";
-  droid = mkHostDroid "droid";
 }

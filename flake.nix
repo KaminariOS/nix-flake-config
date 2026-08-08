@@ -120,18 +120,11 @@
       "aarch64-linux"
       "x86_64-linux"
       "aarch64-darwin"
-      "x86_64-darwin"
     ];
 
     forLinuxSystems = inputs.nixpkgs.lib.genAttrs [
       "aarch64-linux"
       "x86_64-linux"
-    ];
-
-    forAllHosts = inputs.nixpkgs.lib.genAttrs [
-      "savior"
-      "portable"
-      "redmoon"
     ];
   in {
     formatter = forDefaultSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
