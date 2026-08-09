@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  enableDisplayLink ? true,
+  lib,
+  pkgs,
+  ...
+}: {
   environment.etc."greetd/environments".text = ''
     sway
   '';
@@ -7,7 +12,7 @@
     pipewire.wireplumber.enable = true;
     auto-cpufreq.enable = true;
     xserver = {
-      videoDrivers = ["displaylink" "modesetting"];
+      videoDrivers = lib.optional enableDisplayLink "displaylink" ++ ["modesetting"];
       desktopManager.runXdgAutostartIfNone = true;
 
       displayManager.session = [

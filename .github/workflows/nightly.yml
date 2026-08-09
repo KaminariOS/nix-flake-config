@@ -23,12 +23,16 @@ jobs:
       matrix:
         include:
           - host: savior
+            configuration: savior-ci
             runner: ubuntu-latest
           - host: thinker
+            configuration: thinker-ci
             runner: ubuntu-latest
           - host: thinker-242
+            configuration: thinker-242
             runner: ubuntu-latest
           - host: oracle
+            configuration: oracle
             runner: ubuntu-24.04-arm
     steps:
       - name: Check out repository
@@ -45,7 +49,7 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@908b263ff629f4cc17666315b7fd3ec127c6244d # v14
 
       - name: Build system
-        run: nix build --no-link --print-build-logs --no-write-lock-file ".#nixosConfigurations.\"${{ matrix.host }}\".config.system.build.toplevel"
+        run: nix build --no-link --print-build-logs --no-write-lock-file ".#nixosConfigurations.\"${{ matrix.configuration }}\".config.system.build.toplevel"
 
   home-manager:
     name: Build Home Manager (${{ matrix.profile }})

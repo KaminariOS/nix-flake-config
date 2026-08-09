@@ -7,10 +7,13 @@
   defaultSystem = system;
 
   # Helper function to define a NixOS host
-  mkHost = name:
+  mkHost = {
+    name,
+    enableDisplayLink ? true,
+  }:
     nixosSystem {
       system = defaultSystem;
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit enableDisplayLink inputs;};
       modules = [
         ../system/machine/${name}
         ../system/configuration.nix
@@ -43,7 +46,18 @@ in {
       ../system/vm/hardware-configuration.nix
     ];
   };
-  savior = mkHost "savior";
-  thinker = mkHost "thinker";
-  thinker-242 = mkHost "thinker-242";
+  savior = mkHost {name = "savior";};
+  thinker = mkHost {name = "thinker";};
+  thinker-242 = mkHost {name = "thinker-242";};
+
+  # DisplayLink's source requires accepting an EULA and manually adding it to
+  # the Nix store. Keep it on the real hosts, but omit it from clean CI builds.
+  savior-ci = mkHost {
+    name = "savior";
+    enableDisplayLink = false;
+  };
+  thinker-ci = mkHost {
+    name = "thinker";
+    enableDisplayLink = false;
+  };
 }
