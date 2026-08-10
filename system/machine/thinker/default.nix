@@ -36,7 +36,10 @@
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
     networkmanager.enable = true;
-    firewall.interfaces.tailscale0.allowedTCPPorts = [8000];
+    firewall.interfaces.tailscale0.allowedTCPPorts = [
+      5900
+      8000
+    ];
     nftables = {
       enable = true;
       ruleset = ''

@@ -37,6 +37,16 @@
 
     services.playerctld.enable = lib.mkDefault true;
 
+    services.wayvnc = {
+      enable = true;
+      autoStart = true;
+      systemdTarget = "sway-session.target";
+      settings = {
+        address = "0.0.0.0";
+        port = 5900;
+      };
+    };
+
     xdg.portal = {
       enable = true;
       # extraPortals = [pkgs.xdg-desktop-portal-gtk];
