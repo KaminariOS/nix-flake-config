@@ -21,6 +21,12 @@
     };
   };
 
+  # Avoid immediate s2idle resume caused by a phantom ACPI power-button event.
+  # Lid wake remains enabled.
+  systemd.tmpfiles.rules = [
+    "w /sys/bus/acpi/devices/PNP0C0C:00/power/wakeup - - - - disabled"
+  ];
+
   # hardware.graphics = {
   #   enable = true;
   #   extraPackages = with pkgs; [mesa mesa.drivers];
