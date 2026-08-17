@@ -47,6 +47,28 @@
       };
     };
 
+    sops = {
+      secrets.wayvnc_password = {};
+      templates."wayvnc.conf".content = ''
+        address=0.0.0.0
+        port=5900
+        enable_auth=true
+        password=${config.sops.placeholder.wayvnc_password}
+        relax_encryption=true
+        allow_broken_crypto=true
+      '';
+    };
+
+    systemd.user.services.wayvnc = {
+      Unit = {
+        After = ["sops-nix.service"];
+        Requires = ["sops-nix.service"];
+      };
+      Service.ExecStart = lib.mkForce [
+        "${lib.getExe config.services.wayvnc.package} --config=${config.sops.templates."wayvnc.conf".path}"
+      ];
+    };
+
     xdg.portal = {
       enable = true;
       # extraPortals = [pkgs.xdg-desktop-portal-gtk];
