@@ -44,6 +44,7 @@ with inputs; let
     hostSystem ? system,
     hidpi ? false,
     username,
+    profileName ? username,
     gui ? false,
     full ? true,
     homed,
@@ -61,6 +62,7 @@ with inputs; let
         inherit hidpi;
         inherit full;
         inherit gui;
+        homeProfile = profileName;
         herdr = inputs.herdr.packages.${hostSystem}.default;
         addons = nur.repos.rycee.firefox-addons;
       };
@@ -110,6 +112,19 @@ in {
       full = true;
       inherit username;
       homed = "/home/${username}";
+    };
+
+  mini = let
+    username = "kosumi";
+  in
+    mkHome {
+      hostSystem = "aarch64-darwin";
+      hidpi = false;
+      inherit username;
+      profileName = "mini";
+      gui = false;
+      full = false;
+      homed = "/Users/${username}";
     };
 
   shellhome = let
