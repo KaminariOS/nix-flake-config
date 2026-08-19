@@ -60,7 +60,14 @@ in {
   home = {
     stateVersion = "22.05";
     #    packages = defaultPkgs ++ gnomePkgs;
-    packages = optionals gui (defaultPkgs ++ gui_apps ++ nixos_app);
+    packages =
+      (optionals gui (defaultPkgs ++ gui_apps ++ nixos_app))
+      ++ optionals pkgs.stdenv.isDarwin [
+        # macOS Tailscale.app ships its CLI only inside the bundle; expose it on PATH
+        (pkgs.writeShellScriptBin "tailscale" ''
+          exec /Applications/Tailscale.app/Contents/MacOS/Tailscale "$@"
+        '')
+      ];
     sessionVariables =
       {
         DISPLAY = ":0";
