@@ -13,6 +13,7 @@ in {
       plugins = [pkgs.networkmanager-openvpn];
     };
     useDHCP = false;
+    firewall.interfaces.tailscale0.allowedTCPPorts = [4096];
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
