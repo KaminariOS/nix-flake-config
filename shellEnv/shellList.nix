@@ -74,7 +74,7 @@
       kubetui
       # A simple tui to view & control docker containers
       (
-        if stdenv.isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then oxker.overrideAttrs (_: {doCheck = false;})
         else oxker
       )

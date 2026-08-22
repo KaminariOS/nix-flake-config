@@ -5,7 +5,7 @@
   homeProfile,
   ...
 }: let
-  nixDaemonInit = lib.optionalString pkgs.stdenv.isDarwin ''
+  nixDaemonInit = lib.optionalString pkgs.stdenv.hostPlatform.isDarwin ''
     if not set -q __ETC_PROFILE_NIX_SOURCED; and test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
       source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
     end
