@@ -13,5 +13,8 @@
 
     [ui.toast]
     delivery = "system"
+
+    [experimental]
+    kitty_graphics = true
   '';
 }
