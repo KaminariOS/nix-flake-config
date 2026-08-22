@@ -60,7 +60,7 @@ This configuration includes a wide range of modules and tools tailored for produ
 │   ├── machine/              # Machine-specific configs
 │   │   ├── savior/
 │   │   ├── thinker/
-│   │   └── thinker-242/
+│   │   └── thinkery/
 │   ├── fonts/                # Font packages
 │   └── cachix.nix            # Binary cache config
 ├── outputs/                  # Flake outputs
@@ -107,9 +107,17 @@ home-manager switch --flake '/path/to/this/repo#kosumi'
 For full system management:
 
 ```bash
-# Replace 'thinker' with your hostname (savior, thinker, thinker-242)
+# Replace 'thinker' with your hostname (savior, thinker, thinkery, oracle)
 sudo nixos-rebuild switch --flake .#thinker
 ```
+
+NixOS hosts check the public `dev` branch daily and switch to the configuration
+whose flake output matches their hostname. Automatic reboots are disabled.
+
+Standalone Home Manager profiles also check the same branch daily using a
+persistent systemd user timer on Linux or a background launchd agent on macOS.
+This works when the host itself is not running NixOS. On headless Linux hosts,
+enable user lingering so the timer can run while the user is logged out.
 
 ## Usage
 
@@ -122,7 +130,7 @@ sudo nixos-rebuild switch --flake .#thinker
 ### NixOS Hosts
 - **`savior`**: Main desktop configuration
 - **`thinker`**: Workstation setup
-- **`thinker-242`**: Intel variant of the Thinker workstation
+- **`thinkery`**: Intel variant of the Thinker workstation
 
 ### Customization
 - Modify `home/home.nix` for global home-manager changes

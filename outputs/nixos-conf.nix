@@ -17,6 +17,7 @@
       modules = [
         ../system/machine/${name}
         ../system/configuration.nix
+        ../system/modules/auto-upgrade.nix
         inputs.sops-nix.nixosModules.sops
         inputs.nix-index-database.nixosModules.nix-index
         {programs.nix-index-database.comma.enable = true;}
@@ -32,6 +33,7 @@
       modules =
         modules
         ++ [
+          ../system/modules/auto-upgrade.nix
           inputs.sops-nix.nixosModules.sops
           inputs.nix-index-database.nixosModules.nix-index
           {programs.nix-index-database.comma.enable = true;}
@@ -48,7 +50,7 @@ in {
   };
   savior = mkHost {name = "savior";};
   thinker = mkHost {name = "thinker";};
-  thinker-242 = mkHost {name = "thinker-242";};
+  thinkery = mkHost {name = "thinkery";};
 
   # DisplayLink's source requires accepting an EULA and manually adding it to
   # the Nix store. Keep it on the real hosts, but omit it from clean CI builds.

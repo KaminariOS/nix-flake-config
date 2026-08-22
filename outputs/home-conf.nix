@@ -96,6 +96,7 @@ with inputs; let
       inherit hostSystem;
       hidpi = false;
       inherit username;
+      profileName = "cloud-${hostSystem}";
       gui = false;
       full = false;
       homed = "/home/${username}";
@@ -133,6 +134,7 @@ in {
     mkHome {
       hidpi = false;
       inherit username;
+      profileName = "shellhome";
       gui = false;
       full = false;
       homed = "/users/${username}";
@@ -143,6 +145,7 @@ in {
     mkHome {
       hidpi = false;
       inherit username;
+      profileName = "shellhomeForWork";
       gui = false;
       full = false;
       homed = "/home/${username}";

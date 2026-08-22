@@ -51,6 +51,7 @@ in {
       ./stylix.nix
     ])
     ++ [
+      ./auto-upgrade.nix
       ./options.nix
       ../shellEnv
     ];
