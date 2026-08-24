@@ -6,6 +6,15 @@
   inherit (inputs.nixpkgs.lib) nixosSystem;
   defaultSystem = system;
 
+  # Modules applied to every host
+  commonModules = [
+    ../system/modules/auto-upgrade.nix
+    ../system/modules/bbr.nix
+    inputs.sops-nix.nixosModules.sops
+    inputs.nix-index-database.nixosModules.nix-index
+    {programs.nix-index-database.comma.enable = true;}
+  ];
+
   # Helper function to define a NixOS host
   mkHost = {
     name,
@@ -14,14 +23,12 @@
     nixosSystem {
       system = defaultSystem;
       specialArgs = {inherit enableDisplayLink inputs;};
-      modules = [
-        ../system/machine/${name}
-        ../system/configuration.nix
-        ../system/modules/auto-upgrade.nix
-        inputs.sops-nix.nixosModules.sops
-        inputs.nix-index-database.nixosModules.nix-index
-        {programs.nix-index-database.comma.enable = true;}
-      ];
+      modules =
+        [
+          ../system/machine/${name}
+          ../system/configuration.nix
+        ]
+        ++ commonModules;
     };
   mkCustomHost = {
     system,
@@ -30,14 +37,7 @@
     nixosSystem {
       inherit system;
       specialArgs = {inherit inputs;};
-      modules =
-        modules
-        ++ [
-          ../system/modules/auto-upgrade.nix
-          inputs.sops-nix.nixosModules.sops
-          inputs.nix-index-database.nixosModules.nix-index
-          {programs.nix-index-database.comma.enable = true;}
-        ];
+      modules = modules ++ commonModules;
     };
 in {
   oracle = mkCustomHost {
