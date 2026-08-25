@@ -5,7 +5,7 @@
   homeProfile,
   ...
 }: let
-  nixDaemonInit = lib.optionalString pkgs.stdenv.hostPlatform.isDarwin ''
+  nixDaemonInit = ''
     if not set -q __ETC_PROFILE_NIX_SOURCED; and test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
       source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
     end
@@ -295,17 +295,15 @@ in {
       kta = "kubetui -A";
 
       uvn = "uvx napy";
-
-      helmi = "helm upgrade --install";
-      helmu = "helm uninstall";
     };
     plugins = [custom.theme fenv bass puffer done];
     interactiveShellInit = ''
       eval (direnv hook fish)
       any-nix-shell fish --info-right | source
     '';
-    shellInit = nixDaemonInit + fishConfig + loadenv;
+    shellInit = fishConfig + loadenv;
   };
 
+  xdg.configFile."fish/conf.d/00-nix-daemon.fish".text = nixDaemonInit;
   xdg.configFile."fish/functions/fish_prompt.fish".text = custom.prompt;
 }
