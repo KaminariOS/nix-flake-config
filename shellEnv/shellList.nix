@@ -269,7 +269,7 @@
 
       #rust-gdb
 
-      # python3
+      python3
       python3.pkgs.dbus-python
       # iftop
 
