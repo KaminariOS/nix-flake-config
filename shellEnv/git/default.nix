@@ -93,6 +93,4 @@ in {
       whitespace-error-style = "22 reverse";
     };
   };
-
-  home.packages = with pkgs; [git-crypt git-annex];
 }

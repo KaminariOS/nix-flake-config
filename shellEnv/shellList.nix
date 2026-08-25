@@ -284,10 +284,8 @@
     ]);
   cloud = with pkgs; [
     kubectl
-    kubernetes-helm
     fluxcd
     # telepresence2
-    mirrord
   ];
 in
   lib.filter (lib.meta.availableOn pkgs.stdenv.hostPlatform) (

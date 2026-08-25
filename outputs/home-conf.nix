@@ -48,6 +48,7 @@ with inputs; let
     gui ? false,
     full ? true,
     homed,
+    extraModules ? [],
   }: let
     pkgs = mkPkgs hostSystem;
     nur = import nurpkgs {
@@ -69,25 +70,27 @@ with inputs; let
 
       modules = let
         homeDirectory = homed;
-      in [
-        {
-          imports =
-            (pkgs.lib.optionals full commonImports)
-            ++ [../home/home.nix]
-            ++ pkgs.lib.optional gui inputs.stylix.homeModules.stylix;
-        }
-        {
-          home = {
-            inherit username;
-            inherit homeDirectory;
-          };
-          programs.git.signing.signByDefault = gui;
-          xdg = {
-            configHome = "${homeDirectory}/.config";
-            enable = true;
-          };
-        }
-      ];
+      in
+        [
+          {
+            imports =
+              (pkgs.lib.optionals full commonImports)
+              ++ [../home/home.nix]
+              ++ pkgs.lib.optional gui inputs.stylix.homeModules.stylix;
+          }
+          {
+            home = {
+              inherit username;
+              inherit homeDirectory;
+            };
+            programs.git.signing.signByDefault = gui;
+            xdg = {
+              configHome = "${homeDirectory}/.config";
+              enable = true;
+            };
+          }
+        ]
+        ++ extraModules;
     };
   mkCloud = hostSystem: let
     username = "kosumi";
@@ -153,6 +156,21 @@ in {
   cloud = cloudAarch64;
   "cloud-aarch64-linux" = cloudAarch64;
   "cloud-x86_64-linux" = cloudX86_64;
+  droid = mkHome {
+    hostSystem = "aarch64-linux";
+    username = "droid";
+    profileName = "droid";
+    gui = false;
+    full = false;
+    homed = "/home/droid";
+    extraModules = [
+      {
+        xdg.configFile."nix/nix.conf".text = ''
+          experimental-features = nix-command flakes
+        '';
+      }
+    ];
+  };
   # Continuous Integration automation
   #  ci = {
   #    metals = pkgs.callPackage ../home/programs/neovim-ide/metals.nix { };

@@ -258,7 +258,6 @@ in {
       rfr = "rofi -show run";
       dif = "delta";
       ca = "cargo";
-      man = "batman";
       scs = "systemctl suspend";
       gp = "git pso";
       ga = "git ca";
