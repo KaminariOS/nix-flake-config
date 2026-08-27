@@ -7,6 +7,7 @@
     gvfs.enable = true;
     tailscale = {
       enable = true;
+      openFirewall = true;
       extraSetFlags = ["--accept-dns=true"];
     };
     v2raya.enable = true;
