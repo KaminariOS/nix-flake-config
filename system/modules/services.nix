@@ -8,7 +8,10 @@
     tailscale = {
       enable = true;
       openFirewall = true;
-      extraSetFlags = ["--accept-dns=true"];
+      extraSetFlags = [
+        "--accept-dns=true"
+        "--exit-node-allow-lan-access=true"
+      ];
     };
     v2raya.enable = true;
 
